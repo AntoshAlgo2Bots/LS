@@ -305,7 +305,7 @@ if ($result3->num_rows > 0) {
                                     </label>
                                     <input type="number" id="totalKm" name="totalKm"
                                         class="border-0 px-3 py-2 placeholder-blueGray-300 mb-4 text-blueGray-600 bg-white rounded text-sm w-56 shadow focus:outline-none focus:ring-1 ease-linear transition-all duration-150"
-                                        readonly>
+                                       readonly value="00.00" placeholder="00.00">
                                 </div>
                                 <div>
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">

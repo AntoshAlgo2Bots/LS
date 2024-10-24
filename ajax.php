@@ -38,9 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Success user found\n";
 
 
-        
-            echo $row['password']."\n";
-            
+
+            echo $row['password'] . "\n";
+
             if ($row["password"] == $password) {
                 // echo $row["mobile_number"];
 
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $respone["message"] = "success";
                 $_SESSION["username"] = $row["user_name"];
                 $_SESSION["user_id"] = $row["id"];
- 
+
                 $user_id = $row["id"];
 
 
@@ -198,10 +198,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-
+    include('./dbconnection/db.php');
+    
     if (isset($_GET['itemCodeInfoForPr'])) {
-
-        include('db_connection.php');
+        
+        include('./dbconnection/db.php');
 
         $sql = "SELECT item_code FROM for_office.item_master_main;";
 
@@ -221,7 +222,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $item_Code = $_GET['itemcode'];
 
 
-        include('db_connection.php');
+        include('./dbconnection/db.php');
 
         $sql = "SELECT Short_Description FROM for_office.item_master_main where item_code= '$item_Code';";
 
@@ -249,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET["getImgName"])) {
 
 
-        include("./db.php");
+        include('./dbconnection/db.php');
 
         $item_code = $_GET["item_code"];
 
@@ -284,23 +285,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         echo json_encode($respone);
 
 
 
 
     }
+
+
+
+
 
 
 
