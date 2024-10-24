@@ -30,7 +30,7 @@ $currentTime = date("Y-m-d H:i:s");
 // $net_balace = $credit_amt - $debit_amt;
 
 $sql2 = "SELECT net_balance FROM txn_book ORDER BY transaction_no DESC LIMIT 1";
-$result = $conn->query($sql2);
+$result = $con->query($sql2);
 
 if ($result && $result->num_rows > 0) {
   $row = $result->fetch_assoc();
@@ -62,21 +62,21 @@ if ($debit_amt > 0) {
 //     echo "Error: " . $stmt->error;
 // }
 
-$sql = "INSERT INTO daily_txn_book.txn_book 
+$sql = "INSERT INTO for_office.txn_book 
 (transaction_date, amount_type, credit_amt, debit_amt, net_balance, particuler_to, site, main_head, sub_head, `from`, `to`, startKm, endKm, totalKm, rate, bill_cheque_no, invoice_date, invoice_no, gst_no, remarks, currentUser, currentTime) 
 VALUES ('$transaction_date', '$amount_type', '$credit_amt', '$debit_amt', '$net_balance', '$particuler_to', '$site', '$main_head', '$sub_head', '$from', '$to', '$startKm', '$endKm', '$totalKm', '$rate', '$bill_cheque_no', '$invoice_date', '$invoice_no', '$gst_no', '$remarks', '$currentUser', '$currentTime')";
 
 
-if ($conn->query($sql) === TRUE) {
+if ($con->query($sql) === TRUE) {
   $response["success"] = true;
   $response["message"] = "New record created successfully";
   // echo "New record created successfully";
 } else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+  echo "Error: " . $sql . "<br>" . $con->error;
   $response["success"] = false;
   $response["message"] = " record Not created ";
 }
 
-$conn->close();
+$con->close();
 
 ?>

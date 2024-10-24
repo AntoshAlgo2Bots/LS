@@ -4,7 +4,7 @@ include("../dbconnection/db.php");
 
 
 
-$sql = "SELECT * FROM daily_txn_book.txn_book where form_status= 'SAVE';";
+$sql = "SELECT * FROM for_office.txn_book where form_status= 'SAVE';";
 
 
 $result = mysqli_query($con, $sql);

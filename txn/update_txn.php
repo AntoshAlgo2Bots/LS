@@ -3,7 +3,7 @@
 include("../db/db.php");
 
 
-$sql = "SELECT * FROM daily_txn_book.txn_book where form_status= 'SUBMIT';";
+$sql = "SELECT * FROM for_office.txn_book where form_status= 'SUBMIT';";
 
 
 $result = mysqli_query($conn, $sql);
