@@ -35,13 +35,15 @@ $result = mysqli_query($con, $sql);
     <script src="./js/jquery-3.7.1.min.js"></script>
 
     <title>te Lead Information</title>
+
 </head>
 
 <script>
-    function addRow() {
+    async function addRow() {
         const container = document.getElementById("itemRows");
         const row = document.createElement("div");
         row.className = "flex flex-wrap items-center gap-x-5 w-full p-2 rounded-lg mt-2";
+        row.name='row'
         row.innerHTML = `  <div>
                             <input id="default-checkbox" type="checkbox" value=""
                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
@@ -56,14 +58,17 @@ $result = mysqli_query($con, $sql);
                             <div>
                                 <label class="block text-sm">Item Name : </label>
                                 <input type="text" name="item_name" id="item_name"
+                                onChange='setPriceImgOnchage(event)'
                                     class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                     style="border-color: #C8A1E0;" /><br>
                             </div>
-                            <div>
-                                <button type="button" id="getPriceBtn"
-                                    class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-1 focus:ring-gray-100 font-medium rounded-lg text-xs px-2 py-1 ">Get
-                                    Price</button>
-                            </div>
+                            
+                            <!-- <div>
+                                 <button type="button" id="getPriceBtn"
+                                     class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-1 focus:ring-gray-100 font-medium rounded-lg text-xs px-2 py-1 ">Get
+                                     Price</button>
+                             </div>
+                             -->
                         </div>
                         <div>
                             <label class="block text-sm">Item Qty : </label>
@@ -91,7 +96,7 @@ $result = mysqli_query($con, $sql);
                                 type="button">if Ship another address </button>
                         </div>
                         <div class="w-28 h-24 border border-gray-900 rounded-md">
-                            <img class="w-28 h-24 rounded-md" src="" id="ImagePreview" alt="image preview">
+                            <img class="w-28 h-24 rounded-md" src="" name='ImagePreview' id="ImagePreview" alt="image preview">
                         </div>
 
                         <div>
@@ -114,6 +119,10 @@ $result = mysqli_query($con, $sql);
                         </div>
             `;
         container.appendChild(row);
+
+
+
+        await setItemListInIputags()
     }
 
     function removeRow(button) {
@@ -126,6 +135,7 @@ $result = mysqli_query($con, $sql);
         const container = document.getElementById("itemRows1");
         const row = document.createElement("div");
         row.className = "flex flex-wrap items-center gap-x-5 w-full p-2 rounded-lg mt-2";
+        row.name='row'
         row.innerHTML = `
                 <div>
                             <input id="default-checkbox" type="checkbox" value=""
@@ -139,7 +149,7 @@ $result = mysqli_query($con, $sql);
                         </div>
                         <div>
                             <label class="block text-sm">Item Name : </label>
-                            <input type="text" name="item_name"
+                            <input type="text" name="item_name" onChange='setPriceImgOnchage1(event)'
                                 class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 style="border-color: #C8A1E0;" /><br>
                         </div>
@@ -169,7 +179,7 @@ $result = mysqli_query($con, $sql);
                                 type="button">if Ship another address </button>
                         </div>
                         <div class="w-28 h-24 border border-gray-900 rounded-md">
-                            <img class="w-28 h-24 rounded-md" src="./images.png" alt="image preview">
+                            <img name='ImagePreview' class="w-28 h-24 rounded-md" src="./images.png" alt="image preview">
                         </div>
 
                         <div>
@@ -195,6 +205,9 @@ $result = mysqli_query($con, $sql);
                 </div>
             `;
         container.appendChild(row);
+
+
+        setItemListInIputags()
     }
 
     function removeRow1(button) {
@@ -252,7 +265,8 @@ $result = mysqli_query($con, $sql);
                             <label for="created_by" class="block mb-2 text-sm font-bold text-gray-900">Created By
                                 :
                             </label>
-                            <input type="text" id="created_by" name="created_by" value="<?php echo $_SESSION["username"] ?>"
+                            <input type="text" id="created_by" name="created_by"
+                                value="<?php echo $_SESSION["username"] ?>"
                                 class="border mb-4 border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 p-1.5"
                                 placeholder="Get Data" disabled />
                         </div>
@@ -260,7 +274,8 @@ $result = mysqli_query($con, $sql);
                             <label for="created_date" class="block mb-2 text-sm font-bold text-gray-900">Created
                                 Date :
                             </label>
-                            <input type="datetime-local" id="created_date" name="created_date" value="<?php echo $currentDateTime; ?>"
+                            <input type="datetime-local" id="created_date" name="created_date"
+                                value="<?php echo $currentDateTime; ?>"
                                 class="border mb-4 border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 p-1.5"
                                 placeholder="" disabled />
                         </div>
@@ -383,7 +398,7 @@ $result = mysqli_query($con, $sql);
                         </label>
                         <input type="text" id="assigned_to" name="assigned_to"
                             class="border mb-4 border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 p-1.5"
-                            placeholder="" required/>
+                            placeholder="" required />
                     </div>
 
                     <div>
@@ -696,11 +711,11 @@ $result = mysqli_query($con, $sql);
                                     class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                     style="border-color: #C8A1E0;" /><br>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <button type="button" id="getPriceBtn"
                                     class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-1 focus:ring-gray-100 font-medium rounded-lg text-xs px-2 py-1 ">Get
                                     Price</button>
-                            </div>
+                            </div> -->
                         </div>
                         <div>
                             <label class="block text-sm">Item Qty : </label>
@@ -728,7 +743,7 @@ $result = mysqli_query($con, $sql);
                                 type="button">if Ship another address </button>
                         </div>
                         <div class="w-28 h-24 border border-gray-900 rounded-md">
-                            <img class="w-28 h-24 rounded-md" src="" id="ImagePreview" alt="image preview">
+                            <img class="w-28 h-24 rounded-md" name="ImagePreview" src="" id="ImagePreview" alt="image preview">
                         </div>
 
                         <div>
@@ -814,11 +829,11 @@ $result = mysqli_query($con, $sql);
                                             class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                             style="border-color: #C8A1E0;" /><br>
                                     </div>
-                                    <div>
+                                    <!-- <div>
                                         <button type="button" id="getPriceBtn1"
                                             class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-1 focus:ring-gray-100 font-medium rounded-lg text-xs px-2 py-1 ">Get
                                             Price</button>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div>
                                     <label class="block text-sm">Item Qty : </label>
@@ -845,7 +860,7 @@ $result = mysqli_query($con, $sql);
                                         type="button">if Ship another address </button>
                                 </div>
                                 <div class="w-28 h-24 border border-gray-900 rounded-md">
-                                    <img class="w-28 h-24 rounded-md" src="" id="ImagePreview1" alt="image preview">
+                                    <img class="w-28 h-24 rounded-md" src="" name="ImagePreview" id="ImagePreview1" alt="image preview">
                                 </div>
 
                                 <div>
@@ -1347,7 +1362,29 @@ $result = mysqli_query($con, $sql);
 
 
         $(document).ready(function () {
-            $('#item_name').on("change",function () {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            $("input[name='item_name'").on("change", function () {
+
+                console.log("fmef");
+
+                console.log(this);
+
+
                 var itemName = $('#item_name').val();
                 $.ajax({
                     url: './phpAJax/getPriceFromItemMaster.php',
@@ -1365,11 +1402,20 @@ $result = mysqli_query($con, $sql);
                         $('#ImagePreview').val('Error: ' + textStatus);
                     }
                 });
+
+
             });
+
+
         });
 
         $(document).ready(function () {
-            $('#getPriceBtn1').click(function () {
+            $('#item_name1').on("change", function () {
+
+
+
+
+
                 var itemName = $('#item_name1').val();
                 $.ajax({
                     url: './phpAJax/getPriceFromItemMaster.php',
@@ -1389,6 +1435,138 @@ $result = mysqli_query($con, $sql);
                 });
             });
         });
+
+        function setPriceImgOnchage(event) {
+
+            let input = event.target
+
+            // let item_rate =$(input).closest("input[name='item_rate']")
+            // let div = $(input).closest("div[name='row']")
+
+
+
+
+            let div = $(input).closest("div")[0]
+            div = $(div).parent("div")[0]
+            div = $(div).parent("div")[0]
+
+
+
+            let itemRate = div.querySelector("input[name=item_rate")
+            
+            let ImagePreview = div.querySelector("img[name=ImagePreview")
+
+
+
+            console.log(div);
+
+            console.log(ImagePreview);
+
+
+
+
+            console.log("fmef");
+
+
+
+
+            console.log(input.value);
+
+
+            var itemName = input.value
+            $.ajax({
+                url: './phpAJax/getPriceFromItemMaster.php',
+                type: 'POST',
+                data: { action: 'get_price', item_name: itemName },
+                success: function (response) {
+                    console.log(response)
+                    // Set the fetched price into the item_rate input field
+                    $(itemRate).val(response.price);
+                    $(ImagePreview).attr('src', './Images/' + response.imagePath);
+                    console.log(response.imagePath)
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#item_rate').val('Error: ' + textStatus);
+                    $('#ImagePreview').val('Error: ' + textStatus);
+                }
+            });
+
+
+
+
+
+
+
+
+
+        }
+
+        function setPriceImgOnchage1(event) {
+
+            let input = event.target
+
+            // let item_rate =$(input).closest("input[name='item_rate']")
+            // let div = $(input).closest("div[name='row']")
+
+
+
+
+            let div = $(input).closest("div")[0]
+            // div = $(div).parent("div")[0]
+            div = $(div).parent("div")[0]
+
+
+
+            let itemRate = div.querySelector("input[name=item_rate")
+            
+            let ImagePreview = div.querySelector("img[name=ImagePreview")
+
+
+
+            console.log(div);
+
+            console.log(ImagePreview);
+
+
+
+
+            console.log("fmef");
+
+
+
+
+            console.log(input.value);
+
+
+            var itemName = input.value
+            $.ajax({
+                url: './phpAJax/getPriceFromItemMaster.php',
+                type: 'POST',
+                data: { action: 'get_price', item_name: itemName },
+                success: function (response) {
+                    console.log(response)
+                    // Set the fetched price into the item_rate input field
+                    $(itemRate).val(response.price);
+                    $(ImagePreview).attr('src', './Images/' + response.imagePath);
+                    console.log(response.imagePath)
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#item_rate').val('Error: ' + textStatus);
+                    $('#ImagePreview').val('Error: ' + textStatus);
+                }
+            });
+
+
+
+
+
+
+
+
+
+        }
+
+
 
     </script>
 
@@ -1830,6 +2008,73 @@ $result = mysqli_query($con, $sql);
 </script> -->
 
 <script>
+
+    function setItemListInIputags() {
+
+
+
+        let itemInputs = document.querySelectorAll("input[name='item_name']")
+
+        console.log(itemInputs);
+
+
+        itemInputs.forEach(input => {
+
+
+
+            var availableTags = [
+                "ActionScript",
+                "AppleScript",
+                "Asp",
+                "BASIC",
+                "C",
+                "C++",
+                "Clojure",
+                "COBOL",
+                "ColdFusion",
+                "Erlang",
+                "Fortran",
+                "Groovy",
+                "Haskell",
+                "Java",
+                "JavaScript",
+                "Lisp",
+                "Perl",
+                "PHP",
+                "Python",
+                "Ruby",
+                "Scala",
+                "Scheme"
+            ];
+
+
+            console.log(availableTags);
+            $.get("ajax.php", {
+                "itemCodeInfoForPr": "itemCodeInfoForPr"
+            }, function (data) {
+
+                availableTags = JSON.parse(data);
+
+                console.log(availableTags);
+                $(input).autocomplete({
+                    source: availableTags
+                });
+
+
+            })
+
+
+
+        })
+
+
+
+    }
+
+
+
+
+
     $(function () {
 
         var availableTags = [

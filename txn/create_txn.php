@@ -206,16 +206,16 @@ if ($result3->num_rows > 0) {
                                     </label>
                                     <input type="number" name="credit_amt" id="credit_amt_field"
                                         class="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm w-56 shadow focus:outline-none focus:ring-1 ease-linear transition-all duration-150"
-                                        disabled>
+                                        value="" readonly>
                                 </div>
 
                                 <div>
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                         Debit Amount :
                                     </label>
-                                    <input type="number" name="debit_amt" id="debit_amt_field"
+                                    <input type="number" name="debit_amt" id="debit_amt_field" value=""
                                         class="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm w-56 shadow focus:outline-none focus:ring-1 ease-linear transition-all duration-150"
-                                        disabled>
+                                        readonly>
                                 </div>
 
                                 <div>

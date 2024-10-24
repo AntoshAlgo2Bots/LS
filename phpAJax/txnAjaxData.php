@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         foreach ($idsOfSubmit as $key => $value) {
 
-            $sql = "UPDATE `daily_txn_book`.`txn_book` SET `form_status` = 'SUBMIT' WHERE (`transaction_no` = '$value');";
+            $sql = "UPDATE `for_office`.`txn_book` SET `form_status` = 'SUBMIT' WHERE (`transaction_no` = '$value');";
 
             $result = mysqli_query($con, $sql);
             if ($result) {

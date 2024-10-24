@@ -67,9 +67,12 @@ VALUES ('$transaction_date', '$amount_type', '$credit_amt', '$debit_amt', '$net_
 
 
 if ($con->query($sql) === TRUE) {
+
+  $_POST['transaction_no']  = mysqli_insert_id($con); 
   $response["data"] = $_POST;
   $response["success"] = true;
   $response["message"] = "New record created successfully";
+   
   // echo "New record created successfully";
 } else {
   echo "Error: " . $sql . "<br>" . $con->error;

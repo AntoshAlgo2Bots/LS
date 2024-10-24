@@ -8,24 +8,26 @@ function verifyAnswer() {
 
     console.log(result)
 
-    if (result == "Credit") {
+    if (result === "Credit") {
         document.getElementById('credit_amt_field').disabled = false;
         document.getElementById('credit_amt_field').placeholder = "Enter Your Credit Amount";
         document.getElementById('debit_amt_field').disabled = true;
         document.getElementById('debit_amt_field').placeholder = "";
-    } else {
-        document.getElementById('credit_amt_field').disabled = true;
-        document.getElementById('debit_amt_field').disabled = false;
-    }
-
-    if (result == "Debit") {
+        document.getElementById('debit_amt_field').readOnly = true; // Ensures debit field is not editable
+    } else if (result === "Debit") {
         document.getElementById('debit_amt_field').disabled = false;
         document.getElementById('debit_amt_field').placeholder = "Enter Your Debit Amount";
         document.getElementById('credit_amt_field').disabled = true;
         document.getElementById('credit_amt_field').placeholder = "";
+        document.getElementById('debit_amt_field').readOnly = false; // Allows editing
     } else {
-        document.getElementById('credit_amt_field').disabled = false;
+        // If neither Credit nor Debit is selected, disable both fields
+        document.getElementById('credit_amt_field').disabled = true;
+        document.getElementById('debit_amt_field').disabled = true;
+        document.getElementById('credit_amt_field').readOnly = true; // Ensures it remains non-editable
+        document.getElementById('debit_amt_field').readOnly = true; // Ensures it remains non-editable
     }
+
 
 
 }
@@ -161,139 +163,142 @@ $(document).ready(function () {
         event.preventDefault();
         var form = document.getElementById('myForm');
         var formData = new FormData(form);
-        
+
         $.ajax({
             url: 'action.php',
             method: 'POST',
             data: formData,
             processData: false,
             contentType: false,
-            dataType:"JSON",
+            dataType: "JSON",
             success: function (response) {
-                alert('Your form has been sent successfully.');
+                alert(response.message);
                 let tbody = $("#searchTableTbody")[0];
-                
-                console.log(response)
-                
 
-                $("searchTableTbody").html(
-                    
-                    
+                console.log(response)
+
+
+
+
+                let data = response.data
+
+
+                $("#searchTableTbody").append(
+
+
                     `
                       
-                                <th scope="row"
+                                <td scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <input id="checkbox" line-id="<?php echo $row['transaction_no'] ?>" type="checkbox"
-                                        <?php if ($row['form_status'] == 'SUBMIT') {
-                                            echo "disabled";
-                                        } ?>
+                                    <input id="checkbox"  type="checkbox"
+                                        
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                </th>
+                                </td>
                                 <td scope="row" class="px-6 py-4">
                                     <input type="text" name="transaction_no" id="" disabled
-                                        value=" <?php echo $row['transaction_no'] ?>" class="w-20">
+                                        value="${data.transaction_no}" class="w-20">
                                 </td>
                                 <td class="px-6 py-4">
                                     <input type="text" name="transaction_date" id=""
-                                        value="<?php echo $row['transaction_date'] ?>" class="w-32">
+                                        value="${data.transaction_date}" class="w-32">
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="amount_type" id="" value="<?php echo $row['amount_type'] ?>"
+                                    <input type="text" name="amount_type" id="" value="${data.amount_type}"
                                         class="w-20">
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="credit_amt" id="" value="<?php echo $row['credit_amt'] ?>"
+                                    <input type="text" name="credit_amt" id="" value="${data.credit_amt}"
                                         class="w-24">
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="debit_amt" id="" value="<?php echo $row['debit_amt'] ?>"
+                                    <input type="text" name="debit_amt" id="" value="${data.debit_amt}"
                                         class="w-24">
                                 </td>
                                 <td class="px-6 py-4">
 
-                                    <input type="text" name="net_balance" id="" value="<?php echo $row['net_balance'] ?>"
+                                    <input type="text" name="net_balance" id="" value="${data.net_balance}"
                                         disabled class="w-28">
                                 </td>
                                 <td class="px-6 py-4">
                                     <input type="text" name="particuler_to" id=""
-                                        value=" <?php echo $row['particuler_to'] ?>">
+                                        value="${data.particuler_to}">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="site" id="" value=" <?php echo $row['site'] ?>">
+                                    <input type="text" name="site" id="" value="${data.site}">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="main_head" id="" value="<?php echo $row['main_head'] ?>"
+                                    <input type="text" name="main_head" id="" value="${data.main_head}"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['sub_head'] ?>"
+                                    <input type="text" name="sub_head" id="" value="${data.sub_head}"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['from'] ?>"
+                                    <input type="text" name="sub_head" id="" value="${data.from}"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['to'] ?>"
+                                    <input type="text" name="sub_head" id="" value="${data.to}"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['startKm'] ?>"
+                                    <input type="text" name="sub_head" id="" value="${data.startKm}"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['endKm'] ?>"
+                                    <input type="text" name="sub_head" id="" value="${data.endKm}"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['totalKm'] ?>"
+                                    <input type="text" name="sub_head" id="" value="${data.totalKm}"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['rate'] ?>"
+                                    <input type="text" name="sub_head" id="" value="${data.rate}"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['currentUser'] ?>"
+                                    <input type="text" name="sub_head" id="" value="${data.curretuser}"
                                         disabled class="w-32">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="" id="" value=" <?php echo $row['currentTime'] ?>" disabled>
+                                    <input type="text" name="" id="" value="${data.currectTime}" disabled>
 
                                 </td>
                                 <td class="px-6 py-4">
                                     <input type="text" name="bill_cheque_no" id=""
-                                        value="<?php echo $row['bill_cheque_no'] ?>">
+                                        value="${data.bill_cheque_no}">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="invoice_date" id="" value="<?php echo $row['invoice_date'] ?>"
+                                    <input type="text" name="invoice_date" id="" value="${data.invoice_date}"
                                         class="w-28">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="invoice_no" id="" value="<?php echo $row['invoice_no'] ?>">
+                                    <input type="text" name="invoice_no" id="" value="${data.invoice_no}">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="gst_no" id="" value=" <?php echo $row['gst_no'] ?>"
+                                    <input type="text" name="gst_no" id="" value="${data.gst_no}"
                                         class="w-28">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="remarks" id="" value="<?php echo $row['remarks'] ?>">
+                                    <input type="text" name="remarks" id="" value="${data.remarks}">
 
                                 </td>
                                 <td class="px-6 py-4">
