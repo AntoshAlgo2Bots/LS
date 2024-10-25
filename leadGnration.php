@@ -34,7 +34,7 @@ $result = mysqli_query($con, $sql);
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="./js/jquery-3.7.1.min.js"></script>
 
-    <title>te Lead Information</title>
+    <title>Lead Information</title>
 
 </head>
 
@@ -43,8 +43,10 @@ $result = mysqli_query($con, $sql);
         const container = document.getElementById("itemRows");
         const row = document.createElement("div");
         row.className = "flex flex-wrap items-center gap-x-5 w-full p-2 rounded-lg mt-2";
-        row.name='row'
-        row.innerHTML = `  <div>
+        row.name = 'row'
+        row.innerHTML = ` 
+                      
+                        <div>
                             <input id="default-checkbox" type="checkbox" value=""
                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
                         </div>
@@ -72,7 +74,7 @@ $result = mysqli_query($con, $sql);
                         </div>
                         <div>
                             <label class="block text-sm">Item Qty : </label>
-                            <input type="number" name="item_qty" id="item_qty"
+                            <input type="number" name="item_qty[]" id="item_qty"
                                 class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 style="border-color: #C8A1E0;" oninput="calculateTotal()" /><br>
                         </div>
@@ -84,7 +86,7 @@ $result = mysqli_query($con, $sql);
                         </div>
                         <div>
                             <label class="block text-sm">Total : </label>
-                            <input type="number" name="item_total" id="item_total"
+                            <input type="number" name="item_total[]" id="item_total"
                                 class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 style="border-color: #C8A1E0;" readonly /><br>
                         </div>
@@ -117,6 +119,9 @@ $result = mysqli_query($con, $sql);
                                 class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 style="border-color: #C8A1E0;" readonly/><br>
                         </div>
+                        <div>
+                        <button type="button" onclick="removeRow(this)" class="text-red-600">Remove</button>
+                        <div>
             `;
         container.appendChild(row);
 
@@ -135,7 +140,7 @@ $result = mysqli_query($con, $sql);
         const container = document.getElementById("itemRows1");
         const row = document.createElement("div");
         row.className = "flex flex-wrap items-center gap-x-5 w-full p-2 rounded-lg mt-2";
-        row.name='row'
+        row.name = 'row'
         row.innerHTML = `
                 <div>
                             <input id="default-checkbox" type="checkbox" value=""
@@ -155,19 +160,19 @@ $result = mysqli_query($con, $sql);
                         </div>
                         <div>
                             <label class="block text-sm">Item Qty : </label>
-                            <input type="number" name="item_qty"
+                            <input type="number" name="item_qty[]"
                                 class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
+                                style="border-color: #C8A1E0;" oninput="calculateTotal()"/><br>
                         </div>
                         <div>
                             <label class="block text-sm">Rate : </label>
                             <input type="number" name="item_rate"
                                 class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
+                                style="border-color: #C8A1E0;" oninput="calculateTotal()"/><br>
                         </div>
                         <div>
                             <label class="block text-sm">Total : </label>
-                            <input type="number" name="item_total"
+                            <input type="number" name="item_total[]"
                                 class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 style="border-color: #C8A1E0;" /><br>
                         </div>
@@ -217,12 +222,31 @@ $result = mysqli_query($con, $sql);
 </script>
 
 <script>
-    function calculateTotal() {
-        const qty = document.getElementById('item_qty').value || 0;
-        const rate = document.getElementById('item_rate').value || 0;
-        const total = qty * rate;
+    // Update By Antosh Kumar Pandey 25-10-2024 11:39
+    // function calculateTotal() {
+    //     const qty = document.getElementById('item_qty').value || 0;
+    //     const rate = document.getElementById('item_rate').value || 0;
+    //     const total = qty * rate;
 
-        document.getElementById('item_total').value = total.toFixed(2); // Format to 2 decimal places
+    //     document.getElementById('item_total').value = total.toFixed(2); // Format to 2 decimal places
+    // }
+
+    function calculateTotal() {
+        const qtyInputs = document.getElementsByName('item_qty[]');
+        const rateInputs = document.getElementsByName('item_rate');
+        const totalInputs = document.getElementsByName('item_total[]');
+        let finalTotal = 0;
+
+        for (let i = 0; i < qtyInputs.length; i++) {
+            const qty = parseFloat(qtyInputs[i].value) || 0;
+            const rate = parseFloat(rateInputs[i].value) || 0;
+            const total = qty * rate;
+
+            totalInputs[i].value = total.toFixed(2); // Format to 2 decimal places
+            finalTotal += total; // Add to final total
+        }
+
+        document.getElementById('allItemsAmt').value = `${finalTotal.toFixed(2)}`;
     }
 </script>
 
@@ -719,7 +743,7 @@ $result = mysqli_query($con, $sql);
                         </div>
                         <div>
                             <label class="block text-sm">Item Qty : </label>
-                            <input type="number" name="item_qty" id="item_qty"
+                            <input type="number" name="item_qty[]" id="item_qty"
                                 class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 style="border-color: #C8A1E0;" oninput="calculateTotal()" /><br>
                         </div>
@@ -731,7 +755,7 @@ $result = mysqli_query($con, $sql);
                         </div>
                         <div>
                             <label class="block text-sm">Total : </label>
-                            <input type="number" name="item_total" id="item_total"
+                            <input type="number" name="item_total[]" id="item_total"
                                 class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 style="border-color: #C8A1E0;" readonly /><br>
                         </div>
@@ -743,7 +767,8 @@ $result = mysqli_query($con, $sql);
                                 type="button">if Ship another address </button>
                         </div>
                         <div class="w-28 h-24 border border-gray-900 rounded-md">
-                            <img class="w-28 h-24 rounded-md" name="ImagePreview" src="" id="ImagePreview" alt="image preview">
+                            <img class="w-28 h-24 rounded-md" name="ImagePreview" src="" id="ImagePreview"
+                                alt="image preview">
                         </div>
 
                         <div>
@@ -837,19 +862,19 @@ $result = mysqli_query($con, $sql);
                                 </div>
                                 <div>
                                     <label class="block text-sm">Item Qty : </label>
-                                    <input type="number" name="item_qty" id="item_qty"
+                                    <input type="number" name="item_qty[]" id="item_qty"
                                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        style="border-color: #C8A1E0;" oninput="calculateTotal(this)" /><br>
+                                        style="border-color: #C8A1E0;" oninput="calculateTotal()" /><br>
                                 </div>
                                 <div>
                                     <label class="block text-sm">Rate : </label>
                                     <input type="number" name="item_rate" id="item_rate1"
                                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        style="border-color: #C8A1E0;" oninput="calculateTotal(this)" readonly /><br>
+                                        style="border-color: #C8A1E0;" oninput="calculateTotal()" readonly /><br>
                                 </div>
                                 <div>
                                     <label class="block text-sm">Total : </label>
-                                    <input type="number" name="item_total" id="item_total"
+                                    <input type="number" name="item_total[]" id="item_total"
                                         class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                         style="border-color: #C8A1E0;" readonly /><br>
                                 </div>
@@ -860,7 +885,8 @@ $result = mysqli_query($con, $sql);
                                         type="button">if Ship another address </button>
                                 </div>
                                 <div class="w-28 h-24 border border-gray-900 rounded-md">
-                                    <img class="w-28 h-24 rounded-md" src="" name="ImagePreview" id="ImagePreview1" alt="image preview">
+                                    <img class="w-28 h-24 rounded-md" src="" name="ImagePreview" id="ImagePreview1"
+                                        alt="image preview">
                                 </div>
 
                                 <div>
@@ -891,6 +917,9 @@ $result = mysqli_query($con, $sql);
                             </div><br>
                         </div>
 
+                        <div class="">
+                            <input type="number" name="allItemsAmt" id="allItemsAmt" readonly>
+                        </div>
 
                         <!-- Main modal -->
                         <div id="crud-modal" tabindex="-1" aria-hidden="true"
@@ -1453,7 +1482,7 @@ $result = mysqli_query($con, $sql);
 
 
             let itemRate = div.querySelector("input[name=item_rate")
-            
+
             let ImagePreview = div.querySelector("img[name=ImagePreview")
 
 
@@ -1518,7 +1547,7 @@ $result = mysqli_query($con, $sql);
 
 
             let itemRate = div.querySelector("input[name=item_rate")
-            
+
             let ImagePreview = div.querySelector("img[name=ImagePreview")
 
 
@@ -1570,10 +1599,80 @@ $result = mysqli_query($con, $sql);
 
     </script>
 
-
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        // function submitForm() {
+        //     // Collect form data
+        //     const formData = {
+        //         item_serial_no: $("input[name='item_serial_no']").val(),
+        //         item_name: $("input[name='item_name']").val(),
+        //         item_qty: $("input[name='item_qty[]']").val(),
+        //         item_rate: $("input[name='item_rate']").val(),
+        //         item_total: $("input[name='item_total[]']").val(),
+        //         item_so_number: $("input[name='item_so_number']").val(),
+        //         created_by: $("input[name='created_by']").val(),
+        //         status: $("input[name='status']").val()
+        //     };
+
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "submit_item.php",
+        //         data: formData,
+        //         success: function (response) {
+        //             alert(response); // Show success message
+        //             // Optionally reset the form
+        //             $('#itemRows')[0].reset();
+        //         },
+        //         error: function (xhr, status, error) {
+        //             console.error(error);
+        //             alert("An error occurred while submitting the form.");
+        //         }
+        //     });
+
+        //     return false; // Prevent default form submission
+        // }
+
+        async function submitForm() {
+            const container = document.getElementById("itemRows");
+            const rows = container.querySelectorAll('div[name="row"]'); // Select all rows
+            const formData = new FormData();
+
+            rows.forEach((row, index) => {
+                const itemName = row.querySelector('input[name="item_name"]').value;
+                const itemSerialNo = row.querySelector('input[name="item_serial_no"]').value;
+                const itemQty = row.querySelector('input[name="item_qty[]"]').value;
+                const itemRate = row.querySelector('input[name="item_rate"]').value;
+                const itemTotal = row.querySelector('input[name="item_total[]"]').value;
+                const itemSONumber = row.querySelector('input[name="item_so_number"]').value;
+                const createdBy = row.querySelector('input[name="created_by"]').value;
+
+                formData.append(`items[${index}][item_name]`, itemName);
+                formData.append(`items[${index}][item_serial_no]`, itemSerialNo);
+                formData.append(`items[${index}][item_qty]`, itemQty);
+                formData.append(`items[${index}][item_rate]`, itemRate);
+                formData.append(`items[${index}][item_total]`, itemTotal);
+                formData.append(`items[${index}][item_so_number]`, itemSONumber);
+                formData.append(`items[${index}][created_by]`, createdBy);
+            });
+
+            // Send data to the backend
+            const response = await fetch('submit_item.php', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Success:', result);
+            } else {
+                console.error('Error:', response.statusText);
+            }
+        }
+
+    </script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <!-- <script>
         function submitForm() {
             $.ajax({
                 url: 'sales_order_backed.php', // Your PHP script that processes the form
@@ -1588,7 +1687,7 @@ $result = mysqli_query($con, $sql);
                 }
             });
         }
-    </script>
+    </script> -->
 
 
 
@@ -2121,5 +2220,7 @@ $result = mysqli_query($con, $sql);
     });
 
 </script>
+
+
 
 </html>

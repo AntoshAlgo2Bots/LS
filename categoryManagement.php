@@ -79,7 +79,7 @@
                         <?php
                         include("./dbconnection/db.php");
 
-                        $sql = "SELECT * FROM for_office.itemmastercategory; ";
+                        $sql = "SELECT * FROM itemmastercategory; ";
                         $result = mysqli_query($con, $sql);
 
                         while ($row = mysqli_fetch_assoc($result)) {

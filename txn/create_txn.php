@@ -190,6 +190,37 @@ if ($result3->num_rows > 0) {
                                 <div>
 
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                        Main Head :
+                                    </label>
+                                    <select name="main_head"
+                                        class="bg-gray-50 border uppercase border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected hidden>Select one</option>
+                                        <?php foreach ($options as $option) { ?>
+                                            <option class="uppercase" value="<?php echo $option; ?>"><?php echo $option; ?>
+                                            </option>
+                                        <?php } ?>
+
+                                    </select>
+                                </div>
+
+                                <div>
+
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                        Sub Head :
+                                    </label>
+                                    <select name="sub_head" id="sub_head_select" onchange="subHeadSelect()"
+                                        class="bg-gray-50 border uppercase border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected hidden>Select one</option>
+                                        <?php foreach ($options2 as $option) { ?>
+                                            <option class="uppercase" value="<?php echo $option; ?>"><?php echo $option; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+
+                                <div>
+
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                         Amount Type :
                                     </label>
                                     <select id="select_amt" name="amount_type" onchange="verifyAnswer()"
@@ -234,36 +265,6 @@ if ($result3->num_rows > 0) {
                                     <input type="text" name="site" required
                                         class="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm w-56 shadow focus:outline-none focus:ring-1 ease-linear transition-all duration-150">
                                 </div>
-                                <div>
-
-                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
-                                        Main Head :
-                                    </label>
-                                    <select name="main_head"
-                                        class="bg-gray-50 border uppercase border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected hidden>Select one</option>
-                                        <?php foreach ($options as $option) { ?>
-                                            <option class="uppercase" value="<?php echo $option; ?>"><?php echo $option; ?>
-                                            </option>
-                                        <?php } ?>
-
-                                    </select>
-                                </div>
-
-                                <div>
-
-                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
-                                        Sub Head :
-                                    </label>
-                                    <select name="sub_head" id="sub_head_select" onchange="subHeadSelect()"
-                                        class="bg-gray-50 border uppercase border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected hidden>Select one</option>
-                                        <?php foreach ($options2 as $option) { ?>
-                                            <option class="uppercase" value="<?php echo $option; ?>"><?php echo $option; ?>
-                                            </option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
 
                                 <div>
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
@@ -305,7 +306,7 @@ if ($result3->num_rows > 0) {
                                     </label>
                                     <input type="number" id="totalKm" name="totalKm"
                                         class="border-0 px-3 py-2 placeholder-blueGray-300 mb-4 text-blueGray-600 bg-white rounded text-sm w-56 shadow focus:outline-none focus:ring-1 ease-linear transition-all duration-150"
-                                       readonly value="00.00" placeholder="00.00">
+                                        readonly value="00.00" placeholder="00.00">
                                 </div>
                                 <div>
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
@@ -546,8 +547,7 @@ if ($result3->num_rows > 0) {
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['to'] ?>"
-                                        class="w-40">
+                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['to'] ?>" class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
@@ -740,7 +740,7 @@ if ($result3->num_rows > 0) {
             const rate = parseInt(document.getElementById('rate').value) || 0;
             const debitAmount = totalKm * rate;
 
-            document.getElementById('debit_amt_field').value = debitAmount; 
+            document.getElementById('debit_amt_field').value = debitAmount;
             // document.getElementById('debit_amt_field').value = debitAmount.toFixed(2); // Format to 2 decimal places
         }
 

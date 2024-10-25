@@ -55,7 +55,7 @@ include("./navForLogged.php");
 
     <div class="mt-10">
 
-        <h1 class="text-center text-3xl underline mb-5 font-bold">Add Attributes Form</h1>
+        <h1 class="text-center text-3xl underline mb-5 font-bold">Add Employee Attributes Form</h1>
 
         <form class="max-w-8xl border p-8 mx-auto rounded-xl border-gray-300 shadow-lg" id="myForm">
             <div class="flex flex-wrap justify-between mt-4" id="inputFields">
@@ -82,16 +82,14 @@ include("./navForLogged.php");
                         placeholder="" required />
                 </div>
                 <div class="mb-3">
-                    <label for="main_head_name"
-                        class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Main Head
-                        Name</label>
-                    <input type="text" name="main_head_name" id="main_head_name"
+                    <label for="department_name"
+                        class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Department Name</label>
+                    <input type="text" name="department_name" id="department_name"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2" />
                 </div>
                 <div class="mb-3">
-                    <label for="sub_main_name" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Sub
-                        Main Name</label>
-                    <input type="text" name="sub_main_name" id="sub_main_name"
+                    <label for="job_role" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Job Role</label>
+                    <input type="text" name="job_role" id="job_role"
                         class="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2"
                         placeholder="" />
                 </div>
@@ -133,7 +131,7 @@ include("./navForLogged.php");
             var formData = new FormData(form);
 
             $.ajax({
-                url: 'addAttributeAction.php',
+                url: 'addEmpAttributeAction.php',
                 method: 'POST',
                 data: formData,
                 processData: false, // Important

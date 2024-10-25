@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         // include('./dbconnection/db.php');
         include('./dbconnection/db.php');
 
-        $sql = "SELECT * FROM for_office.requireattributeforcatname where SubcatId=$selectedSubCatId";
+        $sql = "SELECT * FROM requireattributeforcatname where SubcatId=$selectedSubCatId";
 
 
         $result = mysqli_query($con, $sql);
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        // $sql = "SELECT * FROM for_office.item_master_temp ;";/
+        // $sql = "SELECT * FROM item_master_temp ;";/
 
 
 
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        $sql = "$columns from for_office.item_master_temp where SubcatId=$selectedSubCatId;";
+        $sql = "$columns from item_master_temp where SubcatId=$selectedSubCatId;";
         $result = mysqli_query($con, $sql);
 
         // echo $sql;
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         // include('./dbconnection/db.php');
         include('./dbconnection/db.php');
 
-        $sql = "SELECT * FROM for_office.requireattributeforcatname where SubcatId=$selectedSubCatId";
+        $sql = "SELECT * FROM requireattributeforcatname where SubcatId=$selectedSubCatId";
 
 
         $result = mysqli_query($con, $sql);
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        // $sql = "SELECT * FROM for_office.item_master_temp ;";/
+        // $sql = "SELECT * FROM item_master_temp ;";/
 
 
 
@@ -128,8 +128,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        $sql = "$columns from for_office.item_master_main where SubcatId=$selectedSubCatId;";
-        // $sql = "$columns from for_office.item_master_main ";
+        $sql = "$columns from item_master_main where SubcatId=$selectedSubCatId;";
+        // $sql = "$columns from item_master_main ";
         $result = mysqli_query($con, $sql);
 
         while ($row = mysqli_fetch_assoc($result)) {
@@ -596,7 +596,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $response["success"] = true;
 
-        $sql = "SELECT subCatId FROM for_office.item_master_temp where  S_No=$id";
+        $sql = "SELECT subCatId FROM item_master_temp where  S_No=$id";
 
         
         $result  = mysqli_query($con, $sql);
@@ -608,7 +608,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         //finding all column names form require attributes table
 
-        $sql  =  "SELECT * FROM for_office.requireattributeforcatname where SubcatId =$subCatId;";
+        $sql  =  "SELECT * FROM requireattributeforcatname where SubcatId =$subCatId;";
 
 
 
@@ -635,7 +635,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        $sql = "$columns from for_office.item_master_temp a
+        $sql = "$columns from item_master_temp a
 JOIN  itemmastercategory b ON  a.Item_Category = b.categoryId
 JOIN sub_category c ON a.subCatId  = c.subCatId where S_No=$id;";
 
@@ -702,7 +702,7 @@ JOIN sub_category c ON a.subCatId  = c.subCatId where S_No=$id;";
 
         $response["success"] = true;
 
-        $sql = "SELECT subCatId FROM for_office.item_master_temp where   item_code='$id'";
+        $sql = "SELECT subCatId FROM item_master_temp where   item_code='$id'";
 
         $result  = mysqli_query($con, $sql);
 
@@ -715,7 +715,7 @@ JOIN sub_category c ON a.subCatId  = c.subCatId where S_No=$id;";
 
         //finding all column names form require attributes table
 
-        $sql  =  "SELECT * FROM for_office.requireattributeforcatname where SubcatId =$subCatId;";
+        $sql  =  "SELECT * FROM requireattributeforcatname where SubcatId =$subCatId;";
 
 
 
@@ -748,7 +748,7 @@ JOIN sub_category c ON a.subCatId  = c.subCatId where S_No=$id;";
 
 
 
-        $sql = "$columns from for_office.item_master_temp a
+        $sql = "$columns from item_master_temp a
 JOIN  itemmastercategory b ON  a.Item_Category = b.categoryId
 JOIN sub_category c ON a.subCatId  = c.subCatId where a.item_code ='$id';";
 
@@ -778,7 +778,7 @@ JOIN sub_category c ON a.subCatId  = c.subCatId where a.item_code ='$id';";
 
 
 
-                $sql = "SELECT * FROM for_office.requireattributeforcatname where SubcatId = $subId;";
+                $sql = "SELECT * FROM requireattributeforcatname where SubcatId = $subId;";
 
                 $result = mysqli_query($con,$sql);
 
@@ -1100,7 +1100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-                $sql = "update for_office.item_master_temp set itemStatus='Approve' where S_No= $itemId;";
+                $sql = "update item_master_temp set itemStatus='Approve' where S_No= $itemId;";
 
 
                 $result1 = mysqli_query($con, $sql);
@@ -1122,7 +1122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($itemStatus == "Reject") {
 
 
-            $sql = "update for_office.item_master_temp set itemStatus='$itemStatus' where S_No= $itemId;";
+            $sql = "update item_master_temp set itemStatus='$itemStatus' where S_No= $itemId;";
 
 
             $result1 = mysqli_query($con, $sql);

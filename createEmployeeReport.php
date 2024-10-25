@@ -1,10 +1,9 @@
 <?php
 
-include('../dbconnection/db.php');
+include('./dbconnection/db.php');
 
 
-$sql = "SELECT * FROM lead_details_header_form a inner JOIN lead_details_middle_level_form b ON
- a.record_no=b.record_no;";
+$sql = "SELECT *FROM employee_head a INNER JOIN employee_info_line b ON a.s_no = b.employee_id";
 
 
 $result = mysqli_query($con, $sql);
@@ -19,8 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     if (isset($_GET["search_query"])) {
         $query = $_GET["search_query"];
 
-        $sql = "SELECT * FROM lead_details_header_form a inner JOIN lead_details_middle_level_form b ON
- a.record_no=b.record_no where a.record_no ='$query' or a.created_by ='$query' or a.form_status='$query' ";
+        $sql = "SELECT * FROM employee_head a JOIN employee_info_line b ON a.s_no = b.employee_id where a.s_no = '$query' OR a.name = '$query'  OR a.dob = '$query' OR a.department = '$query'";
+    
+
+
 
         $result = mysqli_query($con, $sql);
 
@@ -45,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js">
     </script>
-    <title>Query Information</title>
+    <title>Get Enter Report</title>
 </head>
 
 <body>
@@ -69,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                 </div>
                                 <input type="text" id="search_query" name="search_query"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Search" required="">
+                                    placeholder="Search">
                             </div>
                         </form>
                     </div>
@@ -107,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                         all</a>
                                 </div>
                             </div>
-                            <button id="filterDropdownButton" data-dropdown-toggle="filterDropdown"
+                            <button id="filterDropgitdownButton" data-dropdown-toggle="filterDropdown"
                                 class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                                 type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
@@ -166,31 +167,61 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                         class="w-full text-sm whitespace-nowrap text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-6 py-3">S.no </th>
-                                <th scope="col" class="px-6 py-3">Record Number</th>
-                                <th scope="col" class="px-6 py-3">Created By</th>
-                                <th scope="col" class="px-6 py-3">Created Date</th>
-                                <th scope="col" class="px-6 py-3">Status</th>
-                                <th scope="col" class="px-6 py-3">Lead Source</th>
-                                <th scope="col" class="px-6 py-3">Ref By</th>
-                                <th scope="col" class="px-6 py-3">Ref Phone Number</th>
-                                <th scope="col" class="px-6 py-3">Lead Type</th>
-                                <th scope="col" class="px-6 py-3">Contact Person Name</th>
-                                <th scope="col" class="px-6 py-3">Contact Person Phone No</th>
-                                <th scope="col" class="px-6 py-3">Contact Person Email</th>
-                                <th scope="col" class="px-6 py-3">Contact Person Email</th>
-                                <th scope="col" class="px-6 py-3">Contact Person Address</th>
-                                <th scope="col" class="px-6 py-3">Lead Receiving Date</th>
-                                <th scope="col" class="px-6 py-3">Assigned To</th>
-                                <th scope="col" class="px-6 py-3">Query Start Date</th>
-                                <th scope="col" class="px-6 py-3">Follow Up</th>
-                                <th scope="col" class="px-6 py-3">Follow Up Reminder</th>
-                                <th scope="col" class="px-6 py-3">No of times</th>
-                                <th scope="col" class="px-6 py-3">Query End Date</th>
-                                <th scope="col" class="px-6 py-3">Installation required</th>
-                                <th scope="col" class="px-6 py-3">Tentative Installation Date</th>
-                                <th scope="col" class="px-6 py-3">Tentative Install. Delivery Date</th>
-                                <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-6 py-3">S.
+                            No : </th>
+
+                                <th scope="col" class="px-6 py-3">Joiner(New/Old)
+                                : </th>
+                                <th scope="col" class="px-6 py-3">Name
+                                :</th>
+                                <!-- <th scope="col" class="px-6 py-3">No. Of boxes</th> -->
+                                <th scope="col" class="px-6 py-3">DOB
+                                :</th>
+                                <th scope="col" class="px-6 py-3">Department
+                                :</th>
+                                <th scope="col" class="px-6 py-3">Mobile
+                                No :</th>
+                                <th scope="col" class="px-6 py-3">Address
+                                :</th>
+                                <!-- <th scope="col" class="px-6 py-3">Received by</th> -->
+
+
+                                <th scope="col" class="px-6 py-3">E-mail
+                                Address :</th>
+                                <th scope="col" class="px-6 py-3">Pan
+                                Card Number :</th>
+                                <th scope="col" class="px-6 py-3">Old
+                                Organization Name :</th>
+                                <th scope="col" class="px-6 py-3">Deputed
+                                to (Location) :</th>
+                                <th scope="col" class="px-6 py-3">Last
+                                CTC :</th>
+                                <th scope="col" class="px-6 py-3">Current
+                                CTC Offered :</th>
+                                <th scope="col" class="px-6 py-3">Tentative
+                                Date of Joining :</th>
+                                <th scope="col" class="px-6 py-3">Exact
+                                Date of Joining :</th>
+                                <th scope="col" class="px-6 py-3">Notice
+                                Period :</th>
+                                <th scope="col" class="px-6 py-3">Notice
+                                Served (Yes/No) :</th>
+
+
+                                <th scope="col" class="px-6 py-3">Job
+                                Role :</th>
+                                <th scope="col" class="px-6 py-3">Job
+                                Description :</th>
+                                <th scope="col" class="px-6 py-3">Date
+                                of Anniversary :</th>
+                                <th scope="col" class="px-6 py-3">Offer
+                                Letter Release Date :</th>
+                                <th scope="col" class="px-6 py-3">Date of
+                                Leaving :</th>
+
+
+
+                                
                                     <span class="sr-only">Actions</span>
                                 </th>
                             </tr>
@@ -208,78 +239,105 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
 
                                 <tr class="border-b dark:border-gray-700">
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['record_no'] ?>
+                                <td class="px-6 py-4">
+                                        <?php echo $row['s_no'] ?>
+                                    </td>
+                                <td class="px-6 py-4">
+                                        <?php echo $row['joiner_new_old'] ?>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <?php echo $row['created_by'] ?>
+                                        <?php echo $row['name'] ?>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <?php echo $row['created_date'] ?>
+                                        <?php echo $row['dob'] ?>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <?php echo $row['form_status'] ?>
+                                        <?php echo $row['department'] ?>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <?php echo $row['lead_source'] ?>
+                                        <?php echo $row['mobile_number'] ?>
+                                    </td>
+                                   
+
+
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['address'] ?>
+                                    </td>
+
+
+
+
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['email_address'] ?>
+                                    </td>
+
+
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['pan_card'] ?>
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['old_organization_name'] ?>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <?php echo $row['ref_By'] ?>
+                                        <?php echo $row['deputed_to_location'] ?>
+                                    </td>
+
+
+
+
+                                   
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['last_ctc'] ?>
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['current_ctc'] ?>
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['tentative_date_of_joining'] ?>
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['exact_date_of_joining'] ?>
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['notice_period'] ?>
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['notice_served'] ?>
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['job_role'] ?>
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['job_description'] ?>
+                                    </td>
+
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['date_anniversary'] ?>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <?php echo $row['ref_phone_no'] ?>
+                                        <?php echo $row['offer_later_release_date'] ?>
                                     </td>
+
                                     <td class="px-6 py-4">
-                                        <?php echo $row['lead_type'] ?>
+                                        <?php echo $row['date_of_leaving'] ?>
                                     </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['contact_person_name'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['contact_person_phone_no'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['contact_person_email'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['contact_person_address'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['lead_received_date'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['created_by'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['created_date'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['assigned_to'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['query_start_date'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['follow_up'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['followup_reminder_frequency'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['no_of_times'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['query_end_date'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['installation_required'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['tentative_installation'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['tentative_delivery_date'] ?>
-                                    </td>
+                                    
+                                    <!-- <td class="px-6 py-4">
+                                        <?php echo $row['date_of_leaving_file'] ?>
+                                    </td> -->
+                                    
+                                    
+
+                                    
+                                    
                                     <td class="px-6 py-3 flex items-center justify-end">
                                         <button id="apple-imac-27-dropdown-button"
                                             data-dropdown-toggle="apple-imac-27-dropdown"
@@ -327,7 +385,38 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         </div>
     </section>
 
+    <script>
+    function exportTableToCSV(filename) {
+    const table = document.getElementById('dataTable');
+    let csv = [];
+    
+    // Get table headers
+    const headers = Array.from(table.querySelectorAll('th')).map(th => th.innerText);
+    csv.push(headers.join(','));
 
+    // Get table rows
+    const rows = Array.from(table.querySelectorAll('tr')).slice(1); // Exclude header row
+    rows.forEach(row => {
+        const cells = Array.from(row.querySelectorAll('td')).map(td => td.innerText);
+        csv.push(cells.join(','));
+    });
+
+    // Create a CSV file
+    const csvContent = csv.join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+
+    // Create a link to download the CSV
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
+    link.style.display = 'none';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
 
 
 </body>

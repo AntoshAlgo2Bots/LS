@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $user_id = $row["id"];
 
 
-                $sql = "SELECT * FROM for_office.admin_roles WHERE admin_id = $user_id;";
+                $sql = "SELECT * FROM admin_roles WHERE admin_id = $user_id;";
 
                 $result = mysqli_query($conn, $sql);
 
@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         include('db_connection.php');
 
-        $sql = "SELECT item_code FROM for_office.item_master_main;";
+        $sql = "SELECT item_code FROM item_master_main;";
 
         $result = mysqli_query($conn, $sql);
 
@@ -221,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         include('db_connection.php');
 
-        $sql = "SELECT Short_Description FROM for_office.item_master_main where item_code= '$item_Code';";
+        $sql = "SELECT Short_Description FROM item_master_main where item_code= '$item_Code';";
 
         $result = mysqli_query($conn, $sql);
 
@@ -252,7 +252,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $item_code = $_GET["item_code"];
 
 
-        $sql = "SELECT imagePath FROM for_office.item_master_main where item_code = '$item_code' ; ";
+        $sql = "SELECT imagePath FROM item_master_main where item_code = '$item_code' ; ";
 
 
         $result = mysqli_query($conn, $sql);

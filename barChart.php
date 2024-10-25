@@ -45,8 +45,8 @@ $con->close();
 </head>
 <body class="bg-gray-100">
     <div class="p-6"> <!--max-w-3xl mx-auto-->
-        <h1 class="text-2xl font-bold text-center mb-4">Transaction Overview</h1>
-        <h1 class="text-sm font-bold text-center mb-4">Last 7 Days Transaction</h1>
+        <h1 class="text-xl font-medium text-center mb-4">Transaction Overview</h1>
+        <h1 class="text-sm font-medium text-center mb-4">Last 7 Days Transaction</h1>
         <div class="bg-white shadow rounded-lg p-6 border">
              <canvas id="transactionChart" width="900" height="400"></canvas> <!--width - 400px height - 200 -->
         </div>

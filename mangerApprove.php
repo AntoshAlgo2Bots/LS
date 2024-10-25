@@ -4,17 +4,17 @@ include('./dbconnection/db.php');
 
 
 
-// $sql =  "SELECT * FROM for_office.electrical_catinfo a
-// join for_office.itemmastercategory b ON a.category_name = b.categoryId 
-// join for_office.sub_category c ON a.sub_category = c.subCatId; ";
+// $sql =  "SELECT * FROM electrical_catinfo a
+// join itemmastercategory b ON a.category_name = b.categoryId 
+// join sub_category c ON a.sub_category = c.subCatId; ";
 
 
-// $sql = "SELECT * FROM for_office.item_master_temp a
-// join for_office.itemmastercategory b ON a.Item_Category = b.categoryId 
-// join for_office.sub_category c ON a.sub_category = c.subCatId;";
+// $sql = "SELECT * FROM item_master_temp a
+// join itemmastercategory b ON a.Item_Category = b.categoryId 
+// join sub_category c ON a.sub_category = c.subCatId;";
 
 
-$sql = "SELECT * FROM for_office.item_master_temp ;";
+$sql = "SELECT * FROM item_master_temp ;";
 
 
 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $search_query = $_GET['search_query'];
 
-        $sql = "SELECT * FROM for_office.item_master_temp where S_No=$search_query ";
+        $sql = "SELECT * FROM item_master_temp where S_No=$search_query ";
 
 
         echo $search_query;
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <option selected hidden class="cursor-pointer">Select</option>
                     <?php
 
-                    $sql1 = "SELECT * FROM for_office.sub_category;";
+                    $sql1 = "SELECT * FROM sub_category;";
                     $result1 = mysqli_query($con, $sql1);
 
 

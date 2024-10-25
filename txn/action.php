@@ -61,7 +61,7 @@ if ($debit_amt > 0) {
 //     echo "Error: " . $stmt->error;
 // }
 
-$sql = "INSERT INTO for_office.txn_book 
+$sql = "INSERT INTO txn_book 
 (transaction_date, amount_type, credit_amt, debit_amt, net_balance, particuler_to, site, main_head, sub_head, `from`, `to`, startKm, endKm, totalKm, rate, bill_cheque_no, invoice_date, invoice_no, gst_no, remarks, currentUser, currentTime) 
 VALUES ('$transaction_date', '$amount_type', '$credit_amt', '$debit_amt', '$net_balance', '$particuler_to', '$site', '$main_head', '$sub_head', '$from', '$to', '$startKm', '$endKm', '$totalKm', '$rate', '$bill_cheque_no', '$invoice_date', '$invoice_no', '$gst_no', '$remarks', '$currentUser', '$currentTime')";
 

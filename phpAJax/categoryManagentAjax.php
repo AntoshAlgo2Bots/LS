@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $sub_id = $_GET['sub_id'];
 
 
-        $sql = "SELECT * FROM for_office.requireattributeforcatname where  SubcatId =$sub_id ;";
+        $sql = "SELECT * FROM requireattributeforcatname where  SubcatId =$sub_id ;";
 
 
 
@@ -50,10 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $sub_id = $_GET['sub_id'];
 
 
-        // $sql = "SELECT * FROM for_office.require_atts;";
+        // $sql = "SELECT * FROM require_atts;";
         $sql = "SELECT name
-FROM for_office.require_atts aa where 1=1 
-and aa.name not in (select name from for_office.requireattributeforcatname where  subcatid=$sub_id);";
+FROM require_atts aa where 1=1 
+and aa.name not in (select name from requireattributeforcatname where  subcatid=$sub_id);";
 
 
 
@@ -96,7 +96,7 @@ and aa.name not in (select name from for_office.requireattributeforcatname where
         $attr_id = $_GET['attr_id'];
 
 
-        $sql = "SELECT * FROM for_office.fields_lookup where attr_id=$attr_id; ";
+        $sql = "SELECT * FROM fields_lookup where attr_id=$attr_id; ";
 
 
 
@@ -135,7 +135,7 @@ and aa.name not in (select name from for_office.requireattributeforcatname where
         // $attr_id = $_GET['attr_id'];
 
 
-        $sql = "SELECT * FROM for_office.itemmastercategory; ";
+        $sql = "SELECT * FROM itemmastercategory; ";
 
 
 
@@ -175,7 +175,7 @@ and aa.name not in (select name from for_office.requireattributeforcatname where
         // $attr_id = $_GET['attr_id'];
 
 
-        $sql = "SELECT * FROM for_office.sub_category a join for_office.itemmastercategory b on a.catId=b.categoryId; ";
+        $sql = "SELECT * FROM sub_category a join itemmastercategory b on a.catId=b.categoryId; ";
 
 
 
@@ -231,7 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-            $sql = "INSERT INTO `for_office`.`requireattributeforcatname` (`SubcatId`, `name`) VALUES (?, ?);";
+            $sql = "INSERT INTO `requireattributeforcatname` (`SubcatId`, `name`) VALUES (?, ?);";
 
 
             $stmt = $con->prepare($sql);
@@ -312,7 +312,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // var_dump($validAttRnames);
 
 
-        $sql = "DELETE FROM `for_office`.`fields_lookup` WHERE (`attr_id` = '$attr_id')";
+        $sql = "DELETE FROM `fields_lookup` WHERE (`attr_id` = '$attr_id')";
 
         $result2 = mysqli_query($con, $sql);
 
@@ -321,7 +321,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-            $sql2 = "UPDATE `for_office`.`requireattributeforcatname` SET `dropdown` = '$isDropDown' WHERE (`attr_id` = '$attr_id');";
+            $sql2 = "UPDATE `requireattributeforcatname` SET `dropdown` = '$isDropDown' WHERE (`attr_id` = '$attr_id');";
 
             $result3 = mysqli_query($con, $sql2);
             if ($result3) {
@@ -333,7 +333,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-                    $sql = "INSERT INTO `for_office`.`fields_lookup` (`attr_id`, `description`) VALUES (?, ?);";
+                    $sql = "INSERT INTO `fields_lookup` (`attr_id`, `description`) VALUES (?, ?);";
 
 
                     $stmt = $con->prepare($sql);
@@ -403,7 +403,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // var_dump($validAttRnames);
 
 
-        $sql = "INSERT INTO `for_office`.`sub_category` (`catId`, `name`) VALUES (?, ?);";
+        $sql = "INSERT INTO `sub_category` (`catId`, `name`) VALUES (?, ?);";
 
 
 
@@ -419,7 +419,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $return_id = $stmt->insert_id;
 
-            $sql = "INSERT INTO `for_office`.`requireattributeforcatname` (`SubcatId`, `name`) VALUES ('$return_id', 'name');";
+            $sql = "INSERT INTO `requireattributeforcatname` (`SubcatId`, `name`) VALUES ('$return_id', 'name');";
 
             if (mysqli_query($con, $sql)) {
 
@@ -470,7 +470,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // var_dump($validAttRnames);
 
 
-        $sql = "INSERT INTO `for_office`.`itemmastercategory` (`catagory_name`) VALUES (?);";
+        $sql = "INSERT INTO `itemmastercategory` (`catagory_name`) VALUES (?);";
 
 
 
@@ -534,7 +534,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sub_id = $_POST['sub_id'];
 
 
-        $sql = "DELETE FROM `for_office`.`sub_category` WHERE (`subCatId` = ?); ";
+        $sql = "DELETE FROM `sub_category` WHERE (`subCatId` = ?); ";
 
 
 
@@ -580,7 +580,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $cat_id = $_POST['cat_id'];
 
 
-        $sql = "DELETE FROM `for_office`.`itemmastercategory` WHERE (`categoryId` = ?);";
+        $sql = "DELETE FROM `itemmastercategory` WHERE (`categoryId` = ?);";
 
 
 

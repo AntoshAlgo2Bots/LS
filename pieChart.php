@@ -101,7 +101,8 @@ $con->close();
 <body class="bg-gray-100 flex flex-wrap items-center gap-y-10 justify-center min-h-screen">
     <div class="bg-white shadow-lg rounded-lg p-8 max-w-64 mx-auto text-center border">
         <a href="./txn/txn_report.php">
-            <h1 class="text-xl font-bold mb-6">All Credit And Debit Txn</h1>
+            <h1 class="text-lg font-medium mb-4">All Credit &amp; Debit Txn</h1>
+            <h2 class="text-sm mb-2">Total Save + Submit Txn</h2>
             <div class="flex">
 
                 <canvas id="totalCreaditAndDebitChart" class="w-full h-auto"></canvas>
@@ -110,8 +111,8 @@ $con->close();
     </div>
 
     <div class="bg-white shadow-lg rounded-lg p-8 max-w-64 mx-auto text-center border">
-        <h1 class="text-xl font-bold mb-4">Net Balance</h1>
-        <h2 class="text-md mb-2">Total Save + Submit Txn</h2>
+        <h1 class="text-lg font-medium mb-4">Net Balance</h1>
+        <h2 class="text-sm mb-2">Total Save + Submit Txn</h2>
         <div class="flex">
 
             <!-- <canvas id="totalCreaditAndDebitChart" class="w-full h-auto"></canvas> -->
@@ -122,16 +123,18 @@ $con->close();
 
     <div class="bg-white shadow-lg rounded-lg p-8 max-w-64 mx-auto text-center border">
         <a href="./txn/txn_report_Save_Status.php">
-            <h1 class="text-xl font-bold mb-6">Save Status</h1>
+            <h1 class="text-lg font-medium mb-4">Save Status</h1>
+            <h2 class="text-sm mb-2">All Save Txn For Submit</h2>
             <div class="flex">
-
+                
                 <canvas id="totalSaveAndSaveChart" class="w-full h-auto"></canvas>
             </div>
         </a>
     </div>
-
+    
     <div class="bg-white shadow-lg rounded-lg p-8 max-w-64 mx-auto text-center border">
-        <h1 class="text-xl font-bold mb-6">Submit Status</h1>
+        <h1 class="text-lg font-medium mb-4">Submit Status</h1>
+        <h2 class="text-sm mb-2">All Submit Txn</h2>
         <div class="flex">
 
             <canvas id="SubmitChart" class="w-full h-auto"></canvas>

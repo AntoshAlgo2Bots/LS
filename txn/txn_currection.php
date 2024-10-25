@@ -3,7 +3,7 @@
 include("../db/db.php");
 
 
-$sql = "SELECT * FROM for_office.txn_book;";
+$sql = "SELECT * FROM txn_book;";
 
 
 $result = mysqli_query($con, $sql);

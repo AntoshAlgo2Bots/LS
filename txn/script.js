@@ -11,6 +11,7 @@ function verifyAnswer() {
     if (result === "Credit") {
         document.getElementById('credit_amt_field').disabled = false;
         document.getElementById('credit_amt_field').placeholder = "Enter Your Credit Amount";
+        document.getElementById('credit_amt_field').readOnly = false;
         document.getElementById('debit_amt_field').disabled = true;
         document.getElementById('debit_amt_field').placeholder = "";
         document.getElementById('debit_amt_field').readOnly = true; // Ensures debit field is not editable
@@ -78,7 +79,7 @@ function subHeadSelect() {
         document.getElementById('rate').disabled = true;
         document.getElementById('rate').placeholder = "";
         document.getElementById('rate').value = "";
-        document.getElementById('debit_amt_field').value = "";
+        document.getElementById('debit_amt_field').value = "1201";
     }
 }
 

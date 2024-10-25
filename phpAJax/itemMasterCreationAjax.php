@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
         // $sql = "SELECT * FROM requireattributeforcatname where catId= $catId  ";
-        $sql = "SELECT * FROM for_office.requireattributeforcatname where SubcatId = $subCatId;";
+        $sql = "SELECT * FROM requireattributeforcatname where SubcatId = $subCatId;";
         // $sql = "SELECT * FROM itemmastercategory a JOIN sub_category b ON a.categoryId =b.catId where b.catId = $catId ";
 
 

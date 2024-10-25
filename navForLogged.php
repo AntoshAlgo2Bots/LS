@@ -46,7 +46,7 @@ $current_uri = basename($_SERVER['REQUEST_URI']) ;
             <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
 
             </a>
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">  Hello <?php  echo  $_SESSION['username'] ?></span>
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">  Hello! <?php  echo  $_SESSION['username'] ?></span>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             
 

@@ -2,9 +2,9 @@
 
 include("./dbconnection/db.php");
 
-$sql = "SELECT *,b.name as subCatname	  FROM for_office.itemmastercategory a join for_office.sub_category b 
+$sql = "SELECT *,b.name as subCatname	  FROM itemmastercategory a join sub_category b 
 on a.categoryId = b.catId 
-JOIN for_office.requireattributeforcatname c on b.subCatId= c.SubcatId  
+JOIN requireattributeforcatname c on b.subCatId= c.SubcatId  
 order by b.subcatid asc;;";
 
 
