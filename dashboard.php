@@ -563,7 +563,7 @@
                 <main class="flex-1 p-6 bg-gray-100">
                     <h3 class="text-lg text-2xl font-medium mb-4 text-center border-b border-gray-600 pb-2">Management
                         Dashboard</h3>
-                    <div class="forPieCHart w-full flex mx-auto   flex-wrap " style="">
+                    <div class="forPieCHart w-full flex mx-auto flex-wrap " style="">
 
 
                         <!-- <h1 class="w-full shadow-md mb-2  h-10 text-xl font-medium text-center ">Management Dashboard -->
@@ -599,22 +599,22 @@
 
                             <div class="mb-10">
 
-                                <a href="./requisition.php">
+                                <!-- <a href="./requisition.php">
                                     <div class="datachart bg-gray-100 "
                                         id="pr_requests">
                                     </div>
-                                </a>
+                                </a> -->
                             </div>
 
 
                             <div>
 
 
-                                <a href="./grnReport.php">
+                                <!-- <a href="./grnReport.php">
                                     <div class="datachart bg-gray-100 "
                                         id="GRN_status">
                                     </div>
-                                </a>
+                                </a> -->
                             </div>
 
                             <!-- <div class="datachart bg-gray-100 " style="width:26rem; height:17rem" id="daily_txn_book"></div> -->
