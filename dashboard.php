@@ -188,6 +188,138 @@
                                 <button type="button" name="head_cat_btn"
                                     class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
                                     <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-cart-arrow-down"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Bom Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div
+                                    class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./bom/BomNewCreateForm.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            BOM Creation Form
+                                        </a>
+
+                                        <a href="./bom/BomSearchForm.php"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            BOM Search Form
+                                        </a>
+
+
+                                        <a href="./bom/BomReportForm.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Bom Report
+                                        </a>
+
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="relative block w-full">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center">
+                                        <i class="fa-solid fa-gear"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto  border-gray-800  text-base antialiased font-base leading-relaxed text-blue-gray-900 border-b">
+                                        Add - Main / Sub
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div
+                                    class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./addAttribute.php"
+                                            class="flex items-center w-full p-2 text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Add Txn Attributes - Main and Sub Head
+                                        </a>
+
+                                    </nav>
+                                </div>
+                            </div>
+                        </div> -->
+                    </nav>
+
+                    <nav>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
                                         <i class="fa-solid fa-book"></i>
                                         <path fill-rule="evenodd"
                                             d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
@@ -462,6 +594,161 @@
                                             </svg>
                                         </div>
                                         Employee Report
+                                    </a>
+
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative block w-full mt-1">
+                        <div role="button"
+                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                            <button type="button" name="head_cat_btn"
+                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                    <i class="fa-solid fa-torii-gate"></i>
+                                    <path fill-rule="evenodd"
+                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                        clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <p
+                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                    Gate Entry Form
+                                </p>
+                                <span class="ml-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                    </svg>
+                                </span>
+
+                            </button>
+
+                        </div>
+                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                <nav name="nav"
+                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+                                    
+                                    <a href="./gateEnteryForm.php"
+                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                        <div class="grid mr-4 place-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                class="w-5 h-3">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                            </svg>
+                                        </div>
+                                        Gate Entry Creation Form
+                                    </a>
+
+                                    <a href="./gateEntrySearchForm.php"
+                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                        <div class="grid mr-4 place-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                class="w-5 h-3">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                            </svg>
+                                        </div>
+                                        Gate Entry Search Form
+                                    </a>
+
+
+                                    <a href="./gate_entery_report_form.php"
+                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                        <div class="grid mr-4 place-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                class="w-5 h-3">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                            </svg>
+                                        </div>
+                                        Gate Entry Report
+                                    </a>
+
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative block w-full mt-1">
+                        <div role="button"
+                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                            <button type="button" name="head_cat_btn"
+                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                    <i class="fa-solid fa-door-open"></i>
+                                    <path fill-rule="evenodd"
+                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                        clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <p
+                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                    Gate Exit Form
+                                </p>
+                                <span class="ml-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                    </svg>
+                                </span>
+
+                            </button>
+
+                        </div>
+                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                <nav name="nav"
+                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+                                    
+                                    <a href="./GateExitCreateForm.php"
+                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                        <div class="grid mr-4 place-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                class="w-5 h-3">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                            </svg>
+                                        </div>
+                                        Gate Exit Creation Form
+                                    </a>
+
+                                    <a href="./gateExitSearchForm.php"
+                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                        <div class="grid mr-4 place-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                class="w-5 h-3">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                            </svg>
+                                        </div>
+                                        Gate Exit Search Form
+                                    </a>
+
+
+                                    <a href="./gate_exit_report_form.php"
+                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                        <div class="grid mr-4 place-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                class="w-5 h-3">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                            </svg>
+                                        </div>
+                                        Gate Exit Report
                                     </a>
 
                                 </nav>

@@ -4,6 +4,20 @@ session_start();
 
 include("./navForLogged.php");
 
+include('./dbconnection/db.php');
+
+
+$query = "SELECT department_name FROM emp_departments WHERE department_name IS NOT NULL AND department_name != ''";
+$result1 = $con->query($query);
+
+$options = [];
+if ($result1->num_rows > 0) {
+    while ($row = $result1->fetch_assoc()) {
+        $options[] = $row['department_name'];
+    }
+}
+
+
 ?>
 
 
@@ -45,7 +59,6 @@ include("./navForLogged.php");
 
 
 
-
         ?>
 
 
@@ -57,6 +70,19 @@ include("./navForLogged.php");
 
         <h1 class="text-center text-3xl underline mb-5 font-bold">Add Employee Attributes Form</h1>
 
+        <form class="max-w-8xl mx-auto flex gap-x-5" id="addDepartmentForm">
+            <div class="mb-3">
+                <label for="department_name"
+                    class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Department Name</label>
+                <input type="text" name="department_name" id="department_name"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2" />
+            </div>
+            <div class="mt-1">
+                <button type="button" id="addDepartmentBtn"
+                    class="block text-white bg-blue-700 hover:bg-blue-800 mt-5 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs w-full sm:w-auto px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
+                    Department</button>
+            </div>
+        </form>
         <form class="max-w-8xl border p-8 mx-auto rounded-xl border-gray-300 shadow-lg" id="myForm">
             <div class="flex flex-wrap justify-between mt-4" id="inputFields">
                 <div class="mb-3">
@@ -84,11 +110,21 @@ include("./navForLogged.php");
                 <div class="mb-3">
                     <label for="department_name"
                         class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Department Name</label>
-                    <input type="text" name="department_name" id="department_name"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2" />
+                    <!-- <input type="text" name="department_name" id="department_name"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2" /> -->
+                    <select name="department_name"
+                        class="bg-gray-50 border  border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected hidden>Select one</option>
+                        <?php foreach ($options as $option) { ?>
+                            <option class="" value="<?php echo $option; ?>"><?php echo $option; ?>
+                            </option>
+                        <?php } ?>
+
+                    </select>
                 </div>
                 <div class="mb-3">
-                    <label for="job_role" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Job Role</label>
+                    <label for="job_role" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Job
+                        Role</label>
                     <input type="text" name="job_role" id="job_role"
                         class="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2"
                         placeholder="" />
@@ -130,6 +166,39 @@ include("./navForLogged.php");
             var form = document.getElementById('myForm');
             var formData = new FormData(form);
 
+            formData.append("addAttibute", "addAttibute")
+            $.ajax({
+                url: 'addEmpAttributeAction.php',
+                method: 'POST',
+                data: formData,
+                processData: false, // Important
+                contentType: false, // Important
+                dataType: "JSON",
+                success: function (response) {
+                    alert(response.message)
+                    console.log(response)
+                    // alert('Your form has been sent successfully.');
+                },
+                error: function (xhr, status, error) {
+                    alert('Your form was not sent successfully.');
+                    console.error(error);
+                }
+            });
+
+            form.reset();
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('#addDepartmentBtn').on("click", function (event) {
+            event.preventDefault();
+            var form = document.getElementById('addDepartmentForm');
+            var formData = new FormData(form);
+
+            console.log(formData);
+
+            formData.append("addDepartment", "addDepartment")
             $.ajax({
                 url: 'addEmpAttributeAction.php',
                 method: 'POST',

@@ -1,4 +1,4 @@
-<?php include('./navbar.php') ?>
+<?php include("./navForLogged.php"); ?>
 
 
 <?php

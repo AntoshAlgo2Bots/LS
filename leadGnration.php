@@ -1,4 +1,4 @@
-<?php include('./navbar.php') ?>
+<?php include("./navForLogged.php"); ?>
 
 
 <?php
@@ -735,11 +735,6 @@ $result = mysqli_query($con, $sql);
                                     class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                     style="border-color: #C8A1E0;" /><br>
                             </div>
-                            <!-- <div>
-                                <button type="button" id="getPriceBtn"
-                                    class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-1 focus:ring-gray-100 font-medium rounded-lg text-xs px-2 py-1 ">Get
-                                    Price</button>
-                            </div> -->
                         </div>
                         <div>
                             <label class="block text-sm">Item Qty : </label>
@@ -790,11 +785,11 @@ $result = mysqli_query($con, $sql);
                                 style="border-color: #C8A1E0;" readonly /><br>
                         </div>
                         <div>
-                            <!-- <button
+                            <button
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 type="button">
                                 Create SO
-                            </button> -->
+                            </button>
                         </div>
                     </form>
                     <!-- <div class="mt-3">

@@ -146,7 +146,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <?php
 
-$query = "SELECT department_name FROM add_emp_attribute WHERE department_name IS NOT NULL AND department_name != ''";
+$query = "SELECT DISTINCT department_name 
+FROM add_emp_attribute 
+WHERE department_name IS NOT NULL AND department_name != ''";
 $result1 = $con->query($query);
 
 $options = [];
@@ -179,6 +181,7 @@ if ($result3->num_rows > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <title>Create Employee Form</title>
 </head>
 
@@ -232,7 +235,7 @@ if ($result3->num_rows > 0) {
                                 <!-- <input required type="text" name="emp_department" placeholder="Enter department"
                                     value="<?php echo isset($emp_department) ? $emp_department : ''; ?>"
                                     class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" /> -->
-                                <select name="department_name"
+                                <select name="department_name" id="department_name"
                                     class="bg-gray-50 border  border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-40 p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option selected hidden>Select one</option>
                                     <?php foreach ($options as $option) { ?>
@@ -380,10 +383,10 @@ if ($result3->num_rows > 0) {
                             <select name="sub_head" id="sub_head_select"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-40 p-1 mb-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected hidden>Select one</option>
-                                <?php foreach ($options2 as $option) { ?>
+                                <!-- <?php foreach ($options2 as $option) { ?>
                                     <option class="" value="<?php echo $option; ?>"><?php echo $option; ?>
                                     </option>
-                                <?php } ?>
+                                <?php } ?> -->
                             </select>
                         </div>
                         <div class="">
@@ -481,6 +484,50 @@ if ($result3->num_rows > 0) {
         //     console.log("Accept")
 
         // }
+
+        $(document).ready(function () {
+            $("#department_name").on("change", function () {
+                console.log("department_name");
+
+                var department_name = $('#department_name').val();
+                console.log(department_name);
+
+                $.ajax({
+                    url: './phpAJax/getEmpDepartmentUpdate.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { department_name: department_name },
+                    success: function (response) {
+                        if (response.success) {
+                            console.log("success Block"); // Corrected from console to console.log
+
+                            // Populate the select field with job roles
+                            var jobRoleSelect = $('#sub_head_select'); // Make sure you have a select field with this ID
+                            console.log(jobRoleSelect);
+                            jobRoleSelect.empty(); // Clear existing options
+
+                            // Check if jobRoles is an array and has items
+                            if (Array.isArray(response.jobRoles) && response.jobRoles.length > 0) {
+                                $.each(response.jobRoles, function (index, jobRole) {
+                                    jobRoleSelect.append($('<option></option>').attr('value', jobRole).text(jobRole));
+                                });
+                            } else {
+                                jobRoleSelect.append($('<option></option>').attr('value', '').text('No job roles available')); // Handle no job roles
+                            }
+                        } else {
+                            alert(response.message);
+                        }
+
+                        // form.reset(); // Uncomment if you have a form to reset
+                    },
+                    error: function (error) {
+                      console.log("Error Block");
+                      console.log(error);
+                    }
+                });
+            });
+        });
+
 
         document.getElementById('fileInput').addEventListener('change', function (event) {
             const file = event.target.files[0];

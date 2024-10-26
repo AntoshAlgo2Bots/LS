@@ -19,7 +19,7 @@ let getUSerDataByUserName = () => {
     console.log(data)
 
 
-    $.get("./phpAJax/leadSearchAjax.php", data, function (data) {
+    $.get("../phpAJax/leadSearchAjax.php", data, function (data) {
         console.log(data)
 
 
@@ -74,7 +74,7 @@ let getUSerDataByUserName = () => {
 
 
             console.log("Here start my code")
-            $.get("./phpAJax/leadSearchAjax.php", data1, function (data) {
+            $.get("../phpAJax/leadSearchAjax.php", data1, function (data) {
                 console.log(data);
 
 
