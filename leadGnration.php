@@ -120,6 +120,13 @@ $result = mysqli_query($con, $sql);
                                 style="border-color: #C8A1E0;" readonly/><br>
                         </div>
                         <div>
+                            <button
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                type="button">
+                                Create SO
+                            </button>
+                        </div>
+                        <div>
                         <button type="button" onclick="removeRow(this)" class="text-red-600">Remove</button>
                         <div>
             `;
@@ -204,6 +211,13 @@ $result = mysqli_query($con, $sql);
                             <input type="text" name="status"
                                 class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 style="border-color: #C8A1E0;" /><br>
+                        </div>
+                        <div>
+                            <button
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                type="button">
+                                Create SO
+                            </button>
                         </div>
                         <div>
                     <button type="button" onclick="removeRow(this)" class="text-red-600">Remove</button>
@@ -310,10 +324,10 @@ $result = mysqli_query($con, $sql);
                                 class="border mb-4 border-gray-900 text-gray-900 mb-5 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 p-1.5"
                                 placeholder="" disabled />
                         </div>
-                        <!-- <div>
-                            <button
+                        <div>
+                            <button type="button"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Disqualified</button>
-                        </div> -->
+                        </div>
                     </div>
                 </fieldset>
                 <fieldset class="md:w-5/6 border-2 border-gray-300 p-4 rounded-lg mb-5">
@@ -328,6 +342,9 @@ $result = mysqli_query($con, $sql);
                                 <option value="Email">Email</option>
                                 <option value="Direct_other">Direct-other</option>
                                 <option value="References">References</option>
+                                <!-- <option value="BNI">BNI</option> -->
+                                <option value="BNI">BNI Internal</option>
+                                <option value="BNI">BNI Cross Chapter</option>
                             </select>
                         </div>
                         <div>

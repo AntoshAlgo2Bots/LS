@@ -1,3 +1,5 @@
+<?php include("./navForLogged.php"); ?>
+
 <?php
 
 // $servername = "localhost";

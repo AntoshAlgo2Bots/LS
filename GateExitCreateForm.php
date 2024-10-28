@@ -1,3 +1,5 @@
+<?php include("./navForLogged.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

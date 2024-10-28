@@ -632,7 +632,7 @@
                             <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
                                 <nav name="nav"
                                     class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-                                    
+
                                     <a href="./gateEnteryForm.php"
                                         class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                                         <div class="grid mr-4 place-items-center">
@@ -710,7 +710,7 @@
                             <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
                                 <nav name="nav"
                                     class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-                                    
+
                                     <a href="./GateExitCreateForm.php"
                                         class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                                         <div class="grid mr-4 place-items-center">
@@ -862,8 +862,7 @@
                             <div class="mb-10">
 
                                 <a href="./query_report.php">
-                                    <div class="datachart bg-gray-100 "
-                                        id="Lead_status_box"></div>
+                                    <div class="datachart bg-gray-100 " id="Lead_status_box"></div>
                                 </a>
                             </div>
 
@@ -878,8 +877,7 @@
                             <div>
 
                                 <a href="./mangerApprove.php">
-                                    <div class="datachart bg-gray-100 "
-                                        id="item_requests"></div>
+                                    <div class="datachart bg-gray-100 " id="item_requests"></div>
                                 </a>
                             </div>
 
@@ -891,7 +889,15 @@
                                         id="pr_requests">
                                     </div>
                                 </a> -->
+
+                                <a href="./createEmployeeReport.php">
+                                    <div class="datachart bg-gray-100 " style="width:26rem; height:17rem"
+                                        id="empStatus">
+                                    </div>
+                                </a>
                             </div>
+
+
 
 
                             <div>
@@ -922,7 +928,7 @@
 
 
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 mt-32">
                         <div class="flex flex-wrap bg-white p-4 rounded shadow">
                             <?php include("./pieChart.php") ?>
                         </div>

@@ -74,6 +74,7 @@ $(document).ready(function () {
       let requisition_table = data.requisition_table.Indexes;
       let grnStatus = data.grnStatus.Indexes;
       let Lead_status = data.Lead_status.Indexes;
+      let empStatus = data.empStatus.Indexes;
 
       //   console.log(purchase_order);
 
@@ -82,6 +83,7 @@ $(document).ready(function () {
       await setDataOfPie(itemrequest, "Item Request", "item_requests");
       await setDataOfPie(grnStatus, "GRN status", "GRN_status");
       await setDataOfPie(Lead_status, "Lead Status", "Lead_status_box");
+      await setDataOfPie(empStatus, "Employees Status", "empStatus");
     },
     "json"
   ).fail(error=>{
