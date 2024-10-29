@@ -21,56 +21,56 @@
                     <div>
                         <label for="s_no" class="block mb-2 font-bold text-xs font-medium text-gray-900">Record
                             Number:</label>
-                        <input type="text" name="s_no" id="s_no"
+                        <input type="number" name="s_no" id="s_no"
                             class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                              />
 
                             
                         <button type="button" id="search"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-xs rounded-lg text-sm px-2 py-1 me-2 mb-1  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><img src="https://img.icons8.com/?size=100&id=59878&format=png&color=ffffff" alt="" class=" w-4 text-white "></button>
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-xs rounded-lg text-xs px-2 py-1 me-2 mb-1  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><img src="https://img.icons8.com/?size=100&id=59878&format=png&color=ffffff" alt="" class=" w-4 text-white "></button>
                     </div>
                     <div>
                         <label for="created_date"
                             class="block w-36 mb-2 font-bold text-xs font-medium text-gray-900">Created Date:</label>
-                        <input type="date" name="created_date" id="dateInput"
+                        <input type="date" name="created_date" id="created_date"
                             class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                             disabled />
                     </div>
                     <div>
                         <label for="created_by"
                             class="block w-36 mb-2 font-bold text-xs font-medium text-gray-900">Created By:</label>
-                        <input type="text" name="created_by" value="admin" id="created_by"
-                            class="w-40 rounded-md border text-xs border-gray-500 bg-white mr-10 py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        <input type="text" name="created_by" value="<?php echo $_SESSION["username"] ?>" id="created_by"
+                            class="w-40 rounded-md border text-xs border-gray-500 bg-white mr-10 py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled/>
                     </div>
                 </div>
             </div>
 
-            <div class="flex flex-wrap m-2 gap-x-20 ">
+            <div class="flex flex-wrap m-2 gap-x-20">
                 <div>
                     <label for="po_number" class="block mb-2 font-bold text-xs font-medium text-gray-900">Enter PO
                         Number:</label>
-                    <input name="po_number" id="po_number" type="text"
+                    <input name="po_number" id="po_number" type="number"
                         class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                 </div>
 
                 <div>
                     <label for="invoice_number"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Invoice Number:</label>
-                    <input type="text" name="invoice_number" id="invoice_number" required
+                    <input type="number" name="invoice_number" id="invoice_number" required
                         class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                 </div>
 
                 <div>
                     <label for="no_of_boxes" class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">No. Of
                         Boxes:</label>
-                    <input type="text" required name="no_of_boxes" id="no_of_boxes"
+                    <input type="number" required name="no_of_boxes" id="no_of_boxes"
                         class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                 </div>
 
                 <div>
                     <label for="fireght_charges"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Freight Charges:</label>
-                    <input type="text" name="fireght_charges" required id="fireght_charges"
+                    <input type="number" name="fireght_charges" required id="fireght_charges"
                         class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                 </div>
 
@@ -78,7 +78,7 @@
                 <div>
                     <label for="weight"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Weight:</label>
-                    <input type="text" required name="weight" id="weight"
+                    <input type="number" required name="weight" id="weight"
                         class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                 </div>
 
@@ -94,7 +94,7 @@
 
             </div>
 
-            <div class="flex flex-wrap mt-4 gap-x-20">
+            <div class="flex flex-wrap mt-4 m-2 gap-x-20">
                 <div>
                     <label for="vehicle_number"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Vehicle Number:</label>
@@ -223,7 +223,7 @@
     </script>
 
     <script>
-        const dateInput = document.getElementById('dateInput');
+        const dateInput = document.getElementById('created_date');
         const currentDate = new Date();
 
       

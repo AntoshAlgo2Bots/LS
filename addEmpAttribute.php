@@ -113,8 +113,8 @@ if ($result1->num_rows > 0) {
                     <!-- <input type="text" name="department_name" id="department_name"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2" /> -->
                     <select name="department_name"
-                        class="bg-gray-50 border  border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected hidden>Select one</option>
+                        class="bg-gray-50 border  border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                        <option selected hidden disabled>Select one</option>
                         <?php foreach ($options as $option) { ?>
                             <option class="" value="<?php echo $option; ?>"><?php echo $option; ?>
                             </option>
@@ -127,7 +127,7 @@ if ($result1->num_rows > 0) {
                         Role</label>
                     <input type="text" name="job_role" id="job_role"
                         class="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2"
-                        placeholder="" />
+                        placeholder="" required/>
                 </div>
                 <div class="mb-3">
                     <label for="start_date" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Start

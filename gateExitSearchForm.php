@@ -23,19 +23,19 @@
                             class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
 
                         <button type="button" id="search"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-xs rounded-lg text-sm px-8 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Search</button>
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-xs rounded-lg text-xs px-4 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Search</button>
                     </div>
                     <div>
                         <label for="created_date"
                             class="block w-36 mb-2 font-bold text-xs font-medium text-gray-900">Created Date:</label>
                         <input type="date" name="created_date" id="created_date"
-                            class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                            class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                     </div>
                     <div>
                         <label for="created_by"
                             class="block w-36 mb-2 font-bold text-xs font-medium text-gray-900">Created By:</label>
                         <input type="text" name="created_by" id="created_by"
-                            class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                            class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                     </div>
                 </div>
             </div>
@@ -45,38 +45,38 @@
                     <label for="po_number" class="block mb-2 font-bold text-xs font-medium text-gray-900">Enter PO
                         Number:</label>
                     <input name="po_number" id="po_number" type="text"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
 
                 <div>
                     <label for="invoice_number"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Invoice Number:</label>
                     <input type="text" name="invoice_number" id="invoice_number"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="mode_of_transport"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Mode of Transport:</label>
                     <input type="text" name="mode_of_transport" id="mode_of_transport"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="vehicle_number"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Vehicle Number:</label>
                     <input type="text" name="vehicle_number" id="vehicle_number"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="no_of_boxes" class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">No. Of
                         Boxes:</label>
                     <input type="text" name="no_of_boxes" id="no_of_boxes"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="weight"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Weight:</label>
                     <input type="text" name="weight" id="weight"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
             </div>
 
@@ -85,68 +85,68 @@
                     <label for="fireght_charges"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Freight Charges:</label>
                     <input type="text" name="fireght_charges" id="fireght_charges"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] mb-5 h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] mb-5 h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
-                    <label for="recieved_by"
+                    <label for="dispatched_by"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Dispatched By:</label>
-                    <input type="text" name="recieved_by" id="recieved_by"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    <input type="text" name="dispatched_by" id="dispatched_by"
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="vendor_name" class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Vendor
                         Name:</label>
                     <input type="text" name="vendor_name" id="vendor_name"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="received_date"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Dispatching Date &
                         Time:</label>
                     <input type="datetime-local" name="dispatching_date_time" id="dispatching_date_time"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="item_name" class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Item
                         Name:</label>
                     <input type="text" name="item_name" id="item_name"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="finish"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Finish:</label>
                     <input type="text" name="finish" id="finish"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="dimension"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Dimension:</label>
                     <input type="text" name="dimension" id="dimension"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="box_detail" class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Box
                         Detail:</label>
                     <input type="text" name="box_detail" id="box_detail"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="checked_by" class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Checked
                         By:</label>
                     <input type="text" name="checked_by" id="checked_by"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="approved_by"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Approved By:</label>
                     <input type="text" name="approved_by" id="approved_by"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
                 <div>
                     <label for="remarks"
                         class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900">Remarks:</label>
                     <input type="text" name="remarks" id="remarks"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" disabled />
                 </div>
             </div>
             <!-- 

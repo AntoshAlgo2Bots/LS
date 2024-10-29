@@ -42,95 +42,181 @@ $result = mysqli_query($con, $sql);
     async function addRow() {
         const container = document.getElementById("itemRows");
         const row = document.createElement("div");
-        row.className = "flex flex-wrap items-center gap-x-5 w-full p-2 rounded-lg mt-2";
-        row.name = 'row'
-        row.innerHTML = ` 
-                      
-                        <div>
-                            <input id="default-checkbox" type="checkbox" value=""
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                        </div>
-                        <div>
-                            <label class="block text-sm">S. No : </label>
-                            <input type="text" name="item_serial_no"
-                                class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div class="flex items-end gap-x-2">
-                            <div>
-                                <label class="block text-sm">Item Name : </label>
-                                <input type="text" name="item_name" id="item_name"
-                                onChange='setPriceImgOnchage(event)'
-                                    class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    style="border-color: #C8A1E0;" /><br>
-                            </div>
-                            
-                            <!-- <div>
-                                 <button type="button" id="getPriceBtn"
-                                     class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-1 focus:ring-gray-100 font-medium rounded-lg text-xs px-2 py-1 ">Get
-                                     Price</button>
-                             </div>
-                             -->
-                        </div>
-                        <div>
-                            <label class="block text-sm">Item Qty : </label>
-                            <input type="number" name="item_qty[]" id="item_qty"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" oninput="calculateTotal()" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Rate : </label>
-                            <input type="number" name="item_rate" id="item_rate"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" oninput="calculateTotal()" readonly/><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Total : </label>
-                            <input type="number" name="item_total[]" id="item_total"
-                                class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" readonly /><br>
-                        </div>
 
-                        <div>
 
-                            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                                class="text-gray-900 mt-5  focus:outline-none border border-gray-900 px-1  font-medium rounded-lg text-xs py-1 text-center"
-                                type="button">if Ship another address </button>
-                        </div>
-                        <div class="w-28 h-24 border border-gray-900 rounded-md">
-                            <img class="w-28 h-24 rounded-md" src="" name='ImagePreview' id="ImagePreview" alt="image preview">
-                        </div>
+        $("#itemRows").append(`
+                
+                  <tr>
+                                    <td>
+                                        <input id="default-checkbox" type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                    </td>
+                                    <td>
+                                        
+                                        <input type="text" name="item_serial_no"
+                                            class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" />
+                                    </td>
+                                
+                                    <td>
+                                        
+                                        <input type="text" onChange="setItemImageAndRate(event)" name="item_name" id="item_name"
+                                            class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" />
+                                    </td>
+                                
+                                    <td>
+                                        
+                                        <input type="number" name="item_qty[]" id="item_qty"
+                                            class="w-24 rounded-md border    text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" oninput="calculateTotal()" />
+                                    </td>
+                                
+                                    <td>
+                                        
+                                        <input type="number" name="item_rate" id="item_rate"
+                                            class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" oninput="calculateTotal()" readonly />
+                                    </td>
+                                
+                                    <td>
+                                        
+                                        <input type="number" name="item_total[]" id="item_total"
+                                            class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" readonly />
+                                    </td>
+                                
+                                  
+                                
+                                    <td>
+                                        <div class="w-28 h-24 border border-gray-900 rounded-md">
+                                            <img class="w-28 h-24 rounded-md" name="ImagePreview" src=""
+                                                id="ImagePreview" alt="image preview">
+                                        </div>
+                                    </td>
+                                
+                                    <td>
+                                        <label class="block text-sm">SO Number:</label>
+                                        <input type="number" name="item_so_number"
+                                            class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" />
+                                    </td>
+                                
+                                    <td>
+                                        <label class="block text-sm">Created By:</label>
+                                        <input type="text" name="created_by"
+                                            class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" />
+                                    </td>
+                                
+                                    <td>
+                                        <label class="block text-sm">Status:</label>
+                                        <input type="text" name="status" value="SAVE"
+                                            class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" readonly />
+                                    </td>
+                                
+                                    <td>
+                                        <button
+                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                            type="button">Create SO</button>
+                                    </td>
+                                </tr>
+                
+                `);
 
-                        <div>
-                            <label class="block text-sm">SO Number : </label>
-                            <input type="number" name="item_so_number"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Created By : </label>
-                            <input type="text" name="created_by"
-                                class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Status : </label>
-                            <input type="text" name="status" value="SAVE"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" readonly/><br>
-                        </div>
-                        <div>
-                            <button
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                type="button">
-                                Create SO
-                            </button>
-                        </div>
-                        <div>
-                        <button type="button" onclick="removeRow(this)" class="text-red-600">Remove</button>
-                        <div>
-            `;
-        container.appendChild(row);
+
+
+
+        // row.className = "flex flex-wrap items-center gap-x-5 w-full p-2 rounded-lg mt-2";
+        // row.name = 'row'
+        // row.innerHTML = ` 
+
+        //                 <div>
+        //                     <input id="default-checkbox" type="checkbox" value=""
+        //                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+        //                 </div>
+        //                 <div>
+        //                     <label class="block text-sm">S. No : </label>
+        //                     <input type="text" name="item_serial_no"
+        //                         class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" /><br>
+        //                 </div>
+        //                 <div class="flex items-end gap-x-2">
+        //                     <div>
+        //                         <label class="block text-sm">Item Name : </label>
+        //                         <input type="text" name="item_name" id="item_name"
+        //                         onChange='setPriceImgOnchage(event)'
+        //                             class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                             style="border-color: #C8A1E0;" /><br>
+        //                     </div>
+
+        //                     <!-- <div>
+        //                          <button type="button" id="getPriceBtn"
+        //                              class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-1 focus:ring-gray-100 font-medium rounded-lg text-xs px-2 py-1 ">Get
+        //                              Price</button>
+        //                      </div>
+        //                      -->
+        //                 </div>
+        //                 <div>
+        //                     <label class="block text-sm">Item Qty : </label>
+        //                     <input type="number" name="item_qty[]" id="item_qty"
+        //                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" oninput="calculateTotal()" /><br>
+        //                 </div>
+        //                 <div>
+        //                     <label class="block text-sm">Rate : </label>
+        //                     <input type="number" name="item_rate" id="item_rate"
+        //                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" oninput="calculateTotal()" readonly/><br>
+        //                 </div>
+        //                 <div>
+        //                     <label class="block text-sm">Total : </label>
+        //                     <input type="number" name="item_total[]" id="item_total"
+        //                         class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" readonly /><br>
+        //                 </div>
+
+        //                 <div>
+
+        //                     <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+        //                         class="text-gray-900 mt-5  focus:outline-none border border-gray-900 px-1  font-medium rounded-lg text-xs py-1 text-center"
+        //                         type="button">if Ship another address </button>
+        //                 </div>
+        //                 <div class="w-28 h-24 border border-gray-900 rounded-md">
+        //                     <img class="w-28 h-24 rounded-md" src="" name='ImagePreview' id="ImagePreview" alt="image preview">
+        //                 </div>
+
+        //                 <div>
+        //                     <label class="block text-sm">SO Number : </label>
+        //                     <input type="number" name="item_so_number"
+        //                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" /><br>
+        //                 </div>
+        //                 <div>
+        //                     <label class="block text-sm">Created By : </label>
+        //                     <input type="text" name="created_by"
+        //                         class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" /><br>
+        //                 </div>
+        //                 <div>
+        //                     <label class="block text-sm">Status : </label>
+        //                     <input type="text" name="status" value="SAVE"
+        //                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" readonly/><br>
+        //                 </div>
+        //                 <div>
+        //                     <button
+        //                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        //                         type="button">
+        //                         Create SO
+        //                     </button>
+        //                 </div>
+        //                 <div>
+        //                 <button type="button" onclick="removeRow(this)" class="text-red-600">Remove</button>
+        //                 <div>
+        //     `;
+        // container.appendChild(row);
 
 
 
@@ -143,91 +229,200 @@ $result = mysqli_query($con, $sql);
     }
 </script>
 <script>
-    function addRow1() {
-        const container = document.getElementById("itemRows1");
+
+async function addRow1() {
+        const container = document.getElementById("itemRows");
         const row = document.createElement("div");
-        row.className = "flex flex-wrap items-center gap-x-5 w-full p-2 rounded-lg mt-2";
-        row.name = 'row'
-        row.innerHTML = `
-                <div>
-                            <input id="default-checkbox" type="checkbox" value=""
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                        </div>
-                        <div>
-                            <label class="block text-sm">S. No : </label>
-                            <input type="text" name="item_serial_no"
-                                class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Item Name : </label>
-                            <input type="text" name="item_name" onChange='setPriceImgOnchage1(event)'
-                                class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Item Qty : </label>
-                            <input type="number" name="item_qty[]"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" oninput="calculateTotal()"/><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Rate : </label>
-                            <input type="number" name="item_rate"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" oninput="calculateTotal()"/><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Total : </label>
-                            <input type="number" name="item_total[]"
-                                class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-
-                        <div>
-
-                            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                                class="text-gray-900 mt-5  focus:outline-none border border-gray-900 px-1  font-medium rounded-lg text-xs py-1 text-center"
-                                type="button">if Ship another address </button>
-                        </div>
-                        <div class="w-28 h-24 border border-gray-900 rounded-md">
-                            <img name='ImagePreview' class="w-28 h-24 rounded-md" src="./images.png" alt="image preview">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm">SO Number : </label>
-                            <input type="number" name="item_so_number"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Created By : </label>
-                            <input type="text" name="createdBy"
-                                class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Status : </label>
-                            <input type="text" name="status"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <button
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                type="button">
-                                Create SO
-                            </button>
-                        </div>
-                        <div>
-                    <button type="button" onclick="removeRow(this)" class="text-red-600">Remove</button>
-                </div>
-            `;
-        container.appendChild(row);
 
 
-        setItemListInIputags()
+        $("#itemRows1").append(`
+                
+                  <tr>
+                                    <td>
+                                        <input id="default-checkbox" type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                    </td>
+                                    <td>
+                                        
+                                        <input type="text" name="item_serial_no"
+                                            class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" />
+                                    </td>
+                                
+                                    <td>
+                                        
+                                        <input type="text" onChange="setItemImageAndRate(event)" name="item_name" id="item_name"
+                                            class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" />
+                                    </td>
+                                
+                                    <td>
+                                        
+                                        <input type="number" name="item_qty[]" id="item_qty"
+                                            class="w-24 rounded-md border    text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" oninput="calculateTotal()" />
+                                    </td>
+                                
+                                    <td>
+                                        
+                                        <input type="number" name="item_rate" id="item_rate"
+                                            class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" oninput="calculateTotal()" readonly />
+                                    </td>
+                                
+                                    <td>
+                                        
+                                        <input type="number" name="item_total[]" id="item_total"
+                                            class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" readonly />
+                                    </td>
+                                
+                                  
+                                
+                                    <td>
+                                        <div class="w-28 h-24 border border-gray-900 rounded-md">
+                                            <img class="w-28 h-24 rounded-md" name="ImagePreview" src=""
+                                                id="ImagePreview" alt="image preview">
+                                        </div>
+                                    </td>
+                                
+                                    <td>
+                                        <label class="block text-sm">SO Number:</label>
+                                        <input type="number" name="item_so_number"
+                                            class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" />
+                                    </td>
+                                
+                                    <td>
+                                        <label class="block text-sm">Created By:</label>
+                                        <input type="text" name="created_by"
+                                            class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" />
+                                    </td>
+                                
+                                    <td>
+                                        <label class="block text-sm">Status:</label>
+                                        <input type="text" name="status" value="SAVE"
+                                            class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" readonly />
+                                    </td>
+                                
+                                    <td>
+                                        <button
+                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                            type="button">Create SO</button>
+                                    </td>
+                                </tr>
+                
+                `);
+
+
+
+
+        // row.className = "flex flex-wrap items-center gap-x-5 w-full p-2 rounded-lg mt-2";
+        // row.name = 'row'
+        // row.innerHTML = ` 
+
+        //                 <div>
+        //                     <input id="default-checkbox" type="checkbox" value=""
+        //                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+        //                 </div>
+        //                 <div>
+        //                     <label class="block text-sm">S. No : </label>
+        //                     <input type="text" name="item_serial_no"
+        //                         class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" /><br>
+        //                 </div>
+        //                 <div class="flex items-end gap-x-2">
+        //                     <div>
+        //                         <label class="block text-sm">Item Name : </label>
+        //                         <input type="text" name="item_name" id="item_name"
+        //                         onChange='setPriceImgOnchage(event)'
+        //                             class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                             style="border-color: #C8A1E0;" /><br>
+        //                     </div>
+
+        //                     <!-- <div>
+        //                          <button type="button" id="getPriceBtn"
+        //                              class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-1 focus:ring-gray-100 font-medium rounded-lg text-xs px-2 py-1 ">Get
+        //                              Price</button>
+        //                      </div>
+        //                      -->
+        //                 </div>
+        //                 <div>
+        //                     <label class="block text-sm">Item Qty : </label>
+        //                     <input type="number" name="item_qty[]" id="item_qty"
+        //                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" oninput="calculateTotal()" /><br>
+        //                 </div>
+        //                 <div>
+        //                     <label class="block text-sm">Rate : </label>
+        //                     <input type="number" name="item_rate" id="item_rate"
+        //                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" oninput="calculateTotal()" readonly/><br>
+        //                 </div>
+        //                 <div>
+        //                     <label class="block text-sm">Total : </label>
+        //                     <input type="number" name="item_total[]" id="item_total"
+        //                         class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" readonly /><br>
+        //                 </div>
+
+        //                 <div>
+
+        //                     <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+        //                         class="text-gray-900 mt-5  focus:outline-none border border-gray-900 px-1  font-medium rounded-lg text-xs py-1 text-center"
+        //                         type="button">if Ship another address </button>
+        //                 </div>
+        //                 <div class="w-28 h-24 border border-gray-900 rounded-md">
+        //                     <img class="w-28 h-24 rounded-md" src="" name='ImagePreview' id="ImagePreview" alt="image preview">
+        //                 </div>
+
+        //                 <div>
+        //                     <label class="block text-sm">SO Number : </label>
+        //                     <input type="number" name="item_so_number"
+        //                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" /><br>
+        //                 </div>
+        //                 <div>
+        //                     <label class="block text-sm">Created By : </label>
+        //                     <input type="text" name="created_by"
+        //                         class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" /><br>
+        //                 </div>
+        //                 <div>
+        //                     <label class="block text-sm">Status : </label>
+        //                     <input type="text" name="status" value="SAVE"
+        //                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                         style="border-color: #C8A1E0;" readonly/><br>
+        //                 </div>
+        //                 <div>
+        //                     <button
+        //                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        //                         type="button">
+        //                         Create SO
+        //                     </button>
+        //                 </div>
+        //                 <div>
+        //                 <button type="button" onclick="removeRow(this)" class="text-red-600">Remove</button>
+        //                 <div>
+        //     `;
+        // container.appendChild(row);
+
+
+
+        await setItemListInIputags()
     }
+
+
+
+
+
+
+
+
+
+
 
     function removeRow1(button) {
         const row = button.parentElement.parentElement;
@@ -733,9 +928,110 @@ $result = mysqli_query($con, $sql);
                         <span class="text-xs font-bold">Finish Goods</span>
                     </div>
 
-                    <form id="itemRows"
-                        class="flex flex-wrap items-center border gap-x-5 border-gray-900 w-full p-2 rounded-lg mt-2">
-                        <div>
+                    <form class="flex flex-wrap items-center border gap-x-5 border-gray-900 w-full p-2 rounded-lg mt-2">
+                        <table class="min-w-full border border-gray-300">
+
+
+                            <thead>
+                                <th></th>
+                                <th>S. No:</th>
+                                <th>Item Name:</th>
+                                <th>Item Qty:</th>
+                                <th>Rate:</th>
+                                <th>Total:</th>
+                                <th>Imges</th>
+                                <th>SO Number</th>
+                                <th>Created By:</th>
+                                <th>Status:</th>
+                                <th>Create SO</th>
+                                <th></th>
+                                <th></th>
+                            </thead>
+
+
+
+
+                            <tbody id="itemRows">
+                                <tr>
+                                    <td>
+                                        <input id="default-checkbox" type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+                                    </td>
+                                    <td>
+
+                                        <input type="text" name="item_serial_no"
+                                            class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" />
+                                    </td>
+
+                                    <td>
+
+                                        <input type="text" name="item_name" id="item_name"
+                                            class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" />
+                                    </td>
+
+                                    <td>
+
+                                        <input type="number" name="item_qty[]" id="item_qty"
+                                            class="w-24 rounded-md border    text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" oninput="calculateTotal()" />
+                                    </td>
+
+                                    <td>
+
+                                        <input type="number" name="item_rate" id="item_rate"
+                                            class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" oninput="calculateTotal()" readonly />
+                                    </td>
+
+                                    <td>
+
+                                        <input type="number" name="item_total[]" id="item_total"
+                                            class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" readonly />
+                                    </td>
+
+
+
+                                    <td>
+                                        <div class="w-28 h-24 border border-gray-900 rounded-md">
+                                            <img class="w-28 h-24 rounded-md" name="ImagePreview" src=""
+                                                id="ImagePreview" alt="image preview">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <label class="block text-sm">SO Number:</label>
+                                        <input type="number" name="item_so_number"
+                                            class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" />
+                                    </td>
+
+                                    <td>
+                                        <label class="block text-sm">Created By:</label>
+                                        <input type="text" name="created_by"
+                                            class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" />
+                                    </td>
+
+                                    <td>
+                                        <label class="block text-sm">Status:</label>
+                                        <input type="text" name="status" value="SAVE"
+                                            class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                                            style="border-color: #C8A1E0;" readonly />
+                                    </td>
+
+                                    <td>
+                                        <button
+                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                            type="button">Create SO</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- <div>
                             <input id="default-checkbox" type="checkbox" value=""
                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
                         </div>
@@ -807,7 +1103,7 @@ $result = mysqli_query($con, $sql);
                                 type="button">
                                 Create SO
                             </button>
-                        </div>
+                        </div> -->
                     </form>
                     <!-- <div class="mt-3">
                         <button data-modal-target="extralarge-modal" data-modal-toggle="extralarge-modal"
@@ -846,7 +1142,7 @@ $result = mysqli_query($con, $sql);
                             <span class="text-xs font-bold">Raw Material</span>
                         </div>
 
-                        <div class="border border-gray-900 w-full p-2 rounded-lg mt-2" id="raw_section"
+                        <!-- <div class="border border-gray-900 w-full p-2 rounded-lg mt-2" id="raw_section"
                             style="display: none;">
                             <div class="flex flex-wrap items-center gap-x-5" id="itemRows1">
                                 <div>
@@ -854,7 +1150,7 @@ $result = mysqli_query($con, $sql);
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
                                 </div>
                                 <div>
-                                    <label class="block text-sm">S. No : </label>
+                                    <label class="block text-sm">bc S. No : </label>
                                     <input type="text" name="item_serial_no"
                                         class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                         style="border-color: #C8A1E0;" /><br>
@@ -866,11 +1162,11 @@ $result = mysqli_query($con, $sql);
                                             class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                             style="border-color: #C8A1E0;" /><br>
                                     </div>
-                                    <!-- <div>
+                                    <div>
                                         <button type="button" id="getPriceBtn1"
                                             class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-1 focus:ring-gray-100 font-medium rounded-lg text-xs px-2 py-1 ">Get
                                             Price</button>
-                                    </div> -->
+                                    </div>
                                 </div>
                                 <div>
                                     <label class="block text-sm">Item Qty : </label>
@@ -920,14 +1216,146 @@ $result = mysqli_query($con, $sql);
                                         style="border-color: #C8A1E0;" /><br>
                                 </div>
                                 <div>
-                                    <!-- <button
+                                    <button
                                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                         type="button">
                                         Create SO
-                                    </button> -->
+                                    </button>
                                 </div>
                             </div><br>
+                        </div> -->
+
+
+
+
+                        <table class="min-w-full border border-gray-300">
+
+
+<thead>
+    <th></th>
+    <th>S. No:</th>
+    <th>Item Name:</th>
+    <th>Item Qty:</th>
+    <th>Rate:</th>
+    <th>Total:</th>
+    <th>Imges</th>
+    <th>SO Number</th>
+    <th>Created By:</th>
+    <th>Status:</th>
+    <th>Create SO</th>
+    <th></th>
+    <th></th>
+</thead>
+
+
+
+
+<tbody id="itemRows1">
+    <!-- <tr>
+        <td>
+            <input id="default-checkbox" type="checkbox" value=""
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+        </td>
+        <td>
+
+            <input type="text" name="item_serial_no"
+                class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                style="border-color: #C8A1E0;" />
+        </td>
+
+        <td>
+
+            <input type="text" name="item_name" id="item_name"
+                class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                style="border-color: #C8A1E0;" />
+        </td>
+
+        <td>
+
+            <input type="number" name="item_qty[]" id="item_qty"
+                class="w-24 rounded-md border    text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                style="border-color: #C8A1E0;" oninput="calculateTotal()" />
+        </td>
+
+        <td>
+
+            <input type="number" name="item_rate" id="item_rate"
+                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                style="border-color: #C8A1E0;" oninput="calculateTotal()" readonly />
+        </td>
+
+        <td>
+
+            <input type="number" name="item_total[]" id="item_total"
+                class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                style="border-color: #C8A1E0;" readonly />
+        </td>
+
+
+
+        <td>
+            <div class="w-28 h-24 border border-gray-900 rounded-md">
+                <img class="w-28 h-24 rounded-md" name="ImagePreview" src=""
+                    id="ImagePreview" alt="image preview">
+            </div>
+        </td>
+
+        <td>
+            <label class="block text-sm">SO Number:</label>
+            <input type="number" name="item_so_number"
+                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                style="border-color: #C8A1E0;" />
+        </td>
+
+        <td>
+            <label class="block text-sm">Created By:</label>
+            <input type="text" name="created_by"
+                class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                style="border-color: #C8A1E0;" />
+        </td>
+
+        <td>
+            <label class="block text-sm">Status:</label>
+            <input type="text" name="status" value="SAVE"
+                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+                style="border-color: #C8A1E0;" readonly />
+        </td>
+
+        <td>
+            <button
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button">Create SO</button>
+        </td>
+    </tr> -->
+    
+</tbody>
+</table>
+
+<div class="flex gap-x-3">
+                        <div class="mt-2">
+                            <button type="button" onclick="addRow1()"
+                                class="text-gray-900 focus:outline-none border border-gray-900 px-2 font-medium rounded-lg text-xs py-1 text-center">Add
+                                Item</button>
                         </div>
+                        <div class="mt-2">
+                            <button type="submit" id="rowSubmitBtn" onclick="submitForm()"
+                                class="text-gray-900 focus:outline-none border border-gray-900 px-2 font-medium rounded-lg text-xs py-1 text-center">Submit</button>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         <div class="">
                             <input type="number" name="allItemsAmt" id="allItemsAmt" readonly>
@@ -1419,9 +1847,60 @@ $result = mysqli_query($con, $sql);
 
 
 
+
+            const setItemImageAndRate = (event) => {
+
+
+
+
+
+
+                console.log("hello ram ram ");
+
+
+                // var itemName =(event.target).value
+                // $.ajax({
+                //     url: './phpAjax/getPriceFromItemMaster.php',
+                //     type: 'POST',
+                //     data: { action: 'get_price', item_name: itemName },
+                //     success: function (response) {
+                //         console.log(response)
+                //         // Set the fetched price into the item_rate input field
+                //         $('#item_rate').val(response.price);
+                //         $('#ImagePreview').attr('src', './Images/' + response.imagePath);
+                //         console.log(response.imagePath)
+                //     },
+                //     error: function (jqXHR, textStatus, errorThrown) {
+                //         $('#item_rate').val('Error: ' + textStatus);
+                //         $('#ImagePreview').val('Error: ' + textStatus);
+                //     }
+                // });
+
+
+
+
+
+
+
+
+
+            }
+
+
+
+
+
+
             $("input[name='item_name'").on("change", function () {
 
-                console.log("fmef");
+                console.log("fmefdmeiufnefuinefuinefiuenfiuen");
+
+
+
+
+
+
+
 
                 console.log(this);
 
@@ -1476,6 +1955,11 @@ $result = mysqli_query($con, $sql);
                 });
             });
         });
+
+
+
+
+
 
         function setPriceImgOnchage(event) {
 
@@ -1607,6 +2091,68 @@ $result = mysqli_query($con, $sql);
 
         }
 
+        const setItemImageAndRate = (event) => {
+
+
+            let currentTr = (event.target).closest("tr")
+
+
+
+
+
+
+
+
+
+
+
+            console.log("hello gyus");
+
+
+
+
+
+            var itemName = (event.target).value
+            $.ajax({
+                url: './phpAjax/getPriceFromItemMaster.php',
+                type: 'POST',
+                data: { action: 'get_price', item_name: itemName },
+                success: function (response) {
+                    console.log(response)
+                    // Set the fetched price into the item_rate input field
+
+
+
+                    currentTr.querySelector("input[name='item_rate']").value = response.price
+
+
+                    $('#item_rate').val(001);
+
+                    let ImagePreview = currentTr.querySelector("img[name='ImagePreview']")
+                    console.log(ImagePreview);
+
+
+
+
+                    $(ImagePreview).attr('src', './Images/' + response.imagePath);
+                    console.log(response.imagePath)
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#item_rate').val('Error: ' + textStatus);
+                    $('#ImagePreview').val('Error: ' + textStatus);
+                }
+            });
+
+
+
+
+
+
+
+
+
+        }
+
 
 
     </script>
@@ -1644,41 +2190,150 @@ $result = mysqli_query($con, $sql);
         //     return false; // Prevent default form submission
         // }
 
-        async function submitForm() {
+        function submitForm() {
+
+
+
+
+
+
+
+
+
+
+
             const container = document.getElementById("itemRows");
-            const rows = container.querySelectorAll('div[name="row"]'); // Select all rows
-            const formData = new FormData();
+            const container1 = document.getElementById("itemRows1");
+            const rows1 = container1.querySelectorAll('tr'); // Select all rows   
+            const rows = container.querySelectorAll('tr'); // Select all rows           
+                
+
+
+
+            const itemData = []
+
+
 
             rows.forEach((row, index) => {
-                const itemName = row.querySelector('input[name="item_name"]').value;
-                const itemSerialNo = row.querySelector('input[name="item_serial_no"]').value;
-                const itemQty = row.querySelector('input[name="item_qty[]"]').value;
-                const itemRate = row.querySelector('input[name="item_rate"]').value;
-                const itemTotal = row.querySelector('input[name="item_total[]"]').value;
-                const itemSONumber = row.querySelector('input[name="item_so_number"]').value;
-                const createdBy = row.querySelector('input[name="created_by"]').value;
 
-                formData.append(`items[${index}][item_name]`, itemName);
-                formData.append(`items[${index}][item_serial_no]`, itemSerialNo);
-                formData.append(`items[${index}][item_qty]`, itemQty);
-                formData.append(`items[${index}][item_rate]`, itemRate);
-                formData.append(`items[${index}][item_total]`, itemTotal);
-                formData.append(`items[${index}][item_so_number]`, itemSONumber);
-                formData.append(`items[${index}][created_by]`, createdBy);
+                let items = {}
+
+                items.item_name = row.querySelector('input[name="item_name"]').value;
+                items.item_serial_no = row.querySelector('input[name="item_serial_no"]').value;
+                items.item_qty = row.querySelector('input[name="item_qty[]"]').value;
+                items.item_rate = row.querySelector('input[name="item_rate"]').value;
+                items.item_total = row.querySelector('input[name="item_total[]"]').value;
+                items.item_so_number = row.querySelector('input[name="item_so_number"]').value;
+                items.created_by = row.querySelector('input[name="created_by"]').value;
+                items.ImagePreview = row.querySelector('img[name="ImagePreview"]').src ;
+
+
+                console.log(items);
+
+
+                itemData.push(items)
+
+
+                
+
+
+
             });
+
+            rows1.forEach((row, index) => {
+
+                let items = {}
+
+                items.item_name = row.querySelector('input[name="item_name"]').value;
+                items.item_serial_no = row.querySelector('input[name="item_serial_no"]').value;
+                items.item_qty = row.querySelector('input[name="item_qty[]"]').value;
+                items.item_rate = row.querySelector('input[name="item_rate"]').value;
+                items.item_total = row.querySelector('input[name="item_total[]"]').value;
+                items.item_so_number = row.querySelector('input[name="item_so_number"]').value;
+                items.created_by = row.querySelector('input[name="created_by"]').value;
+                items.ImagePreview = row.querySelector('img[name="ImagePreview"]').src ;
+
+
+                console.log(items);
+
+
+                itemData.push(items)
+
+
+                
+
+
+
+            });
+
+
+
+            console.log(itemData);
 
             // Send data to the backend
-            const response = await fetch('submit_item.php', {
-                method: 'POST',
-                body: formData,
-            });
 
-            if (response.ok) {
-                const result = await response.json();
-                console.log('Success:', result);
-            } else {
-                console.error('Error:', response.statusText);
+
+
+            let recordNumber = $("#record_no").val();
+
+            let data = {
+
+                items: itemData,
+                recordNumber: recordNumber
+
+
             }
+
+
+            console.log(data);
+
+
+
+
+
+
+
+
+            $.post("./lead_deatails_items.php", data,
+                function (data) {
+                    
+                    alert(data.message);
+                    console.log(data);
+
+                }, "json"
+
+            ).fail(error => {
+                console.log(error.responseText);
+            })
+
+
+
+            // const response = await fetch('./lead_deatails_items.php', {
+            //     method: 'POST',
+            //     body: data,
+            // })
+
+            // if (response.ok) {
+            //     const result = await response.json();
+            //     console.log('Success:', result);
+            // } else {
+            //     console.error('Error:', response.statusText);
+            // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
     </script>
