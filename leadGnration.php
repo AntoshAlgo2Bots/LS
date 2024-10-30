@@ -43,19 +43,21 @@ $result = mysqli_query($con, $sql);
         const container = document.getElementById("itemRows");
         const row = document.createElement("div");
 
+        let rowLegth = (document.getElementById("itemRows").querySelectorAll("tr")).length
+
+        rowLegth++
+
+        let so_number =  $("#sale_order_number").attr("so_number");
+
 
         $("#itemRows").append(`
                 
                   <tr>
+                                  
                                     <td>
-                                        <input id="default-checkbox" type="checkbox" value=""
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                                    </td>
-                                    <td>
-                                        
-                                        <input type="text" name="item_serial_no"
-                                            class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                            style="border-color: #C8A1E0;" />
+                                                
+    ${rowLegth}
+                                      
                                     </td>
                                 
                                     <td>
@@ -97,18 +99,12 @@ $result = mysqli_query($con, $sql);
                                 
                                     <td>
                                         <label class="block text-sm">SO Number:</label>
-                                        <input type="number" name="item_so_number"
+                                        <input type="number" value="${so_number}" name="item_so_number"
                                             class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                             style="border-color: #C8A1E0;" />
                                     </td>
                                 
-                                    <td>
-                                        <label class="block text-sm">Created By:</label>
-                                        <input type="text" name="created_by"
-                                            class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                            style="border-color: #C8A1E0;" />
-                                    </td>
-                                
+                                    
                                     <td>
                                         <label class="block text-sm">Status:</label>
                                         <input type="text" name="status" value="SAVE"
@@ -116,11 +112,11 @@ $result = mysqli_query($con, $sql);
                                             style="border-color: #C8A1E0;" readonly />
                                     </td>
                                 
-                                    <td>
+                               <!--     <td>
                                         <button
                                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                             type="button">Create SO</button>
-                                    </td>
+                                    </td>  -->
                                 </tr>
                 
                 `);
@@ -230,23 +226,25 @@ $result = mysqli_query($con, $sql);
 </script>
 <script>
 
-async function addRow1() {
-        const container = document.getElementById("itemRows");
+    async function addRow1() {
+        const container = document.getElementById("itemRows1");
         const row = document.createElement("div");
+
+        let rowLegth = (document.getElementById("itemRows1").querySelectorAll("tr")).length
+
+        rowLegth++
+
+        let so_number =  $("#sale_order_number").attr("so_number");
 
 
         $("#itemRows1").append(`
                 
                   <tr>
+                                  
                                     <td>
-                                        <input id="default-checkbox" type="checkbox" value=""
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                                    </td>
-                                    <td>
-                                        
-                                        <input type="text" name="item_serial_no"
-                                            class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                            style="border-color: #C8A1E0;" />
+                                                
+    ${rowLegth}
+                                      
                                     </td>
                                 
                                     <td>
@@ -288,17 +286,12 @@ async function addRow1() {
                                 
                                     <td>
                                         <label class="block text-sm">SO Number:</label>
-                                        <input type="number" name="item_so_number"
+                                        <input type="number" value="${so_number}" name="item_so_number"
                                             class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                             style="border-color: #C8A1E0;" />
                                     </td>
                                 
-                                    <td>
-                                        <label class="block text-sm">Created By:</label>
-                                        <input type="text" name="created_by"
-                                            class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                            style="border-color: #C8A1E0;" />
-                                    </td>
+                                 
                                 
                                     <td>
                                         <label class="block text-sm">Status:</label>
@@ -307,11 +300,11 @@ async function addRow1() {
                                             style="border-color: #C8A1E0;" readonly />
                                     </td>
                                 
-                                    <td>
+                               <!--     <td>
                                         <button
                                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                             type="button">Create SO</button>
-                                    </td>
+                                    </td>  -->
                                 </tr>
                 
                 `);
@@ -319,96 +312,93 @@ async function addRow1() {
 
 
 
-        // row.className = "flex flex-wrap items-center gap-x-5 w-full p-2 rounded-lg mt-2";
-        // row.name = 'row'
-        // row.innerHTML = ` 
 
-        //                 <div>
-        //                     <input id="default-checkbox" type="checkbox" value=""
-        //                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-        //                 </div>
-        //                 <div>
-        //                     <label class="block text-sm">S. No : </label>
-        //                     <input type="text" name="item_serial_no"
-        //                         class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-        //                         style="border-color: #C8A1E0;" /><br>
-        //                 </div>
-        //                 <div class="flex items-end gap-x-2">
-        //                     <div>
-        //                         <label class="block text-sm">Item Name : </label>
-        //                         <input type="text" name="item_name" id="item_name"
-        //                         onChange='setPriceImgOnchage(event)'
-        //                             class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-        //                             style="border-color: #C8A1E0;" /><br>
-        //                     </div>
+        // $("#itemRows1").append(`
+                
+        //           <tr>
+        //                             <td>
+        //                                 <input id="default-checkbox" type="checkbox" value=""
+        //                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
+        //                             </td>
+        //                             <td>
+                                        
+        //                                 <input type="text" name="item_serial_no"
+        //                                     class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                                     style="border-color: #C8A1E0;" />
+        //                             </td>
+                                
+        //                             <td>
+                                        
+        //                                 <input type="text" onChange="setItemImageAndRate(event)" name="item_name" id="item_name"
+        //                                     class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                                     style="border-color: #C8A1E0;" />
+        //                             </td>
+                                
+        //                             <td>
+                                        
+        //                                 <input type="number" name="item_qty[]" id="item_qty"
+        //                                     class="w-24 rounded-md border    text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                                     style="border-color: #C8A1E0;" oninput="calculateTotal()" />
+        //                             </td>
+                                
+        //                             <td>
+                                        
+        //                                 <input type="number" name="item_rate" id="item_rate"
+        //                                     class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                                     style="border-color: #C8A1E0;" oninput="calculateTotal()" readonly />
+        //                             </td>
+                                
+        //                             <td>
+                                        
+        //                                 <input type="number" name="item_total[]" id="item_total"
+        //                                     class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                                     style="border-color: #C8A1E0;" readonly />
+        //                             </td>
+                                
+                                  
+                                
+        //                             <td>
+        //                                 <div class="w-28 h-24 border border-gray-900 rounded-md">
+        //                                     <img class="w-28 h-24 rounded-md" name="ImagePreview" src=""
+        //                                         id="ImagePreview" alt="please select the item preview">
+        //                                 </div>
+        //                             </td>
+                                
+        //                             <td>
+        //                                 <label class="block text-sm">SO Number:</label>
+        //                                 <input type="number" name="item_so_number"
+        //                                 readOnly value="${}"
+        //                                     class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                                     style="border-color: #C8A1E0;" />
+        //                             </td>
+                                
+        //                             <td>
+        //                                 <label class="block text-sm">Created By:</label>
+        //                                 <input type="text" name="created_by"
+        //                                     class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                                     style="border-color: #C8A1E0;" />
+        //                             </td>
+                                
+        //                             <td>
+        //                                 <label class="block text-sm">Status:</label>
+        //                                 <input type="text" name="status" value="SAVE"
+        //                                     class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
+        //                                     style="border-color: #C8A1E0;" readonly />
+        //                             </td>
+                                
+        //                     <!--        <td>
+        //                                 <button
+        //                                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        //                                     type="button">Create SO</button>
+        //                             </td> -->
+        //                         </tr>
+                
+        //         `);
 
-        //                     <!-- <div>
-        //                          <button type="button" id="getPriceBtn"
-        //                              class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-1 focus:ring-gray-100 font-medium rounded-lg text-xs px-2 py-1 ">Get
-        //                              Price</button>
-        //                      </div>
-        //                      -->
-        //                 </div>
-        //                 <div>
-        //                     <label class="block text-sm">Item Qty : </label>
-        //                     <input type="number" name="item_qty[]" id="item_qty"
-        //                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-        //                         style="border-color: #C8A1E0;" oninput="calculateTotal()" /><br>
-        //                 </div>
-        //                 <div>
-        //                     <label class="block text-sm">Rate : </label>
-        //                     <input type="number" name="item_rate" id="item_rate"
-        //                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-        //                         style="border-color: #C8A1E0;" oninput="calculateTotal()" readonly/><br>
-        //                 </div>
-        //                 <div>
-        //                     <label class="block text-sm">Total : </label>
-        //                     <input type="number" name="item_total[]" id="item_total"
-        //                         class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-        //                         style="border-color: #C8A1E0;" readonly /><br>
-        //                 </div>
 
-        //                 <div>
 
-        //                     <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-        //                         class="text-gray-900 mt-5  focus:outline-none border border-gray-900 px-1  font-medium rounded-lg text-xs py-1 text-center"
-        //                         type="button">if Ship another address </button>
-        //                 </div>
-        //                 <div class="w-28 h-24 border border-gray-900 rounded-md">
-        //                     <img class="w-28 h-24 rounded-md" src="" name='ImagePreview' id="ImagePreview" alt="image preview">
-        //                 </div>
 
-        //                 <div>
-        //                     <label class="block text-sm">SO Number : </label>
-        //                     <input type="number" name="item_so_number"
-        //                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-        //                         style="border-color: #C8A1E0;" /><br>
-        //                 </div>
-        //                 <div>
-        //                     <label class="block text-sm">Created By : </label>
-        //                     <input type="text" name="created_by"
-        //                         class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-        //                         style="border-color: #C8A1E0;" /><br>
-        //                 </div>
-        //                 <div>
-        //                     <label class="block text-sm">Status : </label>
-        //                     <input type="text" name="status" value="SAVE"
-        //                         class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-        //                         style="border-color: #C8A1E0;" readonly/><br>
-        //                 </div>
-        //                 <div>
-        //                     <button
-        //                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        //                         type="button">
-        //                         Create SO
-        //                     </button>
-        //                 </div>
-        //                 <div>
-        //                 <button type="button" onclick="removeRow(this)" class="text-red-600">Remove</button>
-        //                 <div>
-        //     `;
-        // container.appendChild(row);
-
+      
 
 
         await setItemListInIputags()
@@ -919,21 +909,29 @@ async function addRow1() {
             </div>
 
         </form>
-        <fieldset class="p-5 border-2 rounded-md border-gray-300 mt-5">
+        <fieldset id="item_area_record" class="p-5 hidden  rounded-md border-gray-300 mt-5">
             <legend class="font-bold">Item Information</legend>
             <div class="flex justify-between flex-wrap">
                 <div class="w-full">
                     <div>
                         <input type="radio" name="goods" checked id="">
                         <span class="text-xs font-bold">Finish Goods</span>
+                        &nbsp
+
                     </div>
 
-                    <form class="flex flex-wrap items-center border gap-x-5 border-gray-900 w-full p-2 rounded-lg mt-2">
-                        <table class="min-w-full border border-gray-300">
+                    <div id="saleorderinfo"
+                        class="p-4 mb-4 m-3  hidden text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                        role="alert">
+                        <span class="font-medium">Sale order number is : </span><span id="sale_order_number">001.
+                        </span>
+                    </div>
+                    <form class="flex flex-wrap items-center p-4   gap-x-5  w-full rounded-lg mt-2">
+                        <table class="min-w-full border ">
 
 
                             <thead>
-                                <th></th>
+                                
                                 <th>S. No:</th>
                                 <th>Item Name:</th>
                                 <th>Item Qty:</th>
@@ -941,9 +939,9 @@ async function addRow1() {
                                 <th>Total:</th>
                                 <th>Imges</th>
                                 <th>SO Number</th>
-                                <th>Created By:</th>
+                                <!-- <th>Created By:</th> -->
                                 <th>Status:</th>
-                                <th>Create SO</th>
+                                <!-- <th>Create SO</th> -->
                                 <th></th>
                                 <th></th>
                             </thead>
@@ -952,7 +950,7 @@ async function addRow1() {
 
 
                             <tbody id="itemRows">
-                                <tr>
+                                <!-- <tr>
                                     <td>
                                         <input id="default-checkbox" type="checkbox" value=""
                                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
@@ -1027,7 +1025,7 @@ async function addRow1() {
                                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                             type="button">Create SO</button>
                                     </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
 
@@ -1119,10 +1117,8 @@ async function addRow1() {
                                 class="text-gray-900 focus:outline-none border border-gray-900 px-2 font-medium rounded-lg text-xs py-1 text-center">Add
                                 Item</button>
                         </div>
-                        <div class="mt-2">
-                            <button type="submit" id="rowSubmitBtn" onclick="submitForm()"
-                                class="text-gray-900 focus:outline-none border border-gray-900 px-2 font-medium rounded-lg text-xs py-1 text-center">Submit</button>
-                        </div>
+                       
+
                     </div>
                     <!-- <div class="block">
                         <div id="finish_field"></div>
@@ -1231,27 +1227,27 @@ async function addRow1() {
                         <table class="min-w-full border border-gray-300">
 
 
-<thead>
-    <th></th>
-    <th>S. No:</th>
-    <th>Item Name:</th>
-    <th>Item Qty:</th>
-    <th>Rate:</th>
-    <th>Total:</th>
-    <th>Imges</th>
-    <th>SO Number</th>
-    <th>Created By:</th>
-    <th>Status:</th>
-    <th>Create SO</th>
-    <th></th>
-    <th></th>
-</thead>
+                            <thead>
+                                <!-- <th></th> -->
+                                <th>S. No:</th>
+                                <th>Item Name:</th>
+                                <th>Item Qty:</th>
+                                <th>Rate:</th>
+                                <th>Total:</th>
+                                <th>Imges</th>
+                                <th>SO Number</th>
+                                <!-- <th>Created By:</th> -->
+                                <th>Status:</th>
+                                <!-- <th>Create SO</th> -->
+                                <th></th>
+                                <th></th>
+                            </thead>
 
 
 
 
-<tbody id="itemRows1">
-    <!-- <tr>
+                            <tbody id="itemRows1">
+                                <!-- <tr>
         <td>
             <input id="default-checkbox" type="checkbox" value=""
                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
@@ -1327,36 +1323,44 @@ async function addRow1() {
                 type="button">Create SO</button>
         </td>
     </tr> -->
-    
-</tbody>
-</table>
 
-<div class="flex gap-x-3">
-                        <div class="mt-2">
-                            <button type="button" onclick="addRow1()"
-                                class="text-gray-900 focus:outline-none border border-gray-900 px-2 font-medium rounded-lg text-xs py-1 text-center">Add
-                                Item</button>
+                            </tbody>
+                        </table>
+
+                        <div class="flex gap-x-3">
+                            <div class="mt-2">
+                                <button type="button" onclick="addRow1()"
+                                    class="text-gray-900 focus:outline-none border border-gray-900 px-2 font-medium rounded-lg text-xs py-1 text-center">Add
+                                    Item</button>
+                            </div>
+                            <div class="mt-2">
+                                <button type="submit" id="rowSubmitBtn" onclick="submitForm()"
+                                    class="text-gray-900 focus:outline-none border border-gray-900 px-2 font-medium rounded-lg text-xs py-1 text-center">Submit</button>
+                            </div>
                         </div>
-                        <div class="mt-2">
+
+
+
+
+
+
+
+
+
+
+                        <button id="create-so-number"
+                            class="text-white m-4 right   bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type="button"> + Create SO</button>
+
+
+
+                            <div class="mt-2">
                             <button type="submit" id="rowSubmitBtn" onclick="submitForm()"
                                 class="text-gray-900 focus:outline-none border border-gray-900 px-2 font-medium rounded-lg text-xs py-1 text-center">Submit</button>
                         </div>
-                    </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+                        
                         <div class="">
                             <input type="number" name="allItemsAmt" id="allItemsAmt" readonly>
                         </div>
@@ -1744,6 +1748,7 @@ async function addRow1() {
                 var contact_person_email = $("#contact_person_email").val();
                 var contact_person_address = $("#contact_person_address").val();
                 var lead_received_date = $("#lead_received_date").val();
+                var so_number = $("#sale_order_number").attr("so_number");
 
                 $.ajax({
                     url: './phpAJax/leadHeaderAjax.php',
@@ -1761,12 +1766,17 @@ async function addRow1() {
                         contact_person_email: contact_person_email,
                         contact_person_address: contact_person_address,
                         lead_received_date: lead_received_date,
-                        leadGenReateToDbhHeader: "leadGenReateToDbhHeader"
+                        leadGenReateToDbhHeader: "leadGenReateToDbhHeader",
+                        so_number:so_number
                     },
                     success: function (response) {
                         let record_id = response.Record_Number
 
                         $("#record_no").val(record_id)
+
+                        $("#item_area_record").fadeIn();
+
+
 
                         alert("Form Submited Sucessfully. Your Record Number is " + record_id)
 
@@ -1777,7 +1787,7 @@ async function addRow1() {
                         console.log(error)
                     }
                 });
-                var form = document.getElementById('myForm').reset();
+                // var form = document.getElementById('myForm').reset();
             });
         });
 
@@ -1825,7 +1835,7 @@ async function addRow1() {
                         console.log(error)
                     }
                 });
-                var form = document.getElementById('query_info_form').reset();
+                // var form = document.getElementById('query_info_form').reset();
             });
         });
 
@@ -2126,7 +2136,7 @@ async function addRow1() {
                     currentTr.querySelector("input[name='item_rate']").value = response.price
 
 
-                    $('#item_rate').val(001);
+
 
                     let ImagePreview = currentTr.querySelector("img[name='ImagePreview']")
                     console.log(ImagePreview);
@@ -2206,26 +2216,29 @@ async function addRow1() {
             const container1 = document.getElementById("itemRows1");
             const rows1 = container1.querySelectorAll('tr'); // Select all rows   
             const rows = container.querySelectorAll('tr'); // Select all rows           
-                
 
 
 
-            const itemData = []
+                let record_id = $("record_no").val()
 
 
 
+
+
+            let itemData = []
             rows.forEach((row, index) => {
 
                 let items = {}
 
                 items.item_name = row.querySelector('input[name="item_name"]').value;
-                items.item_serial_no = row.querySelector('input[name="item_serial_no"]').value;
+                // items.item_serial_no = row.querySelector('input[name="item_serial_no"]').value;
                 items.item_qty = row.querySelector('input[name="item_qty[]"]').value;
                 items.item_rate = row.querySelector('input[name="item_rate"]').value;
                 items.item_total = row.querySelector('input[name="item_total[]"]').value;
                 items.item_so_number = row.querySelector('input[name="item_so_number"]').value;
-                items.created_by = row.querySelector('input[name="created_by"]').value;
-                items.ImagePreview = row.querySelector('img[name="ImagePreview"]').src ;
+                // items.created_by = row.querySelector('input[name="created_by"]').value;
+                items.ImagePreview = row.querySelector('img[name="ImagePreview"]').src;
+                items.recordNumber = $("#recordNumber").val();
 
 
                 console.log(items);
@@ -2234,7 +2247,7 @@ async function addRow1() {
                 itemData.push(items)
 
 
-                
+
 
 
 
@@ -2245,14 +2258,14 @@ async function addRow1() {
                 let items = {}
 
                 items.item_name = row.querySelector('input[name="item_name"]').value;
-                items.item_serial_no = row.querySelector('input[name="item_serial_no"]').value;
+                // items.item_serial_no = row.querySelector('input[name="item_serial_no"]').value;
                 items.item_qty = row.querySelector('input[name="item_qty[]"]').value;
                 items.item_rate = row.querySelector('input[name="item_rate"]').value;
                 items.item_total = row.querySelector('input[name="item_total[]"]').value;
                 items.item_so_number = row.querySelector('input[name="item_so_number"]').value;
-                items.created_by = row.querySelector('input[name="created_by"]').value;
-                items.ImagePreview = row.querySelector('img[name="ImagePreview"]').src ;
-
+                // items.created_by = row.querySelector('input[name="created_by"]').value;
+                items.ImagePreview = row.querySelector('img[name="ImagePreview"]').src;
+                items.recordNumber = $("#recordNumber").val();
 
                 console.log(items);
 
@@ -2260,7 +2273,7 @@ async function addRow1() {
                 itemData.push(items)
 
 
-                
+
 
 
 
@@ -2296,7 +2309,7 @@ async function addRow1() {
 
             $.post("./lead_deatails_items.php", data,
                 function (data) {
-                    
+
                     alert(data.message);
                     console.log(data);
 
@@ -2814,7 +2827,7 @@ async function addRow1() {
             ];
 
 
-            console.log(availableTags);
+            // console.log(availableTags);
             $.get("ajax.php", {
                 "itemCodeInfoForPr": "itemCodeInfoForPr"
             }, function (data) {
@@ -2869,14 +2882,14 @@ async function addRow1() {
         ];
 
 
-        console.log(availableTags);
+        // console.log(availableTags);
         $.get("ajax.php", {
             "itemCodeInfoForPr": "itemCodeInfoForPr"
         }, function (data) {
 
             availableTags = JSON.parse(data);
 
-            console.log(availableTags);
+            // console.log(availableTags);
             $("input[name='item_name']").autocomplete({
                 source: availableTags
             });
@@ -2888,6 +2901,6 @@ async function addRow1() {
 
 </script>
 
-
+<script src="./js/lead_so_js.js"></script>
 
 </html>

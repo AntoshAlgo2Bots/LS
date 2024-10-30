@@ -239,8 +239,7 @@ if ($result3->num_rows > 0) {
                                     class="bg-gray-50 border  border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-40 p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option selected hidden>Select one</option>
                                     <?php foreach ($options as $option) { ?>
-                                        <option class="" value="<?php echo $option; ?>"><?php echo $option; ?>
-                                        </option>
+                                        <option class="" value="<?php echo $option; ?>"><?php echo $option; ?></option>
                                     <?php } ?>
 
                                 </select>

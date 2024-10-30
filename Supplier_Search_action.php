@@ -1,6 +1,6 @@
 <?php
 include("./dbconnection/db.php");
-include("./navForLogged.php");
+// include("./navForLogged.php");
 
 if (isset($_REQUEST['srch'])) {
 
