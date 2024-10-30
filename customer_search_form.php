@@ -33,7 +33,7 @@ include("./navForLogged.php");
 
     <aside id="default-sidebar"
         class="fixed top-0 left-0 z-40 w-60 h-screen transition-transform -translate-x-full sm:translate-x-0"
-        aria-label="Sidebar"style="margin-top:68px">
+        aria-label="Sidebar" style="margin-top:68px">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-100 dark:bg-gray-800">
             <h1 class="text-xl font-bold border-b border-gray-900 text-center py-3">Customer Details</h1>
             <ul class="space-y-2 font-medium mt-3">
@@ -67,27 +67,28 @@ include("./navForLogged.php");
                 <h1 class="text-xl font-medium border-b border-gray-700 text-center pb-3">Organization Details</h1>
                 <div id="oraganigation_duplicate">
 
-                <div>
-                            <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Customer
-                                id :
-                            </label>
-                            <input type="text" name="customer_id" placeholder="Enter customer id" id="id"
-                                class="w-60 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    <div>
+                        <label for=""
+                            class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Customer
+                            id :
+                        </label>
+                        <input type="text" name="customer_id" placeholder="Enter customer id" id="id"
+                            class="w-60 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
 
-                            <button type="button" id="search"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-xs rounded-lg text-sm px-8 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Search</button>
+                        <button type="button" id="search"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-xs rounded-lg text-sm px-8 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Search</button>
 
-                        </div>
+                    </div>
                     <div class="flex flex-wrap gap-x-20 mt-5">
 
-                        
+
                         <div>
                             <label for=""
                                 class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Organigation
                                 Name :
                             </label>
-                            <input type="text" placeholder="Enter organigation name" name="organization_name" id="organization_name"
+                            <input type="text" placeholder="Enter organigation name" name="organization_name"
+                                id="organization_name"
                                 class="w-60 rounded-md border text-xs mb-4 border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
 
@@ -153,7 +154,8 @@ include("./navForLogged.php");
                                 Status
                                 :
                             </label>
-                            <input type="text" placeholder="Enter Customer status" name="customer_status" id="customer_status"
+                            <input type="text" placeholder="Enter Customer status" name="customer_status"
+                                id="customer_status"
                                 class="w-60 rounded-md border text-xs mb-4 border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <div>
@@ -180,7 +182,8 @@ include("./navForLogged.php");
                                 class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Contact
                                 Person Name :
                             </label>
-                            <input type="text" placeholder="Enter person name" name="contact_person_name" id="contact_person_name"
+                            <input type="text" placeholder="Enter person name" name="contact_person_name"
+                                id="contact_person_name"
                                 class="w-60 rounded-md border text-xs mb-4 border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
 
@@ -199,7 +202,8 @@ include("./navForLogged.php");
                                 class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Contact
                                 Person Number :
                             </label>
-                            <input type="text" placeholder="Enter person number" name="contact_person_no" id="contact_person_no"
+                            <input type="text" placeholder="Enter person number" name="contact_person_no"
+                                id="contact_person_no"
                                 class="w-60 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
 
@@ -247,7 +251,8 @@ include("./navForLogged.php");
                                 Description
                                 :
                             </label>
-                            <input type="text" placeholder="Enter person number" name="site_description" id="site_description"
+                            <input type="text" placeholder="Enter person number" name="site_description"
+                                id="site_description"
                                 class="w-60 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
 
@@ -318,7 +323,8 @@ include("./navForLogged.php");
                                 class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Contact
                                 Person Name :
                             </label>
-                            <input type="text" placeholder="Enter person name" name="contact_preson_name" id="contact_preson"
+                            <input type="text" placeholder="Enter person name" name="contact_preson_name"
+                                id="contact_preson"
                                 class="w-60 rounded-md border text-xs mb-4 border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
 
@@ -328,7 +334,8 @@ include("./navForLogged.php");
                                 Person
                                 :
                             </label>
-                            <input type="text" placeholder="Enter person " name="contact_person" id="contact_person_email"
+                            <input type="text" placeholder="Enter person " name="contact_person"
+                                id="contact_person_email"
                                 class="w-60 rounded-md border text-xs mb-4 border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
 
@@ -337,7 +344,8 @@ include("./navForLogged.php");
                                 class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Contact
                                 Person Number :
                             </label>
-                            <input type="text" placeholder="Enter person number" name="contact_person_no" id="contact_person_number"
+                            <input type="text" placeholder="Enter person number" name="contact_person_no"
+                                id="contact_person_number"
                                 class="w-60 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
 
@@ -488,18 +496,31 @@ include("./navForLogged.php");
     </form>
 
 
-    <script src="./customerForm.js"></script>
+    <script src="./js/customerForm.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#search').click(function (e) {
+     
+     
+        });
+
+
+
+        $('#search').click(function (e) {
                 e.preventDefault();
                 var srch = $('#id').val();
 
-                $.post("Customer_Search_action.php", { srch }, function (data) {
+                console.log(srch);
+
+                console.log("fmior");
+
+
+                $.post("./Customer_Search_action.php", { srch }, function (data) {
 
                     console.log(data)
                     var res = data
+
+                    console.log("Helonagud");
 
                     console.log(data);
                     $("#organization_name").val(res.data.organization_name);
@@ -514,7 +535,7 @@ include("./navForLogged.php");
                     $("#contact_person_name").val(res.data.contact_person_name);
                     $("#contact_person").val(res.data.contact_person);
                     $("#contact_person_no").val(res.data.contact_person_no);
-                   
+
 
                     $("#site_code").val(res.data.site_code);
                     $("#site_name").val(res.data.site_name);
@@ -544,9 +565,11 @@ include("./navForLogged.php");
                     $("#ifsc_code").val(res.data.ifsc_code);
 
 
-                }, "json")
+                }, "json").fail(error => {
+                console.log(error);
             })
-        });
+            })
+     
     </script>
 
 </body>

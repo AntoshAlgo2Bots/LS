@@ -495,7 +495,7 @@ include("./navForLogged.php");
             </div> -->
         </div>
     </div>
-    <script src="supplierform.js"></script>
+    <script src="./js/supplierform.js"></script>
 
 
     <!-- <script src="./javascript/script.js"></script> -->
@@ -508,7 +508,7 @@ include("./navForLogged.php");
                 e.preventDefault();
                 var srch = $('#id').val();
 
-                $.post("./Supplier_Search_action.php", { srch }, function (data) {
+                $.post("Supplier_Search_action.php", { srch }, function (data) {
 
                     console.log(data)
                     var res = data

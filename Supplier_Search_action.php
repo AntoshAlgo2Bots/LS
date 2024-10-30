@@ -6,11 +6,11 @@ if (isset($_REQUEST['srch'])) {
 
 
     $searchData = $_REQUEST['srch'] ;
-    $db = $con->query("SELECT * FROM `vivek`.supplier_organization_details_tbl a  
+    $db = $con->query("SELECT * FROM supplier_organization_details_tbl a  
 
-JOIN `vivek`.supplier_address_details_tbl b ON a.supplier_id=b.supplier_id
+JOIN supplier_address_details_tbl b ON a.supplier_id=b.supplier_id
 
-JOIN `vivek`.supplier_banking_details_tbl c ON a.supplier_id=c.supplier_id where a.supplier_id = $searchData"); 
+JOIN supplier_banking_details_tbl c ON a.supplier_id=c.supplier_id where a.supplier_id = $searchData"); 
     $data=mysqli_fetch_assoc($db);
     
 
