@@ -13,7 +13,7 @@ include('./dbconnection/db.php');
 
 
 
-$sql = "SELECT * FROM for_office.sale_order_header order by id desc;";
+$sql = "SELECT * FROM sale_order_header order by id desc;";
 
 
 $result = mysqli_query($con, $sql);
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     if (isset($_GET["search_query"])) {
         $query = $_GET["search_query"];
 
-        $sql = "SELECT * FROM gate_entry_form_tbl  where po_number ='$query'or s_no ='$query' or invoice_number ='$query' or no_of_boxes='$query' ";
+        $sql = "SELECT * FROM sale_order_header  where po_number ='$query'or s_no ='$query' or invoice_number ='$query' or no_of_boxes='$query' ";
 
         $result = mysqli_query($con, $sql);
 
@@ -174,11 +174,12 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                         class="w-full text-sm whitespace-nowrap text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                            <th scope="col" class="px-6 py-3">SO Number </th>
+                                <th scope="col" class="px-6 py-3">SO Number </th>
+                                <th scope="col" class="px-6 py-3">lead head id</th>
 
                                 <th scope="col" class="px-6 py-3">username </th>
                                 <th scope="col" class="px-6 py-3">user_address</th>
-                       
+
                                 <th scope="col" class="px-6 py-3">user_phone_number</th>
                                 <th scope="col" class="px-6 py-3">user_email</th>
                                 <th scope="col" class="px-6 py-3">installation_is_required</th>
@@ -192,12 +193,11 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                 <th scope="col" class="px-6 py-3">status</th>
                                 <th scope="col" class="px-6 py-3">created_by</th>
                                 <th scope="col" class="px-6 py-3">created_date</th>
-                                <th scope="col" class="px-6 py-3">lead_head_id</th>
-                                
 
 
-                                
-                                    <span class="sr-only">Actions</span>
+
+
+                                <span class="sr-only">Actions</span>
                                 </th>
                             </tr>
                         </thead>
@@ -214,10 +214,13 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
 
                                 <tr class="border-b dark:border-gray-700">
-                                <td class="px-6 py-4">
+                                    <td class="px-6 py-4">
                                         <?php echo $row['id'] ?>
                                     </td>
-                                <td class="px-6 py-4">
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['lead_head_id'] ?>
+                                    </td>
+                                    <td class="px-6 py-4">
                                         <?php echo $row['username'] ?>
                                     </td>
                                     <td class="px-6 py-4">
@@ -227,12 +230,15 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                         <?php echo $row['user_phone_number'] ?>
                                     </td>
                                     <td class="px-6 py-4">
+                                        <?php echo $row['user_email'] ?>
+                                    </td>
+                                    <td class="px-6 py-4">
                                         <?php echo $row['installation_is_required'] ?>
                                     </td>
                                     <td class="px-6 py-4">
                                         <?php echo $row['installation_need_by_date'] ?>
                                     </td>
-                                   <!-- // <td class="px-6 py-4">
+                                    <!-- // <td class="px-6 py-4">
                                         <?php //echo $row['recieving_datetime'] ?>
                                     </td> -->
 
@@ -263,7 +269,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
 
 
-                                   
+
                                     <td class="px-6 py-4">
                                         <?php echo $row['created_by'] ?>
                                     </td>
@@ -271,13 +277,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                     <td class="px-6 py-4">
                                         <?php echo $row['created_date'] ?>
                                     </td>
-
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['lead_head_id'] ?>
-                                    </td>
-
-                                 
-                                    
+                      
                                     <td class="px-6 py-3 flex items-center justify-end">
                                         <button id="apple-imac-27-dropdown-button"
                                             data-dropdown-toggle="apple-imac-27-dropdown"
@@ -326,37 +326,37 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     </section>
 
     <script>
-    function exportTableToCSV(filename) {
-    const table = document.getElementById('dataTable');
-    let csv = [];
-    
-    // Get table headers
-    const headers = Array.from(table.querySelectorAll('th')).map(th => th.innerText);
-    csv.push(headers.join(','));
+        function exportTableToCSV(filename) {
+            const table = document.getElementById('dataTable');
+            let csv = [];
 
-    // Get table rows
-    const rows = Array.from(table.querySelectorAll('tr')).slice(1); // Exclude header row
-    rows.forEach(row => {
-        const cells = Array.from(row.querySelectorAll('td')).map(td => td.innerText);
-        csv.push(cells.join(','));
-    });
+            // Get table headers
+            const headers = Array.from(table.querySelectorAll('th')).map(th => th.innerText);
+            csv.push(headers.join(','));
 
-    // Create a CSV file
-    const csvContent = csv.join('\n');
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
+            // Get table rows
+            const rows = Array.from(table.querySelectorAll('tr')).slice(1); // Exclude header row
+            rows.forEach(row => {
+                const cells = Array.from(row.querySelectorAll('td')).map(td => td.innerText);
+                csv.push(cells.join(','));
+            });
 
-    // Create a link to download the CSV
-    const link = document.createElement('a');
-    link.setAttribute('href', url);
-    link.setAttribute('download', filename);
-    link.style.display = 'none';
+            // Create a CSV file
+            const csvContent = csv.join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
 
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-</script>
+            // Create a link to download the CSV
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', filename);
+            link.style.display = 'none';
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
 
 
 </body>

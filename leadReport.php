@@ -3,8 +3,8 @@
 include('./dbconnection/db.php');
 include("./navForLogged.php");
 
-$sql = "SELECT * FROM lead_details_header_form a inner JOIN lead_details_middle_level_form b ON
- a.record_no=b.record_no;";
+$sql = "SELECT a.*, b.*, c.item_so_number FROM lead_details_header_form a inner JOIN lead_details_middle_level_form b ON
+ a.record_no=b.record_no inner JOIN lead_details_items c ON  b.record_no = c.record_id";
 
 
 $result = mysqli_query($con, $sql);
@@ -166,8 +166,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                         class="w-full text-sm whitespace-nowrap text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-6 py-3">S.no </th>
-                                <th scope="col" class="px-6 py-3">Record Number</th>
+                                <th scope="col" class="px-6 py-3">Record Number </th>
+                                <th scope="col" class="px-6 py-3">item so number </th>
+                                <!-- <th scope="col" class="px-6 py-3">Record Number</th> -->
                                 <th scope="col" class="px-6 py-3">Created By</th>
                                 <th scope="col" class="px-6 py-3">Created Date</th>
                                 <th scope="col" class="px-6 py-3">Status</th>
@@ -178,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                 <th scope="col" class="px-6 py-3">Contact Person Name</th>
                                 <th scope="col" class="px-6 py-3">Contact Person Phone No</th>
                                 <th scope="col" class="px-6 py-3">Contact Person Email</th>
-                                <th scope="col" class="px-6 py-3">Contact Person Email</th>
+                                <!-- <th scope="col" class="px-6 py-3">Contact Person Email</th> -->
                                 <th scope="col" class="px-6 py-3">Contact Person Address</th>
                                 <th scope="col" class="px-6 py-3">Lead Receiving Date</th>
                                 <th scope="col" class="px-6 py-3">Assigned To</th>
@@ -197,19 +198,22 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                         </thead>
                         <tbody id="genDataTbody">
 
-                            <?php
+                            <!-- <?php
 
                             $i = 0;
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $i++;
 
-                                ?>
+                                ?> -->
 
 
 
-                                <tr class="border-b dark:border-gray-700">
+                                    <!-- <tr class="border-b dark:border-gray-700">
                                     <td class="px-6 py-4">
                                         <?php echo $row['record_no'] ?>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <?php echo $row['item_so_number'] ?>
                                     </td>
                                     <td class="px-6 py-4">
                                         <?php echo $row['created_by'] ?>
@@ -246,12 +250,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                     </td>
                                     <td class="px-6 py-4">
                                         <?php echo $row['lead_received_date'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['created_by'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['created_date'] ?>
                                     </td>
                                     <td class="px-6 py-4">
                                         <?php echo $row['assigned_to'] ?>
@@ -310,14 +308,14 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                             </div>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr> -->
 
 
-                                <?php
+                                    <!-- <?php
 
                             }
 
-                            ?>
+                            ?> -->
 
 
                         </tbody>
@@ -331,3 +329,131 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
 
 </body>
+
+
+
+
+
+<script>
+
+
+function getTableData(query) {
+    $.get("./phpAjax/getDataFormLeadGen.php", { query: query }, function(data) {
+
+        
+        console.log(data);
+
+        let resData = data.data
+
+       
+        $("#genDataTbody").empty(); 
+
+        resData.forEach(element => {
+            $("#genDataTbody").append(`
+                <tr class="border-b dark:border-gray-700">
+                    <td class="px-6 py-4">${element.record_no}</td>
+                    <td class="px-6 py-4">${element.item_so_number}</td>
+                    <td class="px-6 py-4">${element.created_by}</td>
+                    <td class="px-6 py-4">${element.created_date}</td>
+                    <td class="px-6 py-4">${element.form_status}</td>
+                    <td class="px-6 py-4">${element.lead_source}</td>
+                    <td class="px-6 py-4">${element.ref_By}</td>
+                    <td class="px-6 py-4">${element.ref_phone_no}</td>
+                    <td class="px-6 py-4">${element.lead_type}</td>
+                    <td class="px-6 py-4">${element.contact_person_name}</td>
+                    <td class="px-6 py-4">${element.contact_person_phone_no}</td>
+                    <td class="px-6 py-4">${element.contact_person_email}</td>
+                    <td class="px-6 py-4">${element.contact_person_address}</td>
+                    <td class="px-6 py-4">${element.lead_received_date}</td>
+                    <td class="px-6 py-4">${element.assigned_to}</td>
+                    <td class="px-6 py-4">${element.query_start_date}</td>
+                    <td class="px-6 py-4">${element.follow_up}</td>
+                    <td class="px-6 py-4">${element.followup_reminder_frequency}</td>
+                    <td class="px-6 py-4">${element.no_of_times}</td>
+                    <td class="px-6 py-4">${element.query_end_date}</td>
+                    <td class="px-6 py-4">${element.installation_required}</td>
+                    <td class="px-6 py-4">${element.tentative_installation}</td>
+                    <td class="px-6 py-4">${element.tentative_delivery_date}</td>
+                </tr>
+            `);
+        });
+    },"json").fail(function(error) {
+        console.error('Error fetching data:', error);
+        console.error(error.responseText);
+    });
+}
+
+getTableData();
+
+
+
+
+$("#search_query").on("input",function () {
+    
+    
+    let value = this.value
+    
+    
+    getTableData(value);
+
+    // console.log(value);
+    
+})
+
+
+
+
+
+
+
+
+
+// $(document).ready(function() {
+//             $('#search_query').click(function() {
+//                 const role = $('#search_query').val(); // Get the value from the input field
+//                 getTableData(role); // Pass the input value to getTableData
+//             });
+//         });
+
+
+
+// function getTableData(query) {
+
+
+
+//     $.get("/phpAjax/",data,)
+
+
+
+//     data.forEach(element => {
+
+
+//         $("#tbody").append(`
+
+
+        
+        
+//         `)
+
+        
+//     });
+
+
+    
+// }
+
+
+// getTableData("Dealer")
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</html>

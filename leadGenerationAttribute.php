@@ -55,7 +55,7 @@ include("./navForLogged.php");
 
     <div class="mt-10">
 
-        <h1 class="text-center text-3xl underline mb-5 font-bold">Add Daily Txn Attributes Form</h1>
+        <h1 class="text-center text-3xl underline mb-5 font-bold">Add Lead Generation Attributes Form</h1>
 
         <form class="max-w-8xl border p-8 mx-auto rounded-xl border-gray-300 shadow-lg" id="myForm">
             <div class="flex flex-wrap justify-between mt-4" id="inputFields">
@@ -71,7 +71,7 @@ include("./navForLogged.php");
                         By</label>
                     <input type="text" name="created_by" value="<?php echo $_SESSION["username"] ?>" id="created_by"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2"
-                        placeholder="Enter Person Name" required />
+                        placeholder="Enter Person Name" required readonly/>
                 </div>
                 <div class="mb-3">
                     <label for="created_date"
@@ -79,19 +79,17 @@ include("./navForLogged.php");
                         Date</label>
                     <input type="date" name="created_date" id="created_date"
                         class="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-xs rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-44 p-2"
-                        placeholder="" required />
+                        placeholder="" required readonly/>
                 </div>
                 <div class="mb-3">
-                    <label for="main_head_name"
-                        class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Main Head
-                        Name</label>
-                    <input type="text" name="main_head_name" id="main_head_name"
+                    <label for="lead_source"
+                        class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Lead Source</label>
+                    <input type="text" name="lead_source" id="lead_source"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2" />
                 </div>
                 <div class="mb-3">
-                    <label for="sub_main_name" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Sub
-                        Main Name</label>
-                    <input type="text" name="sub_main_name" id="sub_main_name"
+                    <label for="lead_type" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Lead Type</label>
+                    <input type="text" name="lead_type" id="lead_type"
                         class="bg-gray-50 border border-gray-300 text-gray-900 mb-2 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-44 p-2"
                         placeholder="" />
                 </div>
@@ -133,11 +131,11 @@ include("./navForLogged.php");
             var formData = new FormData(form);
 
             $.ajax({
-                url: 'addAttributeAction.php',
+                url: 'leadGenerationAttributeAction.php',
                 method: 'POST',
                 data: formData,
-                processData: false, // Important
-                contentType: false, // Important
+                processData: false, 
+                contentType: false, 
                 dataType: "JSON",
                 success: function (response) {
                     alert(response.message)
