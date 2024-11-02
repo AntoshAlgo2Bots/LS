@@ -11,7 +11,7 @@ if (isset($_REQUEST['po_number'])) {
     $updated_date = date('Y-m-d H:i:s'); // Use Y-m-d H:i:s format
 
     // Prepare the SQL statement
-    $sql = "INSERT INTO for_office.gate_exit_tbl (po_number, invoice_number, no_of_boxes, fireght_charges, weight, mode_of_transport, vehicle_number, dispatched_by, vendor_name, dispatching_date_time, item_name, finish, dimension, box_detail, checked_by, approved_by, remarks, created_by, created_date, updated_by, updated_date) 
+    $sql = "INSERT INTO gate_exit_tbl (po_number, invoice_number, no_of_boxes, fireght_charges, weight, mode_of_transport, vehicle_number, dispatched_by, vendor_name, dispatching_date_time, item_name, finish, dimension, box_detail, checked_by, approved_by, remarks, created_by, created_date, updated_by, updated_date) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Prepare the statement
@@ -67,7 +67,7 @@ if (isset($_REQUEST['po_number'])) {
 if (isset($_REQUEST['srch'])) {
     $searchData = $con->real_escape_string($_REQUEST['srch']); // Sanitize input to prevent SQL injection
 
-    $db = $con->query("SELECT * FROM for_office.gate_exit_tbl WHERE s_no = '$searchData'"); // Use quotes for string values
+    $db = $con->query("SELECT * FROM gate_exit_tbl WHERE s_no = '$searchData'"); // Use quotes for string values
     if ($db) {
         $data = mysqli_fetch_assoc($db);
         if ($data) {

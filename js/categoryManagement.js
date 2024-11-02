@@ -71,6 +71,9 @@ $("#subcatselect").on("change", function () {
         $("#required_att_tbody").html("");
         $("#attr_table_div").slideDown(1000);
 
+
+
+
         data.data.forEach((row, index) => {
           index++;
 
@@ -100,7 +103,7 @@ $("#subcatselect").on("change", function () {
                                     <p  attr_name="${row.name}" attr_id='${row.attr_id}' name="editAttrField" class="block hover:underline   cursor-pointer font-medium text-sm text-blue-800">Edit </p>
                                 </td>
                                 <td class="p-4 py-5">
-                                    <p   data-dialog-target="dialog-md"  class="block hover:underline  cursor-pointer font-medium text-sm text-slate-800"><i m class="fa-solid fa-xmark"></i> </p>
+                                    <p   data-dialog-target="dialog-md" name="remove"  class="block hover:underline  cursor-pointer font-medium text-sm text-slate-800"><i m class="fa-solid fa-xmark"></i> </p>
 
                                     
                                 </td>

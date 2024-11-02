@@ -22,7 +22,7 @@ if ($con->query($sql) === TRUE) {
 } else {
   $response['status'] = false;
   $response['message'] = 'Atrribute Not Added';
-  // echo "Error: " . $sql . "<br>" . $conn->error;
+  // echo "Error: " . $sql . "<br>" . $con->error;
 
 }
 
