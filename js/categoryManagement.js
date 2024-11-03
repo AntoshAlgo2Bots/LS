@@ -103,7 +103,7 @@ $("#subcatselect").on("change", function () {
                                     <p  attr_name="${row.name}" attr_id='${row.attr_id}' name="editAttrField" class="block hover:underline   cursor-pointer font-medium text-sm text-blue-800">Edit </p>
                                 </td>
                                 <td class="p-4 py-5">
-                                    <p   data-dialog-target="dialog-md" name="remove"  class="block hover:underline  cursor-pointer font-medium text-sm text-slate-800"><i m class="fa-solid fa-xmark"></i> </p>
+                                    <p   data-dialog-target="dialog-md" name="remove_attr_self"  attr_id='${row.attr_id}'  class="block hover:underline  cursor-pointer font-medium text-sm text-slate-800"><i m class="fa-solid fa-xmark"></i> </p>
 
                                     
                                 </td>
@@ -760,6 +760,157 @@ $("#mainCatTable").on("click", "p[name='remove-cat']", function () {
         "json"
       ).fail((error) => {
         console.log(error);
+      });
+    }
+  }
+});
+
+
+
+
+
+function setAttributesInTables() {
+
+
+
+    // let sub_id = this.value;
+    let sub_id = $("#subcatselect").val();;
+  
+    let data = {
+      sub_id: sub_id,
+      getRequireAttrs: "getRequireAttrs",
+    };
+  
+    $.get(
+      "./phpAjax/categoryManagentAjax.php",
+      data,
+      function (data, textStatus, jqXHR) {
+        console.log(data);
+  
+        if (data.success) {
+          console.log(data.data);
+  
+          $("#required_att_tbody").html("");
+          $("#attr_table_div").slideDown(1000);
+  
+  
+  
+  
+          data.data.forEach((row, index) => {
+            index++;
+  
+            $("#required_att_tbody").append(`
+                              
+  
+                               <tr class="hover:bg-slate-50 border-b border-slate-200">
+                                  <td class="p-4 py-5">
+                                      <p class="block font-semibold text-sm text-slate-800">${index}</p>
+                                  </td>
+                                  <td class="p-4 py-5">
+                                      <p class="block text-sm text-slate-800">${row.name}</p>
+                                  </td>
+                                  <td class="p-4 py-5">
+                                      <p class="block text-sm text-slate-800">${row.type}</p>
+                                  </td>
+                                  <td class="p-4 py-5">
+                                      <p class="block text-sm text-slate-800">${row.default_value}</p>
+                                  </td>
+                                  <td class="p-4 py-5">
+                                      <p class="block text-sm text-slate-800">${row.placeholder}</p>
+                                  </td>
+                                  <td class="p-4 py-5">
+                                      <p class="block text-sm text-slate-800">${row.dropdown}</p>
+                                  </td>
+                                  <td class="p-4 py-5">
+                                      <p  attr_name="${row.name}" attr_id='${row.attr_id}' name="editAttrField" class="block hover:underline   cursor-pointer font-medium text-sm text-blue-800">Edit </p>
+                                  </td>
+                                  <td class="p-4 py-5">
+                                      <p   data-dialog-target="dialog-md" name="remove_attr_self"  attr_id='${row.attr_id}'  class="block hover:underline  cursor-pointer font-medium text-sm text-slate-800"><i m class="fa-solid fa-xmark"></i> </p>
+  
+                                      
+                                  </td>
+  
+                              </tr>
+                              
+                              
+                              
+                              `);
+
+                              setAttributesInTables()
+
+
+          
+                            });
+        }
+      },
+      "json"
+    ).fail((error) => {
+      console.log(error);
+    });
+ 
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$("#required_att_tbody").on("click", "p[name='remove_attr_self']", function () {
+console.log("ndioefnr");
+
+
+  console.log(this);
+
+  let currentTr = this.closest("tr");
+
+  let attr_id = $(this).attr("attr_id")
+
+
+
+  let sub_cat_id = $("#subcatselect").val();
+  console.log(currentTr);
+
+  if (window.confirm("Are you sure to remove sub category")) {
+    if (
+      window.confirm(
+        "Are you still  want to remove sub category post your action cannot be rollback"
+      )
+    ) {
+      console.log(sub_cat_id);
+
+      let data = {
+        removeSelfAttr:"removeSelfAttr",
+        sub_cat_id:sub_cat_id,
+        attr_id
+      };      
+
+      console.log(data);
+
+      $.post(
+        "./phpAjax/categoryManagentAjax.php",
+        data,
+        function (data, textStatus, jqXHR) {
+          console.log(data);
+          if (data.success) {
+            alert("Row success");
+
+          }
+        },
+        "json"
+      ).fail((error) => {
+        console.log(error);
+        console.log(error.responseText);
       });
     }
   }

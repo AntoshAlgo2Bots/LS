@@ -19,7 +19,7 @@ let getUSerDataByUserName = () => {
     console.log(data)
 
 
-    $.get("../phpAJax/leadSearchAjax.php", data, function (data) {
+    $.get("./phpAjax/leadSearchAjax.php", data, function (data) {
         console.log(data)
 
 
@@ -74,7 +74,7 @@ let getUSerDataByUserName = () => {
 
 
             console.log("Here start my code")
-            $.get("../phpAJax/leadSearchAjax.php", data1, function (data) {
+            $.get("./phpAjax/leadSearchAjax.php", data1, function (data) {
                 console.log(data);
 
 
@@ -127,6 +127,74 @@ let getUSerDataByUserName = () => {
 
                                 </tr>`)
 
+                });
+
+
+
+
+                let data2 = {
+                    getUSerDataByUserName: "getUSerDataByUserName",
+                    recordNo: recordNo
+                }
+
+
+                console.log("Here Start So Data")
+                $.get("./phpAjax/leadSearchAjax.php", data2, function (data) {
+                    console.log(data.soData);
+
+
+                    let rowData = data.soData;
+
+                    console.log("THis is row Data "+rowData);
+
+                    $("#searchTableTbody1").html("")
+
+                    rowData.forEach(row => {
+
+
+
+                        $("#searchTableTbody1").append(`
+                                    <tr class="border-b dark:border-gray-700">
+                                    <td class="px-3 py-3 text-center">
+                                        <input type="checkbox" value="" >
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <input type="number" value="${row.id}" class="w-20" readonly>
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <input type="number" value="${row.record_id}" class="w-20" readonly>    
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <input type="text" value="${row.item_name}" class="w-44" readonly>    
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <input type="number" value="${row.item_qty}" class="w-28" readonly>  
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <input type="number" value="${row.item_rate}" class="w-28" readonly>
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <input type="number" value="${row.item_total}" class="w-28" readonly>
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <input type="text" value="${row.item_images}" class="w-40" readonly>
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <input type="text" value="${row.item_type}" class="w-20" readonly>
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <input type="number" value="${row.item_so_number}" class="w-24" readonly>              
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <input type="text" value="${row.created_by}" class="w-28" readonly>
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        <input type="text" value="${row.status}" class="w-28" readonly>
+                                    </td>
+
+                                </tr>`)
+
+                    },"json");
                 });
 
 

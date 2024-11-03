@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $data = [];
 
-        $columns = "SELECT S_No,Short_Description,item_code,Item_Category,subCatId";
+        $columns = "SELECT S_No,Short_Description,item_code,Item_Category,subCatId,createdBy,createdDate";
 
         if (mysqli_num_rows($result) > 0) {
 
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $data = [];
 
-        $columns = "SELECT S_No,item_code,Short_Description,Item_Category,subCatId    ";
+        $columns = "SELECT S_No,item_code,Short_Description,Item_Category,subCatId,createdBy,createdDate    ";
 
         if (mysqli_num_rows($result) > 0) {
 

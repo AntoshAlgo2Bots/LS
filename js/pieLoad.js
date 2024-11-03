@@ -75,7 +75,10 @@ $(document).ready(function () {
       let grnStatus = data.grnStatus.Indexes;
       let Lead_status = data.Lead_status.Indexes;
       let empStatus = data.empStatus.Indexes;
+      let invetory_items = data.invetory_items.Indexes;
 
+
+      console.log(invetory_items)
       //   console.log(purchase_order);
 
       await setDataOfPie(requisition_table, "PR Requests", "pr_requests");
@@ -84,6 +87,7 @@ $(document).ready(function () {
       await setDataOfPie(grnStatus, "GRN status", "GRN_status");
       await setDataOfPie(Lead_status, "Lead Status", "Lead_status_box");
       await setDataOfPie(empStatus, "Employees Status", "empStatus");
+      await setDataOfPie(invetory_items, "Inventory items", "invetory_items");
     },
     "json"
   ).fail(error=>{

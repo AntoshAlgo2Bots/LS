@@ -420,12 +420,12 @@ const trAdderForTbody = (
                                                                             class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                             <input id="default-checkbox" onclick="selectChildTable(event)" type="checkbox"
                                                                               
-                                                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                                                class="w-4 h-4 text-center text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                                                         </td>
                                                                         <td
-                                                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                                            class=" py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                             <input type="txt" id="input-email-label"
-                                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                                                                class="py-3  block w-full border-gray-200 text-center rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                                                 placeholder=1   value="${sno}" disabled>
                                                                         </td>
                                                                         <td
@@ -434,7 +434,7 @@ const trAdderForTbody = (
                                                                                 name="item_code"
                                                                                 value="${item_code}"
                                                                                 disabled
-                                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                                                                class="py-3 px-4 block w-full text-center border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                                                 placeholder="item_code">
                                                                         </td>
                                                                         <td
@@ -442,13 +442,13 @@ const trAdderForTbody = (
                                                                             <input type="txt" id="input-email-label"
                                                                                 name="item_name"
                                                                                 value="${itemname}"
-                                                                                class="py-3 w-full px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                                                                class="py-3 w-full text-center px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                                                 placeholder="Item name" disabled>
                                                                         </td>
                                                                         <td
-                                                                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                                            class=" py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                             <input type="number" id="input-email-label"
-                                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                                                                class="py-3 text-center  block  border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                                                 name="unit_Price" disabled placeholder="Unit price"
                                                                                 value="${unitprice}"
                                                                                 >
@@ -456,16 +456,16 @@ const trAdderForTbody = (
                                                                         <td
                                                                             class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                             <input type="number" id="input-email-label"
-                                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                                                                class="py-3  block text-center border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                                                 name="total_qty" disabled placeholder="Unit price"
                                                                                 value="${totalQty}"
                                                                                 >
                                                                         </td>
                                                                         <td
-                                                                            class="px-6 py-4 min-w-10 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                                            class=" py-4 min-w-10 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                             <input type="number" id="input-email-label"
                                                                                 name="balance_qty"
-                                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:
+                                                                                class="py-3 text-center  block  border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:
     inter-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                                                 placeholder="Quantity" disabled value="${balance}">
                                                                         </td>
@@ -473,7 +473,7 @@ const trAdderForTbody = (
                                                                             class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                             <input type="number" id="input-email-label"
                                                                                 name="recieved_qty" 
-                                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                                                                class="py-3  block text-center border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                                                 value="${recQty}"
                                                                                 placeholder="Recieved QTY">
                                                                         </td>
@@ -481,7 +481,7 @@ const trAdderForTbody = (
                                                                             class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                                             <input type="number" id="input-email-label"
                                                                                 name="total_price" disabled
-                                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                                                                class="py-3  block text-center border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                                                 placeholder="Total"
                                                                                 value=${total}
                                                                                 >
@@ -549,10 +549,11 @@ function reciveTable(event) {
         grnNumber: grnNumber,
         recieved_qty: recieved_qty,
         po_lineid: po_lineid,
+        unit_Price: unit_Price,
         po_number:po_number
       };
 
-      // console.log(data);
+      console.log(data);
 
       $.post(
         "ajax/ajaxGrn.php",
@@ -561,7 +562,7 @@ function reciveTable(event) {
           console.log(data);
 
           if (data.success) {
-            alert(`${recieved_qty} items is Accepted`);
+            alert(`${recieved_qty} items is Recived successfully`);
 
             let rowTable = $(`tr[line-row-id=${selectedRow}`)[0];
 
@@ -828,6 +829,8 @@ const rejectToGrn = () => {
   // console.log(total_price);
   // console.log(recieved_qty);
 };
+
+
 const deliverdItemToGrn = () => {
   console.log(rowSelect);
 
@@ -844,7 +847,7 @@ const deliverdItemToGrn = () => {
   let total_price = rowSelect.querySelector("input[name='total_price']").value;
   let grnNumber = $("#grn_numberGen").val();
   let childTbodyId = `tbodyLine${po_lineid}`;
-
+  let total_qty = rowSelect.querySelector("input[name='total_qty']").value;
   let inputs = rowSelect.querySelectorAll("input");
 
   let isValidField = true;
@@ -896,6 +899,94 @@ const deliverdItemToGrn = () => {
             data.status,
             po_lineid,
             null,
+            total_qty,
+            grn_line_id
+          );
+        }
+      },
+      "json"
+    ).fail((error) => {
+      console.log(error);
+    });
+  } else {
+    alert("Please fill the all details");
+  }
+  // console.log(item_code);
+  // console.log(item_name);
+  // console.log(unit_Price);
+  // console.log(balance);
+  // console.log(total_price);
+  // console.log(recieved_qty);
+};
+
+const damagedItemToGrn = () => {
+  console.log(rowSelect);
+
+  let item_code = rowSelect.querySelector("input[name='item_code']").value;
+  let item_name = rowSelect.querySelector("input[name='item_name']").value;
+  let po_lineid = $(rowSelect).attr("line-id");
+  
+  let unit_Price = rowSelect.querySelector("input[name='unit_Price']").value;
+  let recieved_qty = rowSelect.querySelector(
+    "input[name='recieved_qty']"
+  ).value;
+  let balance = rowSelect.querySelector("input[name='balance_qty']").value;
+  let grn_line_id = $(rowSelect).attr("grn-line-id");
+  let total_price = rowSelect.querySelector("input[name='total_price']").value;
+  let grnNumber = $("#grn_numberGen").val();
+  let childTbodyId = `tbodyLine${po_lineid}`;
+
+  let inputs = rowSelect.querySelectorAll("input");
+
+  let isValidField = true;
+
+  if (recieved_qty < 1) {
+    isValidField = false;
+  }
+
+  if (isValidField) {
+    let data = {
+      damagedGrn: "damagedGrn",
+      item_code: item_code,
+      item_name: item_name,
+      unit_Price: unit_Price,
+      recieved_qty: recieved_qty,
+      balance: balance,
+      total_price: total_price,
+      grnNumber: grnNumber,
+      po_lineid: po_lineid,
+      grn_line_id:grn_line_id
+    };
+
+    console.log(data);
+
+    $.post(
+      "ajax/ajaxGrn.php",
+      data,
+      function (data) {
+        console.log(data);
+
+        if (data.success) {
+          alert(`${recieved_qty} items is RTV`);
+
+
+
+          $("#rtv-btn").fadeIn(2000);
+
+          console.log(unit_Price);
+
+
+          trAdderForTbody(
+            1.3,
+            childTbodyId,
+            item_code,
+            item_name,  
+            unit_Price,
+            total_price,
+            recieved_qty,
+            data.status,
+            po_lineid,
+            null,
             total_price,
             grn_line_id
           );
@@ -914,6 +1005,8 @@ const deliverdItemToGrn = () => {
   // console.log(balance);
   // console.log(total_price);
   // console.log(recieved_qty);
+
+
 };
 
 

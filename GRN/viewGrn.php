@@ -20,19 +20,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     //     $sql = "SELECT * 
-    // FROM purchase_order_header  a 
+    // FROM for_office.purchase_order_header  a 
     // JOIN purchase_order_line b
     // ON a.PO_number = b.po_number
     // WHERE a.PO_number = $po_number;   ";
 
 
 
-    // $sql = "SELECT * FROM grn_line_items a JOIN  purchase_order_line b ON a.po_number=b.po_number and a.po_line_id=b.id  where a.po_number = $po_number;";
+    // $sql = "SELECT * FROM for_office.grn_line_items a JOIN  purchase_order_line b ON a.po_number=b.po_number and a.po_line_id=b.id  where a.po_number = $po_number;";
     //     $sql = "SELECT a.*,b.item_shortdiscription,b.unit_price,b.balance,
-    // b.total_price FROM grn_line_items a JOIN  purchase_order_line b ON a.po_number=b.po_number and a.po_line_id=b.id  where a.po_number = $po_number;";
+    // b.total_price FROM for_office.grn_line_items a JOIN  purchase_order_line b ON a.po_number=b.po_number and a.po_line_id=b.id  where a.po_number = $po_number;";
 
     $sql = "SELECT a.*,b.item_shortdiscription,b.unit_price,b.balance, b.total_price,b.id as grn_line_id,c.status,c.recQty 
-FROM grn_line_items  a JOIN purchase_order_line b ON a.po_number=b.po_number and a.po_line_id=b.id 
+FROM for_office.grn_line_items  a JOIN purchase_order_line b ON a.po_number=b.po_number and a.po_line_id=b.id 
 JOIN grn_sub_line_status c ON a.id = c.grn_line_id 
   where a.po_number = $po_number and c.status = 'received';";
 
@@ -53,7 +53,7 @@ JOIN grn_sub_line_status c ON a.id = c.grn_line_id
 
 
 
-        $result2 = mysqli_query($con, "SELECT * FROM purchase_order_header where PO_number = $po_number;");
+        $result2 = mysqli_query($con, "SELECT * FROM for_office.purchase_order_header where PO_number = $po_number;");
 
 
 
@@ -416,7 +416,7 @@ JOIN grn_sub_line_status c ON a.id = c.grn_line_id
 
                                                                         $grnLineId = $row['id'];
 
-                                                                        $sql = "SELECT * FROM grn_sub_line_status where grn_line_id = $grnLineId ;";
+                                                                        $sql = "SELECT * FROM for_office.grn_sub_line_status where grn_line_id = $grnLineId ;";
 
 
                                                                         $result1 = mysqli_query($con, $sql);

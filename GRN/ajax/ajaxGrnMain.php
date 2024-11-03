@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //GET ALL DATA FROM PO ORDERS QUERY HERE .
 
 
-        $stmt = $con->prepare("SELECT * FROM purchase_order_line");
+        $stmt = $con->prepare("SELECT * FROM for_office.purchase_order_line");
 
 
         $stmt->bind_param("", $$po_number);

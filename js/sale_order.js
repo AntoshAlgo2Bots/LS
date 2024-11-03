@@ -65,30 +65,8 @@ $("#saleOrderSavebtn").on("click", function () {
 
     inputsData[name] = value;
   });
-
+  
   let data = {};
-
-  data["userInputData"] = inputsData;
-  data["createdSaleOrder"] = "createdSaleOrder";
-  data["crete_SSasasas"] = "crete_SSasasas";
-
-
-  $.post("./phpAjax/saleOrderAjax.php", data,
-    function (data) {
-
-
-      if (data.success) {
-        alert("Success")
-      }
-
-
-
-    },
-    "json"
-  ).fail(error => {
-    console.log(error);
-  })
-
 
   let itemsArray = [];
   const itemssDataCreate = (item_type, tbody_id) => {
@@ -103,7 +81,7 @@ $("#saleOrderSavebtn").on("click", function () {
       itemssData["item_id"] = $(row).attr("item-id");
       itemssData["quantuty"] = qty;
       itemssData["item_type"] = item_type;
-
+      
       itemssData["rate"] = row
         .querySelector("p[name='rate']")
         .getAttribute("itemprice");
@@ -132,29 +110,26 @@ $("#saleOrderSavebtn").on("click", function () {
   data["inItems"] = itemsArray;
 
   console.log("data", data);
-
-
-  console.log("JKDLWNFMJKEFNJFNIUNFEUIFNEIFNFU");
   $.post(
     "./phpAjax/saleOrderAjax.php",
     data,
     function (data) {
       if (data.success) {
         alert(`Sale order created success fully ${data.so_number}`);
-
+      
         $("input[name='sales_order_number']").val(data.so_number);
         $("input[name='sales_order_number']").fadeIn(1000);
 
-
-
+      
+      
       }
       console.log(data);
     },
     "json"
   ).fail((error) => {
+    
 
-
-
+    
     console.log(error.responseText);
   });
 
@@ -210,8 +185,6 @@ const setBomItemInSearch = (bom_data) => {
   });
 };
 
-
-
 $("#search_input_item").on("input", function () {
   let searchQuery = $("#search_input_item").val();
 
@@ -239,7 +212,6 @@ const setItemsForAddInItems = (searchQuery) => {
     "json"
   ).fail((error) => {
     console.log(error);
-    console.log(error.responseText);
   });
 };
 
@@ -271,7 +243,6 @@ const setBomDataToTable = (id) => {
       if (data.success) {
         let bom_data = data.bom_data[0];
 
-
         let length = tbody.querySelectorAll("tr").length;
         length++;
 
@@ -302,15 +273,15 @@ const setBomDataToTable = (id) => {
                                                 <p name='rate' itemPrice='${bom_data.price}' class="text-sm text-slate-500">${bom_data.price}</p>
                                             </td>
                                             <td class="p-4 border-b border-slate-200 py-5">
-                                                <input type="number" id="qty" name="qty"
+                                                <input type="number" name="qty"
                                                     class="w-28 rounded-md border text-xs border-gray-500 bg-white py-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                                                     style="border-color: #C8A1E0;" />
                                             </td>
                                             <td class="p-4 border-b border-slate-200 py-5">
 
-                                                <p class="text-sm text-slate-500"><input type="number" name="total_price" 
+                                                <p class="text-sm text-slate-500"><input type="number" name="total_price"
                                                     class="w-28 rounded-md border text-xs border-gray-500 bg-white py-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                                    style="border-color: #C8A1E0;"/></p>
+                                                    style="border-color: #C8A1E0;" /></p>
                                             </td>
                                             <td class="p-4 border-b border-slate-200 py-5">
                                                 <img src="./images/${bom_data.item_image}" alt="Product 1" class="w-16 h-16 object-cover rounded" />
@@ -643,5 +614,4 @@ const setIdToBomTableRow = (event) => {
 
   $(event.target).fadeOut();
 };
-
 

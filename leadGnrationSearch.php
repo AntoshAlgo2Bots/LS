@@ -134,13 +134,16 @@ $result = mysqli_query($con, $sql);
                         <div>
                             <label for="lead_source" class="block mb-2 text-sm font-bold text-gray-900">Lead Source :
                             </label>
-                            <select id="lead_source" name="lead_source" onchange="verifyAnswer()"
+                            <input type="text" id="lead_source" name="lead_source"
+                                class="border mb-4 border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 p-1.5"
+                                placeholder="" />
+                            <!-- <select id="lead_source" name="lead_source" onchange="verifyAnswer()"
                                 class=" border mb-4 border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 p-1.5">
                                 <option selected disabled hidden>Choose Lead</option>
                                 <option value="Email">Email</option>
                                 <option value="Direct_other">Direct-other</option>
                                 <option value="References">References</option>
-                            </select>
+                            </select> -->
                         </div>
                         <div>
                             <label for="contact_person_details" class="block mb-2 text-sm font-bold text-gray-900">Ref
@@ -159,14 +162,17 @@ $result = mysqli_query($con, $sql);
                         <div>
                             <label for="lead_type" class="block mb-2 text-sm font-bold text-gray-900">Lead Type :
                             </label>
-                            <select id="lead_type" name="lead_type"
+                            <input type="text" id="lead_type" name="lead_type"
+                                class="border mb-4 border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 p-1.5"
+                                placeholder="" />
+                            <!-- <select id="lead_type" name="lead_type"
                                 class=" border mb-4 border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 p-1.5">
                                 <option selected>Choose Lead Type</option>
                                 <option value="Dealer">Dealer</option>
                                 <option value="Distributor">Distributor</option>
                                 <option value="Retailer">Retailer</option>
                                 <option value="Individual">Individual</option>
-                            </select>
+                            </select> -->
                         </div>
                         <div>
                             <label for="contact_person_details"
@@ -392,11 +398,76 @@ $result = mysqli_query($con, $sql);
                         </tbody>
                     </table>
                 </div>
-
+                
                 <div class="flex justify-center mt-4">
                     <button type="button" id="updateBtn"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Update
-                        Details</button>
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Update
+                    Details</button>
+                </div>
+                <div class="relative md:mx-8 mt-4 overflow-x-auto " style="width: 1290px">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-3 py-3"></th>
+                                <th scope="col" class="px-6 py-3">S No</th>
+                                <th scope="col" class="px-6 py-3">Record Number</th>
+                                <th scope="col" class="px-6 py-3">Item Name</th>
+                                <th scope="col" class="px-6 py-3">Item Qty</th>
+                                <th scope="col" class="px-6 py-3">Item Rate</th>
+                                <th scope="col" class="px-6 py-3">Total</th>
+                                <th scope="col" class="px-6 py-3">Item Images</th>
+                                <th scope="col" class="px-6 py-3">Item Type</th>
+                                <th scope="col" class="px-6 py-3">Item So Number</th>
+                                <th scope="col" class="px-6 py-3">Created By</th>
+                                <th scope="col" class="px-6 py-3">Status</th>
+                                <th scope="col" class="px-6 py-3">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="searchTableTbody1">
+
+
+                            <!-- <tr class="border-b dark:border-gray-700">
+                                    <td class="px-6 py-4">
+                                        Serial
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        record_no
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        assigned_to
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        query_start_date
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        follow_up
+                                    </td>
+                                    <td class="px-6 py-4">
+                                       followup_reminder_frequency
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        no_of_times
+                                    </td>
+                                    <td class="px-6 py-4">
+                                       query_end_date
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        installation_required
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        tentative_installation
+                                    </td>
+                                    <td class="px-6 py-4">
+                                       tentative_delivery_date
+                                    </td>
+
+                                </tr> -->
+
+
+
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </fieldset>
@@ -1153,280 +1224,6 @@ $result = mysqli_query($con, $sql);
     </div>
 
 
-
-
-
-
-
-
-
-
-
-    <script>
-        let count = 1;
-
-        function finish_field() {
-            let y = document.getElementById("finish_field");
-
-            if (y) {
-                let x = `<div id="raw_field_${count}" class="flex flex-wrap items-center border gap-x-5 border-gray-900 w-full p-2 rounded-lg mt-2">
-                        <div>
-                            <input id="default-checkbox" type="checkbox" value=""
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                        </div>
-                        <div>
-                            <label class="block text-sm">S. No : </label>
-                            <input type="text" name="item_serial_no"
-                                class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Item Name : </label>
-                            <input type="text" name="item_name"
-                                class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Item Qty : </label>
-                            <input type="number" name="item_qty"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Rate : </label>
-                            <input type="number" name="item_rate"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Total : </label>
-                            <input type="number" name="item_total"
-                                class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-
-                        <div>
-
-                            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                                class="text-gray-900 mt-5  focus:outline-none border border-gray-900 px-1  font-medium rounded-lg text-xs py-1 text-center"
-                                type="button">if Ship another address </button>
-                        </div>
-                        <div class="w-28 h-24 border border-gray-900 rounded-md">
-                            <img class="w-28 h-24 rounded-md" src="./images.png" alt="image preview">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm">SO Number : </label>
-                            <input type="number" name="item_so_number"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Created By : </label>
-                            <input type="text" name="item_so_number"
-                                class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Status : </label>
-                            <input type="text" name="item_so_number"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <button
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                type="button">
-                                Create SO
-                            </button>
-                        </div>
-                    </div>`;
-
-                y.innerHTML += x;
-
-                count++;
-            } else {
-                console.error("Element with ID 'finish_field' not found.");
-            }
-        }
-
-
-
-
-        //Update By Antosh Kumar Pandey 24-10-2024 14:48
-
-        // document.getElementById('remove_btn').addEventListener('click', function () {
-        //     var finish_field = document.getElementById('finish_field');
-
-        //     // Remove the last child of the container
-        //     if (finish_field.lastElementChild) {
-        //         finish_field.removeChild(finish_field.lastElementChild);
-        //     }
-        // });
-
-
-        function raw_field() {
-            let y = document.getElementById("raw_field");
-
-            if (y) {
-                let x = `<div id="raw_field_${count}" class="flex flex-wrap items-center border gap-x-5 border-gray-900 w-full p-2 rounded-lg mt-2">
-                        <div>
-                            <input id="default-checkbox" type="checkbox" value=""
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600">
-                        </div>
-                        <div>
-                            <label class="block text-sm">S. No : </label>
-                            <input type="text" name="item_serial_no"
-                                class="w-12 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Item Name : </label>
-                            <input type="text" name="item_name"
-                                class="md:w-32 w-40 rounded-md border text-xs border-gray-500 bg-white py-2 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Item Qty : </label>
-                            <input type="number" name="item_qty"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Rate : </label>
-                            <input type="number" name="item_rate"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Total : </label>
-                            <input type="number" name="item_total"
-                                class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-
-                        <div>
-
-                            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                                class="text-gray-900 mt-5  focus:outline-none border border-gray-900 px-1  font-medium rounded-lg text-xs py-1 text-center"
-                                type="button">if Ship another address </button>
-                        </div>
-                        <div class="w-28 h-24 border border-gray-900 rounded-md">
-                            <img class="w-28 h-24 rounded-md" src="./images.png" alt="image preview">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm">SO Number : </label>
-                            <input type="number" name="item_so_number"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Created By : </label>
-                            <input type="text" name="item_so_number"
-                                class="w-28 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <label class="block text-sm">Status : </label>
-                            <input type="text" name="item_so_number"
-                                class="w-24 rounded-md border text-xs border-gray-500 bg-white text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                style="border-color: #C8A1E0;" /><br>
-                        </div>
-                        <div>
-                            <button
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                type="button">
-                                Create SO
-                            </button>
-                        </div>
-                    </div>`;
-
-                y.innerHTML += x;
-
-                count++;
-            } else {
-                console.error("Element with ID 'finish_field' not found.");
-            }
-        }
-
-
-
-        //Update By Antosh Kumar Pandey 14:49
-
-        // document.getElementById('raw_remove').addEventListener('click', function () {
-        //     var raw_field = document.getElementById('raw_field');
-
-        //     // Remove the last child of the container
-        //     if (raw_field.lastElementChild) {
-        //         raw_field.removeChild(raw_field.lastElementChild);
-        //     }
-        // });
-
-
-        function radio_btn() {
-            let x = document.getElementById('add_btn')
-            let y = document.getElementById('raw_section')
-
-            y.style.display = "flex";
-            x.style.display = "block";
-
-        }
-
-        function verifyAnswer() {
-
-
-            let lead_source = document.getElementById('lead_source')
-            var result = lead_source.options[lead_source.selectedIndex].text;
-
-            console.log(result);
-
-            if (result == "References") {
-
-                document.getElementById('ref_By').disabled = false;
-                document.getElementById('ref_By').placeholder = "Person Name";
-                document.getElementById('ref_By').required = true;
-                document.getElementById('ref_phone_no').disabled = false;
-                document.getElementById('ref_phone_no').placeholder = "Person Phone No";
-                document.getElementById('ref_phone_no').required = true;
-            } else {
-                document.getElementById('ref_By').placeholder = " ";
-                document.getElementById('ref_By').required = false;
-                document.getElementById('ref_phone_no').placeholder = " ";
-                document.getElementById('ref_phone_no').required = false;
-
-            }
-
-        }
-
-
-        // function installationRequired() {
-
-
-        //     let installation_required = document.getElementById('installation_required')
-        //     var result = installation_required.options[installation_required.selectedIndex].text;
-
-        //     console.log(result);
-
-        //     if (result == "Yes") {
-
-        //         document.getElementById('tentative_installation').disabled = false;
-        //         document.getElementById('tentative_installation').placeholder = "Enter Installtion";
-        //     } else {
-        //         document.getElementById('tentative_installation').disabled = false;
-        //         document.getElementById('tentative_installation').placeholder = "";
-        //         document.getElementById('tentative_installation').value = "";
-
-
-
-        //     }
-
-        // }
-
-
-    </script>
-
-
 </body>
 
 
@@ -1444,7 +1241,7 @@ $result = mysqli_query($con, $sql);
         var formData = $('#form_update').serialize();
 
         $.ajax({
-            url: './phpAJax/leadMiddleAddAjax.php',
+            url: './phpAjax/leadMiddleAddAjax.php',
             type: 'POST',
             dataType: 'JSON',
             data: formData,
@@ -1505,7 +1302,7 @@ $result = mysqli_query($con, $sql);
 
             if (checkedRowsData.length > 0) {
                 $.ajax({
-                    url: './phpAJax/leadSerchModify.php', // Replace with your actual PHP script
+                    url: './phpAjax/leadSerchModify.php', // Replace with your actual PHP script
                     type: 'POST',
                     data: { rows: checkedRowsData },
                     success: function (response) {

@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     $sql = "SELECT * 
-FROM purchase_order_header  a 
+FROM for_office.purchase_order_header  a 
 JOIN purchase_order_line b
 ON a.PO_number = b.po_number
 WHERE a.PO_number = $po_number;   ";
@@ -35,7 +35,7 @@ WHERE a.PO_number = $po_number;   ";
 
 
 
-        $result2 = mysqli_query($con, "SELECT * FROM purchase_order_header where PO_number = $po_number;");
+        $result2 = mysqli_query($con, "SELECT * FROM for_office.purchase_order_header where PO_number = $po_number;");
 
 
 
@@ -509,6 +509,7 @@ WHERE a.PO_number = $po_number;   ";
                         Delivered</button>
                     <button type="text"
                     id="rtv-btn"
+                    onclick="damagedItemToGrn()"
                         class="text-white border hidden border-blue-700 bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs px-5 py-2.5 text-center me-2 mb-2 font-medium dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 x">
                         RTV</button>
                 </div>

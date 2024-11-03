@@ -229,13 +229,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $recQty = $_POST['recieved_qty'];
         $po_lineid = $_POST['po_lineid'];
         $po_number = $_POST['po_number'];
+        $unit_Price = $_POST['unit_Price'];
         $current_user = $_SESSION['username'];
         $current_date = date('Y-m-d H:i:s');
 
-        $query = "INSERT INTO `for_office`.`grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`,`po_number`) VALUES (?, ?, ?, ?, ? ,?)";
+        $response["postData"] = $_POST;
+
+        $query = "INSERT INTO `for_office`.`grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`,`po_number`,`price`) VALUES (?, ?, ?, ?, ? ,?,?)";
 
         $stmt = $con->prepare($query);
-        $stmt->bind_param("ssssss", $grnNumber, $item_code, $current_user, $current_user, $po_lineid, $po_number);
+        $stmt->bind_param("sssssss", $grnNumber, $item_code, $current_user, $current_user, $po_lineid, $po_number, $unit_Price);
 
 
 
@@ -472,6 +475,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         echo json_encode($response);
     }
+
+
+
     if (isset($_POST['DeleiverdGrn'])) {
 
 
@@ -541,7 +547,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($stmt->execute()) {
 
 
-            $sql2 = "SELECT balance FROM purchase_order_line where id = $po_lineid;";
+            $sql2 = "SELECT balance,po_number FROM for_office.purchase_order_line where id = $po_lineid;";
 
 
 
@@ -552,31 +558,71 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($result2) {
 
 
+                $lot_name = "GRN_L" . $grnNumber . "_" . $recQty;
 
 
                 $row2 = mysqli_fetch_assoc($result2);
 
                 $realBalance = $row2['balance'];
+                $po_number = $row2['po_number'];
 
 
+                $sqlforinv = "INSERT INTO `for_office`.`mtl_inventory_transactions` (`grn_line_number`,`grn_id` , `sub_inventory_name`, `sub_inventory_id`, `location_id`, `item_qty`, `item_code`,`created_date`,`created_by`,`lot_number`) 
+                VALUES ($grn_line_id,$grnNumber, 'STORE', '1', '1', '$recQty', '$item_code','$current_date','$current_user','$lot_name');";
 
-                $sqlforinv = "INSERT INTO `for_office`.`mtl_inventory_transactions` (`form_tranx_id`,`grn_id` , `sub_inventory_name`, `sub_inventory_id`, `location_id`, `item_qty`, `item_code`,`created_date`,`created_by`) 
-                VALUES ($grn_line_id,$grnNumber, 'STORE', '1', '1', '$recQty', '$item_code','$current_date','$current_user');";
+
 
                 if (mysqli_query($con, $sqlforinv)) {
 
-                        $sql = "INSERT INTO `for_office`.`mtl_lot_number` (`grn_number`, `grn_line_number`, `lot_name`, `quantity`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES ('$grnNumber', '$grn_line_id', '$item_code', $recQty, '$current_date', '$current_user', 'update', 'updtesd by');";
 
-                        if (mysqli_query($con, $sql)) {
-                            
-                            $response["messageforinvquery"] = 'Item created in store';
-                        }else{
-                            $response["messageforinvquery"] = 'Item not created in store';
-                            $response["error_sql"] = mysqli_error($con);
-                        }
+                    $mtnl_transaction_id = mysqli_insert_id($con);
 
 
 
+                    for ($i = 1; $i < $recQty; $i++) {
+
+
+
+
+
+
+
+
+                        $serial_number = "GRN_S_" . $grnNumber . "_" . $recQty . "_" . $i;
+
+
+                        $sql = "INSERT INTO `for_office`.`mtl_serial_number` (`serial_number`, `grn_id`, `grn_line_id`, `po_number`, `po_line_number`, `item_code`, `created_by`, `created_date` ,`mtnl_transaction_id`,`lot_number` ) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,? , ?);";
+
+
+                        $stmt = $con->prepare($sql);
+
+                        $stmt->bind_param('siiissssis', $serial_number, $grnNumber, $grn_line_id, $po_number, $po_lineid, $item_code, $current_user, $current_date,$mtnl_transaction_id,$lot_name);
+
+                        $stmt->execute();
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    $sql = "INSERT INTO `for_office`.`mtl_lot_number` (`grn_number`, `grn_line_number`, `lot_name`, `quantity`, `created_date`, `created_by`, `updated_date`, `updated_by`,`item_code`)
+                         VALUES ('$grnNumber', '$grn_line_id', '$lot_name', $recQty, '$current_date', '$current_user', 'update', 'updtesd by','$item_code');";
+
+                    if (mysqli_query($con, $sql)) {
+
+                        $response["messageforinvquery"] = 'Item created in store';
+                    } else {
+                        $response["messageforinvquery"] = 'Item not created in store';
+                        $response["error_sql"] = mysqli_error($con);
+                    }
                 } else {
 
                     $response['success'] = false;
@@ -609,7 +655,176 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $response['updateBalance'] = $updateBalance;
                     $response['message_for_balance'] = "Balace has bee updated";
                     $response['query updaye'] = $sql_forUpdateBalace;
+                }
+            }
 
+
+
+
+            $response["success"] = true;
+            // $response['data'] = $_POST;
+            $response['message'] = 'Item Accepted succeefully';
+            $response['status'] = $status;
+            $response['line_id'] = $po_lineid;
+        } else {
+            $response['success'] = false;
+            $response['success'] = false;
+            $response['error'] = $stmt->error;
+        }
+        // } else {
+        // }
+
+
+
+
+
+        $response['success'] = true;
+
+
+        $response['message'] = $_POST;
+
+
+
+        echo json_encode($response);
+    }
+    if (isset($_POST['damagedGrn'])) {
+
+
+
+
+
+        // include('../../db.php');
+        // include('../dbconnection/db.php');
+        include('../../dbconnection/db.php');
+
+
+        $item_code = $_POST['item_code'];
+        $grnNumber = $_POST['grnNumber'];
+        $po_lineid = $_POST['po_lineid'];
+        $grn_line_id = $_POST['grn_line_id'];
+        $recQty = $_POST['recieved_qty'];
+        $total = $_POST['total_price'];
+        $current_user = $_SESSION['username'];
+        $current_date = date('Y-m-d H:i:s');
+
+        $query = "INSERT INTO `for_office`.`grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`) VALUES (?, ?, ?, ?, ?)";
+
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("sssss", $grnNumber, $item_code, $current_user, $current_user, $po_lineid);
+
+
+
+        // if ($stmt->execute()) {
+
+
+
+
+
+
+        $response['success'] = true;
+
+
+
+
+
+
+        $lineId = mysqli_insert_id($con);
+        // $response['data'] = $_POST;
+        // $response['message'] = 'Data insreted succeefully';
+
+
+
+
+        // $response['insertId'] = $stmt->insert_id;
+
+        $status = "Damaged";
+
+        $query = "INSERT INTO `for_office`.`grn_sub_line_status` (`grn_head_id`, `grn_line_id`, `recQty`, `status`, `createdBy`, `createdDate`, `item_code`) VALUES (?, ?, ? , ?, ?, ?, ?);";
+
+
+
+
+        $stmt = $con->prepare($query);
+
+
+
+
+        $stmt->bind_param("sssssss", $grnNumber, $grn_line_id, $recQty, $status, $current_user, $current_date, $item_code);
+
+
+
+
+        if ($stmt->execute()) {
+
+
+            $sql2 = "SELECT balance,po_number FROM for_office.purchase_order_line where id = $po_lineid;";
+
+
+
+
+            $result2 = mysqli_query($con, $sql2);
+
+
+            if ($result2) {
+
+
+
+
+                $row2 = mysqli_fetch_assoc($result2);
+
+                $realBalance = $row2['balance'];
+                $po_number = $row2['po_number'];
+
+
+
+                $sqlforinv = "INSERT INTO `for_office`.`mtl_inventory_transactions` (`grn_line_number`,`grn_id` , `sub_inventory_name`, `sub_inventory_id`, `location_id`, `item_qty`, `item_code`,`created_date`,`created_by`,`po_line_number`,`po_number`) 
+                VALUES ($grn_line_id,$grnNumber, 'Damage', '7', '1', '$recQty', '$item_code','$current_date','$current_user','$po_lineid','$po_number');";
+
+                //  echo $sqlforinv;
+
+                if (mysqli_query($con, $sqlforinv)) {
+
+                    $sql = "INSERT INTO `for_office`.`mtl_lot_number` (`grn_number`, `grn_line_number`, `lot_name`, `quantity`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES ('$grnNumber', '$grn_line_id', '$item_code', $recQty, '$current_date', '$current_user', 'update', 'updtesd by');";
+
+                    if (mysqli_query($con, $sql)) {
+
+                        $response["messageforinvquery"] = 'Item created in store';
+                    } else {
+                        $response["messageforinvquery"] = 'Item not created in store';
+                        $response["error_sql"] = mysqli_error($con);
+                    }
+                } else {
+
+                    $response['success'] = false;
+                    $response['error'] = mysqli_error(mysql: $con);
+                    $response['error_sql'] = $sqlforinv;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+                $updateBalance = $realBalance - $recQty;
+
+
+                $sql_forUpdateBalace  = "UPDATE `for_office`.`purchase_order_line` SET `balance` = '$updateBalance' WHERE (`id` = '$po_lineid');";
+
+
+                $result_forUpdateBalace = mysqli_query($con, $sql_forUpdateBalace);
+
+
+                if ($result_forUpdateBalace) {
+
+                    $response['updateBalance'] = $updateBalance;
+                    $response['message_for_balance'] = "Balace has bee updated";
+                    $response['query updaye'] = $sql_forUpdateBalace;
                 }
             }
 
@@ -667,7 +882,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        $sql = "SELECT * FROM purchase_order_line a JOIN purchase_order_header b ON a.po_number = b.PO_number where a.PO_number =  $po_number;";
+        $sql = "SELECT * FROM for_office.purchase_order_line a JOIN purchase_order_header b ON a.po_number = b.PO_number where a.PO_number =  $po_number;";
 
 
 

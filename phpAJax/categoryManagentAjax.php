@@ -577,8 +577,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-        $cat_id = $_POST['cat_id'];
-
+        $cat_id = (int) $_POST['cat_id'];
+        
 
         $sql = "DELETE FROM `itemmastercategory` WHERE (`categoryId` = ?);";
 
@@ -587,6 +587,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $con->prepare($sql);
 
         $stmt->bind_param("i", $cat_id);
+
+
+
+        $result = $stmt->execute();
+
+
+
+
+
+
+        if ($result) {  
+
+
+
+            
+
+
+            $response['success'] = true;
+            $response['message'] = "Row successfully removed ";
+            $response['data'] = $_POST;
+        } else {
+
+
+            $response['success'] = false;
+            $response['error'] = mysqli_error($con);
+        }
+
+
+
+        echo json_encode($response);
+    }
+    if (isset($_POST['removeSelfAttr'])) {
+
+
+
+
+
+        $sub_cat_id = (int) $_POST['sub_cat_id'];
+        $attr_id = (int) $_POST['attr_id'];
+
+        $sql = "DELETE FROM `requireattributeforcatname` WHERE (`SubcatId` = ? and `attr_id` = ? );";
+
+
+
+        $stmt = $con->prepare($sql);
+
+        $stmt->bind_param("ii", $sub_cat_id,$attr_id);
 
 
 

@@ -129,7 +129,7 @@ $("#create-so-number").on("click", function () {
 
 
 
-    $.post("./phpAjax/saleOrderAjax.php", data,
+    $.post("./phpAjax/leadSaleOrderAjax.php", data,
         function (data) {
 
             console.log(data);

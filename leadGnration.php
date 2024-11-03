@@ -895,7 +895,7 @@ if ($result3->num_rows > 0) {
                         </div>
                         <!-- Modal body -->
                         <form class="p-4 md:p-5 w-full m-auto border border-gray-700"
-                            action="./phpAJax/LeadFollowupForm.php" id="followup_forms" method="post">
+                            action="./phpAjax/LeadFollowupForm.php" id="followup_forms" method="post">
                             <div class="sm:ml-10 ">
                                 <div>
 
@@ -1801,7 +1801,7 @@ if ($result3->num_rows > 0) {
                 var so_number = $("#sale_order_number").attr("so_number");
 
                 $.ajax({
-                    url: './phpAJax/leadHeaderAjax.php',
+                    url: './phpAjax/leadHeaderAjax.php',
                     method: 'POST',
                     dataType: "JSON",
                     data: {
@@ -1860,7 +1860,7 @@ if ($result3->num_rows > 0) {
                 var tentative_delivery_date = $("#tentative_delivery_date").val();
 
                 $.ajax({
-                    url: './phpAJax/leadHeaderAjax.php',
+                    url: './phpAjax/leadHeaderAjax.php',
                     method: 'POST',
                     dataType: "JSON",
                     data: {
@@ -1967,7 +1967,7 @@ if ($result3->num_rows > 0) {
 
                 var itemName = $('#item_name').val();
                 $.ajax({
-                    url: './phpAJax/getPriceFromItemMaster.php',
+                    url: './phpAjax/getPriceFromItemMaster.php',
                     type: 'POST',
                     data: { action: 'get_price', item_name: itemName },
                     success: function (response) {
@@ -1998,7 +1998,7 @@ if ($result3->num_rows > 0) {
 
                 var itemName = $('#item_name1').val();
                 $.ajax({
-                    url: './phpAJax/getPriceFromItemMaster.php',
+                    url: './phpAjax/getPriceFromItemMaster.php',
                     type: 'POST',
                     data: { action: 'get_price', item_name: itemName },
                     success: function (response) {
@@ -2060,7 +2060,7 @@ if ($result3->num_rows > 0) {
 
             var itemName = input.value
             $.ajax({
-                url: './phpAJax/getPriceFromItemMaster.php',
+                url: './phpAjax/getPriceFromItemMaster.php',
                 type: 'POST',
                 data: { action: 'get_price', item_name: itemName },
                 success: function (response) {
@@ -2125,7 +2125,7 @@ if ($result3->num_rows > 0) {
 
             var itemName = input.value
             $.ajax({
-                url: './phpAJax/getPriceFromItemMaster.php',
+                url: './phpAjax/getPriceFromItemMaster.php',
                 type: 'POST',
                 data: { action: 'get_price', item_name: itemName },
                 success: function (response) {
@@ -2522,7 +2522,7 @@ if ($result3->num_rows > 0) {
 
             $.ajax({
                 type: 'POST',
-                url: './phpAJax/LeadFollowupForm.php',
+                url: './phpAjax/LeadFollowupForm.php',
                 data: formData,
                 dataType: "JSON",
                 success: function (response) {

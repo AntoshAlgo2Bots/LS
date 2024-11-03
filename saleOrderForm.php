@@ -28,7 +28,9 @@
 <body>
     <?php
 
-    // include("./navForLogged.php");
+    session_start();
+
+    include("./navForLogged.php");
 
     ?>
     <h1 class="text-center text-3xl mb-5 mt-2 font-bold underline">Sales Order creation</h1>

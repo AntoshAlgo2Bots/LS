@@ -155,7 +155,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $colour_temparature = isset($attr["Colour_Temparature"]) ? $attr["Colour_Temparature"] :   null;
         $Dimmable = isset($attr["Dimmable"]) ? $attr["Dimmable"] :   null;
         $Location = isset($attr["Location"]) ? $attr["Location"] :   null;
-        $Dimmeter = isset($attr["Diameter"]) ? $attr["Diameter"] :   null;
+        $Diameter = isset($attr["Diameter"]) ? $attr["Diameter"] :   null;
         $Collar = isset($attr["Collar"]) ? $attr["Collar"] :   null;
         $Socket = isset($attr["Socket"]) ? $attr["Socket"] :   null;
         $Ink_type = isset($attr["Ink_type"]) ? $attr["Ink_type"] :   null;
@@ -168,7 +168,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $createdDate = date("y-m-d");
 
         // $itemStatus  = $_GET["currentItemStatus"];
-        $itemStatus  = "SAVE";
+        $itemStatus  = "SUBMIT";
         ///
 
 
@@ -244,6 +244,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         Socket,
         Ink_type,
         Location,
+        Diameter,
         createdBy,
         createdDate,
         itemStatus
@@ -315,6 +316,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         '$Socket',
         '$Ink_type',
         '$Location',
+        '$Diameter',
         '$createdBy',
         '$createdDate',
         '$itemStatus'
