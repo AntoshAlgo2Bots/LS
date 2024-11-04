@@ -660,23 +660,23 @@ if ($result1->num_rows > 0) {
             e.preventDefault();
             var frmData = $(this).serialize();
 
-            $.post("./phpAjax/bomAjax.php", frmData, function (response) {
+            $.post("./phpAjax/bomAjax.php", frmData, function (data) {
                 console.log("This is from success block");
-                console.log(response);
-                console.log(response.message);
+                console.log(data);
+                console.log(data.message);
 
-                if (response) {
+                if (data.success) {
                     // let inserted_id = response.Record_no; // Use inserted_id instead of header_id
                     //console.log(response.Record_no);
 
                     // $("#header_id").val(response.Record_no); // Set the value to response.Record_no
 
 
-                    alert("Form submitted successfully! Your Record No is " + response.Record_no);
+                    alert("Form submitted successfully! Your Record No is " + data.Record_no);
 
                     // Reset form on success
                 } else {
-                    alert("Error: " + response.message); // Show specific error message
+                    alert("Error: " + data.message); // Show specific error message
                 }
                 $('#bomLinelevel')[0].reset();
             }).fail(function (jqXHR, textStatus, errorThrown) {

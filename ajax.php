@@ -49,17 +49,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $respone["message"] = "success";
                 $_SESSION["username"] = $row["user_name"];
                 $_SESSION["user_id"] = $row["id"];
-
+                $_SESSION["role"] = $row['role']; 
+                
                 $user_id = $row["id"];
-
-
+                
+                
                 $sql = "SELECT * FROM admin_roles WHERE admin_id = $user_id;";
-
+                
                 $result = mysqli_query($con, $sql);
-
-
+                
+                
                 $row = mysqli_fetch_assoc($result);
-
+                
                 // Convert values to integers
                 // $_SERVER["user_viewOnly"] = (int) $row["user_viewOnly"];
                 // $_SERVER["user_write"] = (int) $row["user_write"];

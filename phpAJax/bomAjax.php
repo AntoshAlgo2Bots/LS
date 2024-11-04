@@ -119,17 +119,18 @@ if (isset($_POST['bom_creation_form'])) {
         // $user = $_SESSION['username'];
         $user = 'admin';
         $datetime = date('Y-m-d');
-        $requisition_type = $value['requisition_type'];
+        // $requisition_type = $value['requisition_type'];
         $so_number = $value['so_number'];
         $item_name = $value['item_name'];
         $item_code = $value['item_code'];
         $quantity = $value['quantity'];
         $user_remarks = $value['user_remarks'];
-        $price = $value['price'];
-        $date_hand_hover = $value['date_hand_hover'];
-        $handover_over_by = $value['handover_over_by'];
-        $status = $value['status'];
-        $final_remarks = $value['final_remarks'];
+        // Update By Antosh 04-11-2024
+        // $price = $value['price'];
+        // $date_hand_hover = $value['date_hand_hover'];
+        // $handover_over_by = $value['handover_over_by'];
+        // $status = $value['status'];
+        // $final_remarks = $value['final_remarks'];
        
 
 
@@ -138,12 +139,12 @@ if (isset($_POST['bom_creation_form'])) {
 
 
 
-        $stmt = "INSERT INTO requisition_table (`s_no`, `requisition_type`, `so_number`, `item_name`, `item_code`, `quantity` , `user_remarks` , `price`,`created_by`,`created_date`,`date_hand_hover`,`handover_over_by`,`status`,`final_remarks`)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        $stmt = "INSERT INTO requisition_table (`s_no`, `so_number`, `item_name`, `item_code`, `quantity` , `user_remarks` ,`created_by`,`created_date`)VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
 
         $stmt = $con->prepare($stmt);
 
-        $stmt->bind_param("ssssssssssssss", $requisition_id, $requisition_type, $so_number, $item_name, $item_code, $quantity, $user_remarks, $price, $datetime,$user,$date_hand_hover,$handover_over_by,$status,$final_remarks);
+        $stmt->bind_param("ssssssss", $requisition_id, $so_number, $item_name, $item_code, $quantity, $user_remarks, $user, $datetime);
 
 
 
@@ -152,8 +153,10 @@ if (isset($_POST['bom_creation_form'])) {
 
 
             $response['success'] = true;
+            $response['message']= "Data Inserted Sucessfully";
         } else {
             $response['success'] = false;
+            $response['message']= "Data not Inserted";
         }
 
 

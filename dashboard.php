@@ -1,3 +1,18 @@
+<?php
+session_start();
+include('./dbconnection/db.php');
+
+if (!isset($_SESSION["username"])) {
+    header("location:login.php");
+    exit();
+}
+
+$role = $_SESSION['role'] ?? ''; // Ensure role is set
+
+// echo $role;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,10 +64,10 @@
 
 
 
-        session_start();
+        // session_start();
+        // echo $_SESSION['username'];
 
         if (!isset($_SESSION["username"])) {
-
 
 
 
@@ -102,93 +117,16 @@
                 class="bg-orange-100 text-gray-700 w-72 lg:w-64 p-5 lg:static lg:h-auto hidden lg:block">
                 <h1 class="text-lg border-b  border-gray-800 pb-1 mt-2 text-center text-2xl font-medium mb-5">Roles</h1>
                 <nav>
-                    <div class="relative block w-full">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center">
-                                    <i class="fa-solid fa-cart-shopping text-lg pt-1"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
-                                </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    Item Master
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./itemMasterCreation.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Item Request Creation
-                                    </a>
-
-                                    <a href="./mangerApprove.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Item Request Creation and Approval Report
-                                    </a>
-
-
-                                    <a href="./allitems.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Item Master Details Report
-                                    </a>
-
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <nav>
-                        <div class="relative block w-full mt-1">
+                    <?php
+                    if ($role == "quality" || $role == 'admin' || $role == 'store' || $role == 'production' || $role == 'adminhr') {
+                        ?>
+                        <div class="relative block w-full">
                             <div role="button"
                                 class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                                 <button type="button" name="head_cat_btn"
                                     class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                        <i class="fa-solid fa-cart-arrow-down"></i>
+                                    <div class="grid mr-4 place-items-center">
+                                        <i class="fa-solid fa-cart-shopping text-lg pt-1"></i>
                                         <path fill-rule="evenodd"
                                             d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
                                             clip-rule="evenodd"></path>
@@ -196,7 +134,7 @@
                                     </div>
                                     <p
                                         class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                        Bom Form
+                                        Item Master
                                     </p>
                                     <span class="ml-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -211,12 +149,11 @@
 
                             </div>
                             <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                                <div
-                                    class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
                                     <nav name="nav"
                                         class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
 
-                                        <a href="./bom/BomNewCreateForm.php"
+                                        <a href="./itemMasterCreation.php"
                                             class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                                             <div class="grid mr-4 place-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -226,24 +163,10 @@
                                                         d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
                                                 </svg>
                                             </div>
-                                            BOM Creation Form
+                                            Item Request Creation
                                         </a>
 
-                                        <a href="./bom/BomSearchForm.php"
-                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                            <div class="grid mr-4 place-items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                    class="w-5 h-3">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                                </svg>
-                                            </div>
-                                            BOM Search Form
-                                        </a>
-
-
-                                        <a href="./bom/BomReportForm.php"
+                                        <a href="./mangerApprove.php"
                                             class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                                             <div class="grid mr-4 place-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -253,14 +176,116 @@
                                                         d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
                                                 </svg>
                                             </div>
-                                            Bom Report
+                                            Item Request Creation and Approval Report
+                                        </a>
+
+
+                                        <a href="./allitems.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Item Master Details Report
                                         </a>
 
                                     </nav>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="relative block w-full">
+
+                        <?php
+                    }
+                    ?>
+
+
+                    <?php
+                    if ($role === "admin" || $role == 'production') {
+                        ?>
+                        <nav>
+                            <div class="relative block w-full mt-1">
+                                <div role="button"
+                                    class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                    <button type="button" name="head_cat_btn"
+                                        class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                        <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                            <i class="fa-solid fa-cart-arrow-down"></i>
+                                            <path fill-rule="evenodd"
+                                                d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                                clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <p
+                                            class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                            Bom Form
+                                        </p>
+                                        <span class="ml-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                                class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                            </svg>
+                                        </span>
+
+                                    </button>
+
+                                </div>
+                                <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                    <div
+                                        class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                        <nav name="nav"
+                                            class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                            <a href="./bom/BomNewCreateForm.php"
+                                                class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                                <div class="grid mr-4 place-items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                        class="w-5 h-3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                    </svg>
+                                                </div>
+                                                BOM Creation Form
+                                            </a>
+
+                                            <a href="./bom/BomSearchForm.php"
+                                                class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                                <div class="grid mr-4 place-items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                        class="w-5 h-3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                    </svg>
+                                                </div>
+                                                BOM Search Form
+                                            </a>
+
+
+                                            <a href="./bom/BomReportForm.php"
+                                                class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                                <div class="grid mr-4 place-items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                        class="w-5 h-3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                    </svg>
+                                                </div>
+                                                Bom Report
+                                            </a>
+
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="relative block w-full">
                             <div role="button"
                                 class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                                 <button type="button" name="head_cat_btn"
@@ -311,88 +336,96 @@
                                 </div>
                             </div>
                         </div> -->
-                    </nav>
+                        </nav>
 
-                    <nav>
-                        <div class="relative block w-full mt-1">
-                            <div role="button"
-                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                <button type="button" name="head_cat_btn"
-                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                        <i class="fa-solid fa-book"></i>
-                                        <path fill-rule="evenodd"
-                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                            clip-rule="evenodd"></path>
-                                        </svg>
+                        <?php
+                    }
+                    ?>
+
+
+                    <?php
+                    if ($role == 'admin' || $role == 'adminhr') {
+                        ?>
+                        <nav>
+                            <div class="relative block w-full mt-1">
+                                <div role="button"
+                                    class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                    <button type="button" name="head_cat_btn"
+                                        class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                        <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                            <i class="fa-solid fa-book"></i>
+                                            <path fill-rule="evenodd"
+                                                d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                                clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <p
+                                            class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                            Daily Txn Book
+                                        </p>
+                                        <span class="ml-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                                class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                            </svg>
+                                        </span>
+
+                                    </button>
+
+                                </div>
+                                <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                    <div
+                                        class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                        <nav name="nav"
+                                            class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                            <a href="./txn/create_txn.php"
+                                                class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                                <div class="grid mr-4 place-items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                        class="w-5 h-3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                    </svg>
+                                                </div>
+                                                Daily Txn Creation Form
+                                            </a>
+
+                                            <a href="./txn/search_txn.php"
+                                                class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                                <div class="grid mr-4 place-items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                        class="w-5 h-3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                    </svg>
+                                                </div>
+                                                Daily Txn Search Form
+                                            </a>
+
+
+                                            <a href="./txn/txn_report.php"
+                                                class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                                <div class="grid mr-4 place-items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                        class="w-5 h-3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                    </svg>
+                                                </div>
+                                                Daily Txn Report
+                                            </a>
+
+                                        </nav>
                                     </div>
-                                    <p
-                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                        Daily Txn Book
-                                    </p>
-                                    <span class="ml-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                        </svg>
-                                    </span>
-
-                                </button>
-
-                            </div>
-                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                                <div
-                                    class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                    <nav name="nav"
-                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                        <a href="./txn/create_txn.php"
-                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                            <div class="grid mr-4 place-items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                    class="w-5 h-3">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                                </svg>
-                                            </div>
-                                            Daily Txn Creation Form
-                                        </a>
-
-                                        <a href="./txn/search_txn.php"
-                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                            <div class="grid mr-4 place-items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                    class="w-5 h-3">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                                </svg>
-                                            </div>
-                                            Daily Txn Search Form
-                                        </a>
-
-
-                                        <a href="./txn/txn_report.php"
-                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                            <div class="grid mr-4 place-items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                    class="w-5 h-3">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                                </svg>
-                                            </div>
-                                            Daily Txn Report
-                                        </a>
-
-                                    </nav>
                                 </div>
                             </div>
-                        </div>
-                        <!-- <div class="relative block w-full">
+                            <!-- <div class="relative block w-full">
                             <div role="button"
                                 class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                                 <button type="button" name="head_cat_btn"
@@ -443,985 +476,1263 @@
                                 </div>
                             </div>
                         </div> -->
-                    </nav>
+                        </nav>
+                        <?php
+                    }
+                    ?>
 
-                    <div class="relative block w-full mt-1">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                    <i class="fa-solid fa-users"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
+
+                    <?php
+                    if ($role == "customer" || $role == 'admin' || $role == 'store') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-users"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Customer Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./customer_create_form.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Customer Creation Form
+                                        </a>
+
+                                        <a href="./customer_search_form.php"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Customer Search Form
+                                        </a>
+
+
+                                        <a href="./customer_report.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Customer Report
+                                        </a>
+
+                                    </nav>
                                 </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    Customer Form
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./customer_create_form.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Customer Creation Form
-                                    </a>
-
-                                    <a href="./customer_search_form.php"
-                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Customer Search Form
-                                    </a>
-
-
-                                    <a href="./customer_report.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Customer Report
-                                    </a>
-
-                                </nav>
                             </div>
                         </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
 
-                    <div class="relative block w-full mt-1">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                    <i class="fa-solid fa-boxes-packing"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
+
+                    <?php
+                    if ($role == "customer" || $role == 'admin') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-boxes-packing"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Supplier Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./supplier_creation_form.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Supplier Creation Form
+                                        </a>
+
+                                        <a href="./Supplier_search.php"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Supplier Search Form
+                                        </a>
+
+
+                                        <a href="./supplier_report_form.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Supplier Report
+                                        </a>
+
+                                    </nav>
                                 </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    Supplier Form
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./supplier_creation_form.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Supplier Creation Form
-                                    </a>
-
-                                    <a href="./Supplier_search.php"
-                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Supplier Search Form
-                                    </a>
-
-
-                                    <a href="./supplier_report_form.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Supplier Report
-                                    </a>
-
-                                </nav>
                             </div>
                         </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
 
-                    <div class="relative block w-full mt-1">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                    <i class="fa-solid fa-lightbulb"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
+
+
+                    <?php
+                    if ($role == "lead" || $role == 'admin' || $role == 'store') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-lightbulb"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Lead Generation
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./leadGnration.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Lead Creation Form
+                                        </a>
+
+                                        <a href="./leadGnrationSearch.php"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Lead Search Form
+                                        </a>
+
+
+                                        <a href="./leadReport.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Lead Report
+                                        </a>
+
+                                    </nav>
                                 </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    Lead Generation
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./leadGnration.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Lead Creation Form
-                                    </a>
-
-                                    <a href="./leadGnrationSearch.php"
-                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Lead Search Form
-                                    </a>
-
-
-                                    <a href="./leadReport.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Lead Report
-                                    </a>
-
-                                </nav>
                             </div>
                         </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
 
-                    <div class="relative block w-full mt-1">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                    <i class="fa-solid fa-user-gear"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
+
+                    <?php
+                    if ($role == 'admin' || $role == 'adminhr') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-user-gear"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Employee Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./createEmployee.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Employee Creation Form
+                                        </a>
+
+                                        <a href="./searchEmployee.php"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Employee Search Form
+                                        </a>
+
+
+                                        <a href="./createEmployeeReport.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Employee Report
+                                        </a>
+
+                                    </nav>
                                 </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    Employee Form
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./createEmployee.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Employee Creation Form
-                                    </a>
-
-                                    <a href="./searchEmployee.php"
-                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Employee Search Form
-                                    </a>
-
-
-                                    <a href="./createEmployeeReport.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Employee Report
-                                    </a>
-
-                                </nav>
                             </div>
                         </div>
-                    </div>
-                    <div class="relative block w-full mt-1">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                    <i class="fa-solid fa-torii-gate"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
+
+                        <?php
+                    }
+                    ?>
+
+
+                    <?php
+                    if ($role == 'admin' || $role == 'store' || $role == 'logistics') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-torii-gate"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Gate Entry Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./gateEnteryForm.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Gate Entry Creation Form
+                                        </a>
+
+                                        <a href="./gateEntrySearchForm.php"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Gate Entry Search Form
+                                        </a>
+
+
+                                        <a href="./gate_entery_report_form.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Gate Entry Report
+                                        </a>
+
+                                    </nav>
                                 </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    Gate Entry Form
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./gateEnteryForm.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Gate Entry Creation Form
-                                    </a>
-
-                                    <a href="./gateEntrySearchForm.php"
-                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Gate Entry Search Form
-                                    </a>
-
-
-                                    <a href="./gate_entery_report_form.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Gate Entry Report
-                                    </a>
-
-                                </nav>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="relative block w-full mt-1">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
+                        <?php
+                    }
+                    ?>
+
+
+                    <?php
+                    if ($role == 'admin' || $role == 'store' || $role == 'production' || $role == 'installation') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Sales Order Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./saleOrderForm.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Sales Order Creation Form
+                                        </a>
+
+                                        <a href="#"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Sales Order Search Form
+                                        </a>
+
+
+                                        <a href="./sale_order_report.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Sales Order Report
+                                        </a>
+
+                                    </nav>
                                 </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    Sales Order Form
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./saleOrderForm.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Sales Order Creation Form
-                                    </a>
-
-                                    <a href="#"
-                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Sales Order Search Form
-                                    </a>
-
-
-                                    <a href="./sale_order_report.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Sales Order Report
-                                    </a>
-
-                                </nav>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="relative block w-full mt-1">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
+                        <?php
+                    }
+                    ?>
+
+
+                    <?php
+                    if ($role == 'quality' || $role == 'purchase' || $role == 'adminhr' || $role == 'packing' || $role == 'installation' || $role == 'pantry') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Purchase Requisition Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./PrCearteForm.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Purchase Requisition Creation Form
+                                        </a>
+
+                                        <a href="./PrSearchForm.php"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Purchase Requisition Search Form
+                                        </a>
+
+                                        <a href="./PrReportForm.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Purchase Requisition Report
+                                        </a>
+
+                                    </nav>
                                 </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    Purchase Requisition Form
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./PrCearteForm.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Purchase Requisition Creation Form
-                                    </a>
-
-                                    <a href="./PrSearchForm.php"
-                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Purchase Requisition Search Form
-                                    </a>
-
-                                    <a href="./PrReportForm.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Purchase Requisition Report
-                                    </a>
-
-                                </nav>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="relative block w-full mt-1">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
+                        <?php
+                    }
+                    ?>
+
+                    <?php
+                    if ($role == 'admin' || $role == 'purchase') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Purchase Order Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./createPo.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Purchase Order Creation Form
+                                        </a>
+
+                                        <a href="#"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Purchase Order Search Form
+                                        </a>
+
+
+                                        <a href="./poRequests.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Purchase Order Request
+                                        </a>
+
+                                        <a href="./purchaseorder.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Purchase Order Report
+                                        </a>
+
+                                    </nav>
                                 </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    Purchase Order Form
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./createPo.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Purchase Order Creation Form
-                                    </a>
-
-                                    <a href="#"
-                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Purchase Order Search Form
-                                    </a>
-
-
-                                    <a href="./poRequests.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Purchase Order Request
-                                    </a>
-
-                                    <a href="./purchaseorder.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Purchase Order Report
-                                    </a>
-
-                                </nav>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="relative block w-full mt-1">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                    <i class="fa-solid fa-money-bill"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
+                        <?php
+                    }
+                    ?>
+
+                    <?php
+                    if ($role == 'quality' || $role == 'production' || $role == 'packing' || $role == 'logistics' || $role == 'installation' ) {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Project Tracking Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./projectTrackingCreationForm.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Project Tracking Creation Form
+                                        </a>
+
+                                        <a href="./projectTrackingSearchForm.php"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Project Tracking Search Form
+                                        </a>
+
+
+                                        <!-- <a href="./poRequests.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Purchase Order Request
+                                        </a> -->
+
+                                        <!-- <a href="./purchaseorder.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Purchase Order Report
+                                        </a> -->
+
+                                    </nav>
                                 </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    Move Order Form
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./moveOrder.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Move Order Creation Form
-                                    </a>
-
-                                    <a href="#"
-                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Move Order Search Form
-                                    </a>
-
-
-                                    <a href="./moveOrderReport.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Move Order Report
-                                    </a>
-
-                                </nav>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="relative block w-full mt-1">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                    <i class="fa-solid fa-money-bill"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
+                        <?php
+                    }
+                    ?>
+
+
+
+                    <?php
+                    if ($role == 'admin' || $role == 'store') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-money-bill"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Move Order Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./moveOrder.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Move Order Creation Form
+                                        </a>
+
+                                        <a href="#"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Move Order Search Form
+                                        </a>
+
+
+                                        <a href="./moveOrderReport.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Move Order Report
+                                        </a>
+
+                                    </nav>
                                 </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    GRN Form
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./GRN/index.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        GRN Creation Form
-                                    </a>
-
-                                    <a href="#"
-                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        GRN Search Form
-                                    </a>
-
-
-                                    <a href="./grnReport.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        GRN Report
-                                    </a>
-
-                                </nav>
                             </div>
                         </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
 
-                    <div class="relative block w-full mt-1">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
-                                    <i class="fa-solid fa-door-open"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
+
+                    <?php
+                    if ($role == 'admin') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-money-bill"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Miscellaneous Inventory
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./issue_Misc.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Miscellaneous Issue Form
+                                        </a>
+
+                                        <a href="./receipt_Misc.php"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Miscellaneous Receipt Form
+                                        </a>
+
+
+                                        <!-- <a href="./moveOrderReport.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Move Order Report
+                                        </a> -->
+
+                                    </nav>
                                 </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    Gate Exit Form
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./GateExitCreateForm.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Gate Exit Creation Form
-                                    </a>
-
-                                    <a href="./gateExitSearchForm.php"
-                                        class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Gate Exit Search Form
-                                    </a>
-
-
-                                    <a href="./gate_exit_report_form.php"
-                                        class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Gate Exit Report
-                                    </a>
-
-                                </nav>
                             </div>
                         </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
 
 
-                    <div class="relative block w-full mt-1">
-                        <div role="button"
-                            class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                            <button type="button" name="head_cat_btn"
-                                class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
-                                <div class="grid mr-4 place-items-center text-lg pl-1">
-                                    <i class="fa-solid fa-gear"></i>
-                                    <path fill-rule="evenodd"
-                                        d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
-                                        clip-rule="evenodd"></path>
-                                    </svg>
+                    <?php
+                    if ($role == 'admin' || $role == 'store') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-money-bill"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        GRN Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./GRN/index.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            GRN Creation Form
+                                        </a>
+
+                                        <a href="#"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            GRN Search Form
+                                        </a>
+
+
+                                        <a href="./grnReport.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            GRN Report
+                                        </a>
+
+                                    </nav>
                                 </div>
-                                <p
-                                    class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                                    Setup
-                                </p>
-                                <span class="ml-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2.5" stroke="currentColor" aria-hidden="true"
-                                        class="w-4 h-4 mx-auto transition-transform rotate-0">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
-                                    </svg>
-                                </span>
-
-                            </button>
-
-                        </div>
-                        <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
-                            <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
-                                <nav name="nav"
-                                    class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
-
-                                    <a href="./categoryManagement.php"
-                                        class="flex items-center w-full p-2 text-sm text-gray-700  leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Category Management
-                                    </a>
-
-                                    <a href="./itemCategoryReports.php"
-                                        class="flex items-center w-full p-2 text-gray-700 text-sm leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Category Management Report
-                                    </a>
-
-
-
-
-                                    <a href="./addAttribute.php"
-                                        class="flex items-center w-full p-2 text-gray-700 text-sm leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Add Txn Attribute - Main and Sub Head
-                                    </a>
-
-                                    <a href="./leadGenerationAttribute.php"
-                                        class="flex items-center w-full p-2 text-gray-700 text-sm leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Add Lead Attributes
-                                    </a>
-
-                                    <a href="./addEmpAttribute.php"
-                                        class="flex items-center w-full p-2 text-gray-700 text-sm leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
-                                        <div class="grid mr-4 place-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="3" stroke="currentColor" aria-hidden="true"
-                                                class="w-5 h-3">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-                                            </svg>
-                                        </div>
-                                        Add Employee Department and Job Roles
-                                    </a>
-
-
-
-                                </nav>
                             </div>
                         </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
+
+
+
+                    <?php
+                    if ($role == 'admin' || $role == 'logistics') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-door-open"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Gate Exit Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./GateExitCreateForm.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Gate Exit Creation Form
+                                        </a>
+
+                                        <a href="./gateExitSearchForm.php"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Gate Exit Search Form
+                                        </a>
+
+
+                                        <a href="./gate_exit_report_form.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Gate Exit Report
+                                        </a>
+
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php
+                    }
+                    ?>
+
+                    <?php
+                    if ($role == 'admin') {
+                        ?>
+
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pl-1">
+                                        <i class="fa-solid fa-gear"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        Setup
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./categoryManagement.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700  leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Category Management
+                                        </a>
+
+                                        <a href="./itemCategoryReports.php"
+                                            class="flex items-center w-full p-2 text-gray-700 text-sm leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Category Management Report
+                                        </a>
+
+
+
+
+                                        <a href="./addAttribute.php"
+                                            class="flex items-center w-full p-2 text-gray-700 text-sm leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Add Txn Attribute - Main and Sub Head
+                                        </a>
+
+                                        <a href="./leadGenerationAttribute.php"
+                                            class="flex items-center w-full p-2 text-gray-700 text-sm leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Add Lead Attributes
+                                        </a>
+
+                                        <a href="./addEmpAttribute.php"
+                                            class="flex items-center w-full p-2 text-gray-700 text-sm leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Add Employee Department and Job Roles
+                                        </a>
+
+
+
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
                 </nav>
             </aside>
 
@@ -1493,8 +1804,7 @@
                             <!-- style="width:26rem; height:17rem" -->
                             <div>
                                 <a href="#">
-                                    <div class="datachart bg-gray-100 "
-                                        id="invetory_items"></div>
+                                    <div class="datachart bg-gray-100 " id="invetory_items"></div>
                                 </a>
                             </div>
                             <!-- <div class="mb-10">

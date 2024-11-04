@@ -233,7 +233,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         piping,
         piping_color,
         acrylic_sheet,
-        gallery_heght,
+        gallery_height,
         sheet_color,
         Frame,
         departement,

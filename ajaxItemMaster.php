@@ -309,7 +309,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $piping  =  isset($attr["piping"]) ? $attr["piping"] :   null;
         $piping_color  =  isset($attr["piping_color"]) ? $attr["piping_color"] :   null;
         $acrylic_diffuser  =  isset($attr["acrylic_sheet"]) ? $attr["acrylic_sheet"] :   null;
-        $gallery_heght  =  isset($attr["gallery_height"]) ? $attr["gallery_height"] :   null;
+        $gallery_height  =  isset($attr["gallery_height"]) ? $attr["gallery_height"] :   null; //Updated By Antosh 
         $sheet =  isset($attr["sheet"]) ? $attr["sheet"] :   null;
         $sheet_color  =  isset($attr["sheet_color"]) ? $attr["sheet_color"] :   null;
         $powder_coating  =  isset($attr["Frame"]) ? $attr["Frame"] :   null;
@@ -394,7 +394,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         piping,
         piping_color,
         acrylic_sheet,
-        gallery_heght,
+        gallery_height,
         sheet_color,
         Frame,
         departement,
@@ -465,7 +465,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         '$piping',
         '$piping_color',
         '$acrylic_diffuser',
-        '$gallery_heght',
+        '$gallery_height',
         '$sheet_color',
         '$powder_coating',
         '$departement',
@@ -653,6 +653,9 @@ JOIN sub_category c ON a.subCatId  = c.subCatId where S_No=$id;";
 
             $response["error"] = "No data found";
         }
+
+        //Update By Antosh Kumar Pandey 04-11-2024 10:41
+        $tbody_data = [];
 
         while ($row = mysqli_fetch_assoc($result)) {
 
@@ -892,7 +895,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $piping  =  isset($attr["piping"]) ? $attr["piping"] :   null;
         $piping_color  =  isset($attr["piping_color"]) ? $attr["piping_color"] :   null;
         $acrylic_sheet  =  isset($attr["acrylic_sheet"]) ? $attr["acrylic_diffuser"] :   null;
-        $gallery_heght  =  isset($attr["gallery_height"]) ? $attr["gallery_height"] :   null;
+        $gallery_height  =  isset($attr["gallery_height"]) ? $attr["gallery_height"] :   null;
         $gallery  =  isset($attr["gallery"]) ? $attr["gallery"] :   null;
         $Gallery_type  =  isset($attr["Gallery_type"]) ? $attr["Gallery_type"] :   null;
         $sheet =  isset($attr["sheet"]) ? $attr["sheet"] :   null;
@@ -987,7 +990,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Lining,
         Lining_colour,
         acrylic_sheet,
-        gallery_heght,
+        gallery_height,
         gallery,
         Gallery_type,
         sheet_color,
@@ -1063,7 +1066,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         '$Lining',
         '$Lining_colour',
         '$acrylic_sheet',
-        '$gallery_heght',
+        '$gallery_height',
         '$gallery',
         '$Gallery_type',
         '$sheet_color',

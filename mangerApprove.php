@@ -27,21 +27,21 @@ $result = mysqli_query($con, $sql);
 
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+// if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
-    if (isset($_GET["search_query"])) {
+//     if (isset($_GET["search_query"])) {
 
 
-        $search_query = $_GET['search_query'];
+//         $search_query = $_GET['search_query'];
 
-        $sql = "SELECT * FROM item_master_temp where S_No=$search_query ";
+//         $sql = "SELECT * FROM item_master_temp where S_No=$search_query ";
 
 
-        echo $search_query;
-        $result = mysqli_query($con, $sql);
-    }
-}
+//         // echo $search_query;
+//         $result = mysqli_query($con, $sql);
+//     }
+// }
 
 
 

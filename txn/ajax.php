@@ -199,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     if (isset($_GET['itemCodeInfoForPr'])) {
 
-        include('db_connection.php');
+        // include('db_connection.php');
 
         $sql = "SELECT item_code FROM item_master_main;";
 

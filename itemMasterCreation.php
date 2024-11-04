@@ -52,21 +52,21 @@ include("./navForLogged.php");
                             <label
                                 class="w-20 inline-block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Item Name :
                             </label>
-                            <input type="text" name="item_name" id="item_name"
+                            <input type="text" name="item_name" id="item_name" readonly
                                 class="w-44 rounded-md border text-xs border-gray-500 bg-white py-1 pl-2 text-[#6B7280] h-6 outline-none mb-3 focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <div>
                             <label
                                 class="w-20 inline-block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Item Desc :
                             </label>
-                            <input type="text" name="item_description"
+                            <input type="text" name="item_description" required
                                 class="w-44 rounded-md border text-xs border-gray-500 bg-white py-1 pl-2 text-[#6B7280] h-6 outline-none mb-3 focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <div>
                             <label
                                 class="w-20 inline-block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Organization :
                             </label>
-                            <input type="text" name="organization"
+                            <input type="text" name="organization" required
                                 class="w-44 rounded-md border text-xs border-gray-500 bg-white py-1 pl-2 text-[#6B7280] h-6 outline-none mb-3 focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                     </div>
@@ -97,9 +97,9 @@ include("./navForLogged.php");
                             <label
                                 class="w-36 inline-block font-bold text-xs font-medium text-gray-900 dark:text-white">Finish / Raw Meterial :
                             </label>
-                            <select id="finish_raw_material" name="finish_raw_material"
+                            <select id="finish_raw_material" name="finish_raw_material" required
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-md focus:ring-blue-500 w-44 focus:border-blue-500 pl-3 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected disabled>Choose One</option>
+                                <option selected hidden>Choose One</option>
                                 <option value="finish_good">Finish Goods</option>
                                 <option value="row_item">Raw Material</option>
                             </select>
@@ -111,7 +111,7 @@ include("./navForLogged.php");
                             <label
                                 class="w-28 inline-block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Item Starting Date :
                             </label>
-                            <input type="date" name="item_starting_date"
+                            <input type="date" name="item_starting_date" id="item_starting_date" value="<?php $currentDate = date('Y-m-d'); echo $currentDate; ?>"
                                 class="w-44 rounded-md border text-xs border-gray-500 bg-white py-1 pl-2 text-[#6B7280] h-6 outline-none mb-3 focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <div>
@@ -121,17 +121,14 @@ include("./navForLogged.php");
                             <input type="date" name="item_ending_date"
                                 class="w-44 rounded-md border text-xs border-gray-500 bg-white py-1 pl-2 text-[#6B7280] h-6 outline-none mb-3 focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
-                        <!-- <div class="">
+                        <div class="">
                             <label
                                 class="w-28 inline-block font-bold text-xs font-medium text-gray-900 dark:text-white">Item Status :
                             </label>
-                            <select id="countries" name="item_status"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-md focus:ring-blue-500 w-44 focus:border-blue-500 pl-3 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 mb-3 dark:focus:border-blue-500">
-                                <option selected disabled>Choose One</option>
-                                <option  value="Finish Goods">Active</option>
-                                <option value="Raw Material">Un-Active</option>
-                            </select>
-                        </div> -->
+                            <input type="text" name="item_status" id="item_status" value="SAVE" readonly
+                            class="w-44 rounded-md border text-xs border-gray-500 bg-white py-1 pl-2 text-[#6B7280] h-6 outline-none mb-3 focus:border-[#6A64F1] focus:shadow-md" />
+                           
+                        </div>
                         <div class="flex">
                             <label
                                 class="w-28 inline-block mb-1 font-bold text-xs font-medium text-gray-900 dark:text-white">Upload Image :
