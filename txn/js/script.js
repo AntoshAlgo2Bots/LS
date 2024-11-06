@@ -19,7 +19,7 @@ let getUSerDataByUserName = () => {
 
 
 
-    $.get("../phpAJax/txnAjax.php", data, function (data) {
+    $.get("../phpAjax/txnAjax.php", data, function (data) {
         console.log(data)
 
 

@@ -17,24 +17,29 @@ include("./navForLogged.php");
     <div id="search_section" class="mt-5 border border-gray-900 p-5 rounded-lg mx-5">
         <h1 class="text-center underline text-3xl mb-3 font-bold">Search Employee Form</h1>
         <div class="block md:flex gap-x-4">
-            <fieldset class="w-full border border-gray-500 p-4 rounded-md">
+            <fieldset class="w-full border border-gray-500 p-3 rounded-md">
                 <legend class="font-bold text-sm">Employee Information</legend>
                 <div class="">
+                    <div class="flex">
+                        <div>
+                            <label
+                                class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">S.
+                                No : </label>
+                            <input type="text" name="id" placeholder="Enter serial number" id="id"
+                                class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        </div>
+                        <div class="mt-6 ml-2">
+                            <button type="text" id="search"
+                                class="w-16 text-white border border-blue-700 bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs py-1 text-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 ">Serach</button>
+                        </div>
+                    </div>
                     <div class="flex gap-x-9 flex-wrap">
-
                         <div>
                             <label for="email"
                                 class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Joiner(New/Old)
                                 :
                             </label>
                             <input type="text" name="joiner_info" placeholder="Enter joiner status" id="joiner_info"
-                                class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                        </div>
-                        <div class="">
-                            <label
-                                class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">S.
-                                No : </label>
-                            <input type="text" name="id" placeholder="Enter serial number" id="id"
                                 class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <div class="">
@@ -98,15 +103,10 @@ include("./navForLogged.php");
                             </div> -->
                     </div>
 
-
-                    <div class="flex justify-between flex-wrap">
-
-
-                    </div>
                 </div>
             </fieldset>
-            <div class="w-44 h-44 mt-3 border border-gray-900 rounded-md">
-                <img class="h-44 rounded-md" id="preview" alt="Item image">
+            <div class="w-44 h-56 mt-3 border border-gray-900 rounded-md">
+                <img class="h-56 rounded-md" id="preview" alt="Item image">
             </div>
         </div>
 
@@ -221,10 +221,7 @@ include("./navForLogged.php");
         </div>
 
         <div class="w-full mt-5 flex justify-center gap-x-5">
-            <div>
-                <button type="text" id="search"
-                    class="w-28 text-white border border-blue-700 bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs py-2.5 text-center me-2 font-bold dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 ">Serach</button>
-            </div>
+
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -253,12 +250,13 @@ include("./navForLogged.php");
                 // Log to confirm the search was triggered
                 console.log("Search initiated for:", srch);
 
-                $.post("action_SearchEmployee.php", { srch }, function (data) {
+                $.post("EmployeeSearchAction.php", { srch }, function (data) {
                     console.log("Response received:", data);
 
                     // Check if the response contains data
                     if (data && data.success) {
                         // Assuming data.data contains the result
+                        
                         $("#joiner_info").val(data.data.joiner_new_old || '');
                         $("#emp_name").val(data.data.name || '');
                         $("#emp_dob").val(data.data.dob || '');
@@ -281,13 +279,16 @@ include("./navForLogged.php");
                         $("#date_of_leaving").val(data.data.date_of_leaving || '');
                         $("#date_of_leaving_file").val(data.data.date_of_leaving_file || '');
                         $("#notice_served").val(data.data.notice_served || '');
-                        
+
                     } else {
                         // Handle the case when the search is unsuccessful
                         alert(data.message || "No results found.");
                     }
-                }, "json").fail(function (jqXHR, textStatus, errorThrown) {
-                    console.error("Request failed:", textStatus, errorThrown);
+                }, "json").fail(function (error, data) {
+                    // console.error("Request failed:", textStatus, errorThrown);
+                    console.log(error)
+                    console.log(data.message)
+                    console.log(error.responseText)
                     alert("An error occurred while processing your request. Please try again.");
                 });
             });

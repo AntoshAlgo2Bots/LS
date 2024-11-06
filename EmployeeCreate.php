@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-        $stmt->bind_param("sssssssssssssssss", $emp_id, $emp_name, $old_organize_name, $deputed_location, $last_ctc, $current_ctc, $tentative_date_joining, $exact_date, $notice_period, $notice_served, $job_role, $job_description, $date_of_anniversary, $offer_letter_date, $date_of_leaving, $offer_letter_file, $leavnig_letter_file);
+        $stmt->bind_param("sssssssssssssssss", $emp_id, $joiner_new_old, $old_organize_name, $deputed_location, $last_ctc, $current_ctc, $tentative_date_joining, $exact_date, $notice_period, $notice_served, $job_role, $job_description, $date_of_anniversary, $offer_letter_date, $date_of_leaving, $offer_letter_file, $leavnig_letter_file);
 
 
 
@@ -174,6 +174,7 @@ if ($result3->num_rows > 0) {
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -195,19 +196,20 @@ if ($result3->num_rows > 0) {
                     <div class="">
                         <div class="flex gap-x-9 flex-wrap">
 
+                            <div class="">
+                                <label
+                                    class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">S.
+                                    No : </label>
+                                <input required type="text" name="serial_no" placeholder="" readonly
+                                    value="<?php echo isset($emp_id) ? $emp_id : ''; ?>"
+                                    class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                            </div>
                             <div>
                                 <label for="email"
                                     class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Joiner(New/Old)
                                     :
                                 </label>
                                 <input required type="text" name="joiner_new_old" placeholder="Enter joiner status"
-                                    class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                            </div>
-                            <div class="">
-                                <label
-                                    class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">S.
-                                    No : </label>
-                                <input required type="text" name="serial_no" placeholder="Enter serial number"
                                     class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
                             <div class="">
@@ -235,7 +237,7 @@ if ($result3->num_rows > 0) {
                                 <!-- <input required type="text" name="emp_department" placeholder="Enter department"
                                     value="<?php echo isset($emp_department) ? $emp_department : ''; ?>"
                                     class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" /> -->
-                                <select name="department_name" id="department_name"
+                                <select name="emp_department" id="emp_department"
                                     class="bg-gray-50 border  border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-40 p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option selected hidden>Select one</option>
                                     <?php foreach ($options as $option) { ?>
@@ -379,7 +381,7 @@ if ($result3->num_rows > 0) {
                                 value="<?php echo isset($job_role) ? $job_role : ''; ?>"
                                 class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" /> -->
 
-                            <select name="sub_head" id="sub_head_select"
+                            <select name="job_role" id="job_role"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-40 p-1 mb-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected hidden>Select one</option>
                                 <!-- <?php foreach ($options2 as $option) { ?>
@@ -485,10 +487,10 @@ if ($result3->num_rows > 0) {
         // }
 
         $(document).ready(function () {
-            $("#department_name").on("change", function () {
-                console.log("department_name");
+            $("#emp_department").on("change", function () {
+                console.log("emp_department");
 
-                var department_name = $('#department_name').val();
+                var department_name = $('#emp_department').val();
                 console.log(department_name);
 
                 $.ajax({
@@ -501,7 +503,7 @@ if ($result3->num_rows > 0) {
                             console.log("success Block"); // Corrected from console to console.log
 
                             // Populate the select field with job roles
-                            var jobRoleSelect = $('#sub_head_select'); // Make sure you have a select field with this ID
+                            var jobRoleSelect = $('#job_role'); // Make sure you have a select field with this ID
                             console.log(jobRoleSelect);
                             jobRoleSelect.empty(); // Clear existing options
 
@@ -520,8 +522,8 @@ if ($result3->num_rows > 0) {
                         // form.reset(); // Uncomment if you have a form to reset
                     },
                     error: function (error) {
-                      console.log("Error Block");
-                      console.log(error);
+                        console.log("Error Block");
+                        console.log(error);
                     }
                 });
             });

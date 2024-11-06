@@ -8,8 +8,8 @@ if (isset($_REQUEST['srch'])) {
 
     $db = $con->query("SELECT *
 FROM employee_head a
-INNER JOIN employee_info_line b ON a.id = b.employee_id
-WHERE a.id = '$searchData'"); // Use quotes for string values
+INNER JOIN employee_info_line b ON a.s_no = b.employee_id
+WHERE a.s_no = '$searchData'"); // Use quotes for string values
     if ($db) {
         $data = mysqli_fetch_assoc($db);
         if ($data) {
@@ -26,7 +26,7 @@ WHERE a.id = '$searchData'"); // Use quotes for string values
     }
 }
 
-$con->close();
 echo json_encode($response);
 
+$con->close();
 ?>

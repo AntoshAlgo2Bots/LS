@@ -29,7 +29,7 @@ const createdBomb = () => {
   console.log(postInputData);
 
   $.post(
-    "./phpAjax/bomAjax.php",
+    "./phpAjax/PrAjax.php",
     postInputData,
     function (data) {
       console.log(data);

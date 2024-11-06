@@ -1,0 +1,666 @@
+<?php
+
+session_start();
+
+include("../dbconnection/db.php");
+
+
+if (!isset($_SESSION["username"])) {
+    header("location:login.php");
+    exit();
+}
+
+$role = $_SESSION['role'] ?? ''; // Ensure role is set
+
+
+$sql = "SELECT * FROM txn_book where form_status = 'SUBMIT' order by transaction_no desc;";
+
+
+$result = mysqli_query($con, $sql);
+
+
+
+if ($_SERVER['REQUEST_METHOD'] == "GET") {
+
+
+
+    if (isset($_GET["search_query"])) {
+        $query = $_GET["search_query"];
+
+        $sql = "SELECT * FROM txn_book where transaction_no ='$query' or form_status='$query' ";
+
+        $result = mysqli_query($con, $sql);
+
+
+    }
+}
+
+
+
+
+
+?>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+
+    <title>Admin update</title>
+</head>
+
+<body class="">
+
+
+
+    <div>
+
+
+        <nav class="bg-white dark:bg-gray-900  w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-4">
+                <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+
+                </a>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                    Hello! <?php echo $_SESSION["username"] ?></span>
+                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                    <a href="../logout.php" type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout</a>
+                    <button data-collapse-toggle="navbar-sticky" type="button"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        aria-controls="navbar-sticky" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 1h15M1 7h15M1 13h15" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                    <ul
+                        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li>
+                            <a href="../dashboard.php"
+                                class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                                aria-current="page">Home</a>
+                        </li>
+                        <!--  <li>
+                    <a href="#"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                </li> -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <div>
+
+
+        <form class="flex items-center  max-w-lg mx-auto mt-4" method="GET">
+            <label for="voice-search" class="sr-only">Search</label>
+            <div class="relative w-full mr-2">
+
+                <input type="text" id="voice-search" name="search_query"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Search Details From Database..." required />
+
+            </div>
+            <button type="submit" name="search"
+                class="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>Search
+            </button>
+        </form>
+
+    </div>
+
+
+    <div class="relative overflow-x-auto mt-4 mx-5">
+        <button onclick="exportTableToCSV('TransactionReport.csv')" type="button"
+            class="flex items-center justify-center bg-primary-700 font-medium rounded-lg text-sm px-4 py-2 mb-3">
+            <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path clip-rule="evenodd" fill-rule="evenodd"
+                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
+            </svg>
+            Export to CSV
+        </button>
+        <table class="w-full text-sm text-left whitespace-nowrap rtl:text-right text-gray-500 dark:text-gray-400 mb-2"
+            id="myTable">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Txn No
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Transaction Date
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Amount Type
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Credit Amount
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Debit Amount
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Net Balance
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Particulers / GIVEN To
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Site
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Main Head
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Sub Head
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        From
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        To
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Start KM
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        End KM
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Total KM
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Rate
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Created By
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Created Date
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Updated By
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Updated Date
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Bill / Cheque No
+                    </th>
+
+                    <th scope="col" class="px-6 py-3">
+                        Invoice Dated
+                    </th>
+
+                    <th scope="col" class="px-6 py-3">
+                        Invoice No
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        GST No
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Remarks
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+
+
+
+
+                </tr>
+            </thead>
+            <tbody class="" id="rowAreaTbody">
+
+
+                <?php
+
+                while ($row = mysqli_fetch_assoc($result)) {
+
+
+
+
+
+
+                    ?>
+
+
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900">
+                        <!-- <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <input id="checkbox-table-search-1" line-id="<?php echo $row['transaction_no'] ?>"
+                                        type="checkbox"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                                </th> -->
+                        <td scope="row" class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="transaction_no" id=""
+                                value=" <?php echo $row['transaction_no'] ?>" not_Attribute="true" disabled readonly>
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 100px;" name="transaction_date" id=""
+                                value="<?php echo $row['transaction_date'] ?>" disabled>
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 80px;" name="amount_type" id=""
+                                value="<?php echo $row['amount_type'] ?>" disabled>
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 120px;" name="credit_amt" id=""
+                                value="<?php echo $row['credit_amt'] ?>" disabled>
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 120px;" name="debit_amt" id=""
+                                value="<?php echo $row['debit_amt'] ?>" disabled>
+                        </td>
+                        <td class="px-6 py-4">
+
+                            <input type="text" style="min-width: 180px;" name="net_balance" id="" value="<?php echo $row
+                            ['net_balance'] ?>" not_Attribute="true" disabled>
+
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="particuler_to" id=""
+                                value=" <?php echo $row['particuler_to'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="site" id=""
+                                value="<?php echo $row['site'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="main_head" id=""
+                                value="<?php echo $row['main_head'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="sub_head" id=""
+                                value="<?php echo $row['sub_head'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="from" id=""
+                                value="<?php echo $row['from'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="to" id="" value="<?php echo $row['to'] ?>"
+                                disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="startKm" id=""
+                                value="<?php echo $row['startKm'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="endKm" id=""
+                                value="<?php echo $row['endKm'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="totalKm" id=""
+                                value="<?php echo $row['totalKm'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="rate" id=""
+                                value="<?php echo $row['rate'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="currentUser" id=""
+                                value="<?php echo $row['currentUser'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="currentTime" id=""
+                                value="<?php echo $row['currentTime'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="updatedBy" id=""
+                                value="<?php echo $row['updatedBy'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="updatedDate" id=""
+                                value="<?php echo $row['updatedDate'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="bill_cheque_no" id=""
+                                value="<?php echo $row['bill_cheque_no'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="invoice_date" id=""
+                                value="<?php echo $row['invoice_date'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="invoice_no" id=""
+                                value="<?php echo $row['invoice_no'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="gst_no" id=""
+                                value="<?php echo $row['gst_no'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="remarks" id=""
+                                value="<?php echo $row['remarks'] ?>" disabled>
+
+                        </td>
+                        <td class="px-6 py-4">
+                            <input type="text" style="min-width: 180px;" name="form_status" id=""
+                                value="<?php echo $row['form_status'] ?>" disabled>
+                        </td>
+
+                        <?php
+                        if ($role == 'admin') {
+
+                            ?>
+
+
+                            <td><button onclick="enableEditMode(event)"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Edit</button>
+                            </td>
+                            <td><button onclick="updateRow(event)" name="update"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-blue">Update</button>
+                            </td>
+                            <?php
+                        }
+
+                        ?>
+                    </tr>
+
+
+
+                    <?php
+
+
+                }
+
+
+                ?>
+
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+
+
+    <!-- this is another div or box\ -->
+
+
+
+
+
+    <!-- Main modal -->
+    <div id="authentication-modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Edit user
+                    </h3>
+                    <button type="button"
+                        class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="authentication-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- fake test box areA -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+<script>
+    function exportTableToCSV(filename) {
+        const table = document.getElementById('myTable');
+        let csv = [];
+
+        // Get table headers
+        const headers = Array.from(table.querySelectorAll('th')).map(th => th.innerText);
+        csv.push(headers.join(','));
+
+        // Get table rows
+        const rows = Array.from(table.querySelectorAll('tbody tr'));
+        rows.forEach(row => {
+            const cells = Array.from(row.querySelectorAll('td input')).map(input => input.value);
+            csv.push(cells.join(','));
+        });
+
+        // Create a CSV file
+        const csvContent = csv.join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+
+        // Create a link to download the CSV
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', filename);
+        link.style.display = 'none';
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+<script src="./js/scripts.js"></script>
+<script src="./js/jquery.min.js"></script>
+
+<script>
+
+
+
+    function enableEditMode(event) {
+
+
+        console.log($)
+
+        // Find the parent row
+
+        // Find the parent row
+        console.log(event.target)
+
+        let currentELement = event.target
+
+
+        let row = currentELement.closest('tr');
+
+        // Find all input fields in this row
+        console.log(row)
+        var inputs = row.querySelectorAll('input');
+
+
+
+
+        // Enable each input field
+        inputs.forEach(function (input) {
+
+
+            if ($(input).attr("not_Attribute") == "true") {
+                return
+            }
+
+
+
+
+            input.disabled = false;
+            input.style.border = "2px solid red"
+            input.style.color = "red"
+            input.style.backgroundColor = "white"
+            input.style.borderRadius = "5px"
+            input.style.padding = "5px"
+            input.style.margin = "5px"
+            input.style.width = "100%"
+            input.style.boxSizing = "border-box"
+
+
+        });
+
+        // Hide the "Edit" button and show the "Update" button
+        // button.style.display = 'none';
+        // row.querySelector('form button').style.display = 'inline-block';
+    }
+
+
+
+
+
+
+
+    function updateRow(event) {
+
+
+        let userData = {}
+
+
+        let btn = event.target
+        let currenTr = btn.closest("tr")
+
+        let allInputs = currenTr.querySelectorAll("input")
+
+
+        // console.log(allInputs)
+
+
+        allInputs.forEach(input => {
+
+            input.disabled = true
+
+            userData[input.name] = input.value
+        });
+
+
+        console.log(userData)
+
+
+        let data = {
+
+            userData: userData,
+
+        }
+
+
+        $.ajax({
+            url: 'txnAjax.php',
+            method: 'POST',
+            data: data,
+            dataType: 'json',
+            success: function (response) {
+                // Handle the response
+                console.log(response); // Check the response in the console
+                if (response.success) {
+                    alert(response.message);
+                } else {
+                    alert('Error: ' + response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX error:', status, error);
+                console.log('Response Text:', xhr.responseText); // Check the raw response
+                alert('An error occurred: ' + error);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // Here you can add functionality to save the updated data.
+    }
+</script>
+
+</html>

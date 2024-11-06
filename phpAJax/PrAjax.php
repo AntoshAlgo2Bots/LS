@@ -139,7 +139,7 @@ if (isset($_POST['bom_creation_form'])) {
 
 
 
-        $stmt = "INSERT INTO requisition_table (`s_no`, `so_number`, `item_name`, `item_code`, `quantity` , `user_remarks` ,`created_by`,`created_date`)VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        $stmt = "INSERT INTO requisition_table (`header_id`, `so_number`, `item_name`, `item_code`, `quantity` , `user_remarks` ,`created_by`,`created_date`)VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
 
         $stmt = $con->prepare($stmt);

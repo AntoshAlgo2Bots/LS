@@ -82,8 +82,8 @@ if ($result1->num_rows > 0) {
                             class="bg-gray-50 border uppercase border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-40 p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected hidden>Select one</option>
                             <?php foreach ($options as $option) { ?>
-                                <option class="uppercase" value="<?php echo $option; ?>"><?php echo $option; ?>
-                                </option>
+                                        <option class="uppercase" value="<?php echo $option; ?>"><?php echo $option; ?>
+                                        </option>
                             <?php } ?>
 
                         </select>
@@ -115,197 +115,197 @@ if ($result1->num_rows > 0) {
         if (isset($_POST)) {
 
             ?>
-            <form action="" id="bomLinelevel">
-                <div class="mt-6">
-                    <div class="flex flex-col">
-                        <div class="-m-1.5 overflow-x-auto">
-                            <div class="p-1.5 min-w-full inline-block align-middle">
-                                <div class="overflow-hidden">
-                                    <table class="min-w-full whitespace-nowrap mx-auto divide-y divide-gray-200">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
-                                                    S.no</th>
+                    <form action="" id="bomLinelevel">
+                        <div class="mt-6">
+                            <div class="flex flex-col">
+                                <div class="-m-1.5 overflow-x-auto">
+                                    <div class="p-1.5 min-w-full inline-block align-middle">
+                                        <div class="overflow-hidden">
+                                            <table class="min-w-full whitespace-nowrap mx-auto divide-y divide-gray-200">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                            S.no</th>
 
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
-                                                    So. Number </th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
-                                                    Item Name </th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
-                                                    Item Code
-                                                </th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
-                                                    Quantity </th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
-                                                    User Remarks </th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                            So. Number </th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                            Item Name </th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                            Item Code
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                            Quantity </th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                            User Remarks </th>
 
-                                                <th scope="col"
-                                                    class="  py-3 text-start text-xs font-medium text-gray-500 uppercase">
-                                                    Requisition Type </th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
-                                                    Price </th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
-                                                    Date Hand Hover </th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
-                                                    Handover Over By </th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
-                                                    Status </th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
-                                                    Final Remarks </th>
+                                                        <th scope="col"
+                                                            class="  py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                            Requisition Type </th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                            Price </th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                            Date Hand Hover </th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                            Handover Over By </th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                            Status </th>
+                                                        <th scope="col"
+                                                            class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                            Final Remarks </th>
 
-                                                    <th scope="col"
-                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
-                                                    Po Number </th>
+                                                            <th scope="col"
+                                                            class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                            Po Number </th>
 
-                                                    <th scope="col"
-                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
-                                                    PO Status </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="divide-y whitespace-nowrap divide-gray-200" id="poCreteTbody">
-                                            <tr class="hover:bg-gray-600">
-
-
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                                                    <input type="text" value="1"
-                                                        class="py-3 px-4 block w-12 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                                                </td>
-
-                                                <td class=" py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
-                                                    <input type="text" name="so_number"
-                                                        class="py-3 px-4 block w-full border-gray-200 rounded-lg  focus:border-blue-500 focus:ring-blue-500"
-                                                        placeholder="So. Number" required>
-                                                </td>
-
-                                                <td class=" py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
-                                                    <input type="text" name="item_name"
-                                                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
-                                                        placeholder="Item Name" required>
-                                                </td>
-
-                                                <td class=" py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
-                                                    <input type="text" name="item_code"
-                                                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
-                                                        placeholder="Item Code" required>
-                                                </td>
-
-                                                <td class="py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
-                                                    <input type="number" name="quantity"
-                                                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
-                                                        placeholder="Quantity" required>
-                                                </td>
-
-                                                <td class=" py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
-                                                    <input type="text" name="user_remarks"
-                                                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
-                                                        placeholder="User Remarks" required>
-                                                </td>
+                                                            <th scope="col"
+                                                            class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                            PO Status </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y whitespace-nowrap divide-gray-200" id="poCreteTbody">
+                                                    <tr class="hover:bg-gray-600">
 
 
-                                                <td class=" py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
-                                                    <input type="text" name="requisition_type"
-                                                        placeholder="Requisition Type"
-                                                        class="py-3 px-5 block w-28  border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                                        disabled>
-                                                </td>
-                                                <td class=" py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
-                                                    <input type="text" name="price"
-                                                        class="py-3 px-4 block  w-28 mr-5 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
-                                                        placeholder="Price" disabled>
-                                                </td>
-                                                <td class=" py-4 whitespace-nowrap mx-3 text-sm font-medium text-gray-800">
-                                                    <input type="date" name="date_hand_hover"
-                                                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
-                                                        placeholder="Date Hand Hover" disabled>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                                                    <input type="text" name="handover_over_by"
-                                                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
-                                                        placeholder="Handover Over By" disabled>
-                                                </td>
-                                                <td class="py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                                                    <input type="text" name="status"
-                                                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
-                                                        placeholder="Status" disabled>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                                                    <input type="text" name="final_remarks"
-                                                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
-                                                        placeholder="Final Remarks" disabled>
-                                                </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                            <input type="text" value="1"
+                                                                class="py-3 px-4 block w-12 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                                        </td>
+
+                                                        <td class=" py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
+                                                            <input type="text" name="so_number"
+                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg  focus:border-blue-500 focus:ring-blue-500"
+                                                                placeholder="So. Number" required>
+                                                        </td>
+
+                                                        <td class=" py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
+                                                            <input type="text" name="item_name"
+                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                                placeholder="Item Name" required>
+                                                        </td>
+
+                                                        <td class=" py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
+                                                            <input type="text" name="item_code"
+                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                                placeholder="Item Code" required>
+                                                        </td>
+
+                                                        <td class="py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
+                                                            <input type="number" name="quantity"
+                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                                placeholder="Quantity" required>
+                                                        </td>
+
+                                                        <td class=" py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
+                                                            <input type="text" name="user_remarks"
+                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                                placeholder="User Remarks" required>
+                                                        </td>
 
 
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                                                    <input type="text" name=" po_number"
-                                                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
-                                                        placeholder=" PO Number" disabled>
-                                                </td>
+                                                        <td class=" py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
+                                                            <input type="text" name="requisition_type"
+                                                                placeholder="Requisition Type"
+                                                                class="py-3 px-5 block w-28  border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                                                disabled>
+                                                        </td>
+                                                        <td class=" py-4 whitespace-nowrap text-sm mx-3 font-medium text-gray-800">
+                                                            <input type="text" name="price"
+                                                                class="py-3 px-4 block  w-28 mr-5 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                                placeholder="Price" disabled>
+                                                        </td>
+                                                        <td class=" py-4 whitespace-nowrap mx-3 text-sm font-medium text-gray-800">
+                                                            <input type="date" name="date_hand_hover"
+                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                                placeholder="Date Hand Hover" disabled>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                            <input type="text" name="handover_over_by"
+                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                                placeholder="Handover Over By" disabled>
+                                                        </td>
+                                                        <td class="py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                            <input type="text" name="status"
+                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                                placeholder="Status" disabled>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                            <input type="text" name="final_remarks"
+                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                                placeholder="Final Remarks" disabled>
+                                                        </td>
 
 
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                                                    <input type="text" name="po_status"
-                                                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
-                                                        placeholder="PO Status" disabled>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                            <input type="text" name=" po_number"
+                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                                placeholder=" PO Number" disabled>
+                                                        </td>
 
-                                    <a href="#_" onclick="addRowItem()"
-                                        class="relative inline-block px-4 py-2 font-medium group">
-                                        <span
-                                            class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                        <span
-                                            class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                        <span class="relative text-black group-hover:text-white">+ Add item</span>
-                                    </a>
+
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                            <input type="text" name="po_status"
+                                                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500"
+                                                                placeholder="PO Status" disabled>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <a href="#_" onclick="addRowItem()"
+                                                class="relative inline-block px-4 py-2 font-medium group">
+                                                <span
+                                                    class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                                <span
+                                                    class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                                <span class="relative text-black group-hover:text-white">+ Add item</span>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="w-full mt-5 flex flex-wrap justify-around">
+                                <button type="reset"
+                                    class="text-white border border-blue-700 bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs px-5 py-2.5 text-center me-2 mb-2 font-bold dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Clear
+                                    Form</button>
+                                <!--  -->
+                                <button type="submit" onclick="createdBomb()" id="po-save-btn"
+                                    class="text-white border border-blue-700 bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs px-5 py-2.5 text-center me-2 mb-2 font-bold dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Submit</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
 
-                    <div class="w-full mt-5 flex flex-wrap justify-around">
-                        <button type="reset"
-                            class="text-white border border-blue-700 bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs px-5 py-2.5 text-center me-2 mb-2 font-bold dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Clear
-                            Form</button>
-                        <!--  -->
-                        <button type="submit" onclick="createdBomb()" id="po-save-btn"
-                            class="text-white border border-blue-700 bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs px-5 py-2.5 text-center me-2 mb-2 font-bold dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Submit</button>
-                    </div>
+
+
+                    <!-- this button is for create direct po fressh inert query -->
+
+                    <?php if (isset($po_number)) {
+
+                        ?>
+
+                                <button type="button" onclick="purchaseOrderDirect()" id="po-submit-btn"
+                                    class="text-white border border-blue-700 bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs px-5 py-2.5 text-center me-2 mb-2 font-bold dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+
+
+                                    Submit</button>
+
+
+                                <?php
+
+                    } ?>
+
                 </div>
-            </form>
-
-
-
-            <!-- this button is for create direct po fressh inert query -->
-
-            <?php if (isset($po_number)) {
-
-                ?>
-
-                <button type="button" onclick="purchaseOrderDirect()" id="po-submit-btn"
-                    class="text-white border border-blue-700 bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs px-5 py-2.5 text-center me-2 mb-2 font-bold dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
-
-
-                    Submit</button>
-
-
-                <?php
-
-            } ?>
-
-        </div>
     <?php } ?>
 
 
@@ -424,6 +424,9 @@ if ($result1->num_rows > 0) {
 
 
 
+        setItemCods()
+
+
     }
 
 
@@ -454,40 +457,21 @@ if ($result1->num_rows > 0) {
 <script>
     $(function () {
 
-        var availableTags = [
-            "ActionScript",
-            "AppleScript",
-            "Asp",
-            "BASIC",
-            "C",
-            "C++",
-            "Clojure",
-            "COBOL",
-            "ColdFusion",
-            "Erlang",
-            "Fortran",
-            "Groovy",
-            "Haskell",
-            "Java",
-            "JavaScript",
-            "Lisp",
-            "Perl",
-            "PHP",
-            "Python",
-            "Ruby",
-            "Scala",
-            "Scheme"
-        ];
+        var availableTags = [        ];
 
 
-        console.log(availableTags);
-        $.get("./phpAjax/ajax.php", {
+       
+        $.get("./ajax.php", {
             "itemCodeInfoForPr": "itemCodeInfoForPr"
         }, function (data) {
 
             availableTags = JSON.parse(data);
 
             console.log(availableTags);
+            $("input[name='item_code']").autocomplete({
+                source: availableTags
+            });
+
             $("input[name='item_name']").autocomplete({
                 source: availableTags
             });
@@ -495,19 +479,84 @@ if ($result1->num_rows > 0) {
 
 
 
-            $("input[name='Item_name']").autocomplete({
-                source: availableTags
-            });
+           
 
 
-            $("input[name='item_code']").autocomplete({
-                source: availableTags
-            });
 
 
         })
 
     });
+
+
+
+
+    function setItemCods() {
+
+
+
+          
+        $.get("./ajax.php", {
+            "itemCodeInfoForPr": "itemCodeInfoForPr"
+        }, function (data) {
+
+            availableTags = JSON.parse(data);
+
+
+            console.log(availableTags);
+            
+            
+
+            let item_code_inputs = document.querySelectorAll("input[name='item_code']")
+            let item_code_inputs1 = document.querySelectorAll("input[name='item_name']")
+
+
+
+
+            item_code_inputs.forEach(input=>{
+
+                
+                
+                
+                            $(input).autocomplete({
+                                source: availableTags
+                            });
+
+
+
+            })
+
+            item_code_inputs1.forEach(input=>{
+
+                
+                
+                
+                            $(input).autocomplete({
+                                source: availableTags
+                            });
+
+
+
+            })
+
+
+
+
+           
+
+
+
+
+        })
+        
+
+        
+    }
+
+
+
+
+
 </script>
 
 
@@ -615,17 +664,17 @@ if ($result1->num_rows > 0) {
             frmData.append("filename", filename);
 
                await $.ajax({
-                url: "./phpAjax/bomAjax.php", // URL to send the request to
+                url: "./phpAjax/PrAjax.php", // URL to send the request to
                 type: "POST", // HTTP method
                 dataType: "json", // Expected response format
                 data: frmData, // Form data
                 contentType: false, // Important for FormData
                 processData: false, // Important for FormData
                 success: function (response) {
-                    console.log("This is from the success block");
+                    console.log("inside");
                     console.log(response);
 
-                    if (response && response.Record_no) {
+                    if (response.success) {
                         console.log(response.Record_no);
                         $("#header_id").val(response.Record_no); // Set the value to response.Record_no
                             
@@ -638,7 +687,7 @@ if ($result1->num_rows > 0) {
                         // Optionally reset the form here if needed
                         // $('#frmstore')[0].reset();
                     } else {
-                        alert("Error: " + response.message); // Show specific error message
+                        // alert("Error: " + response); // Show specific error message
                     }
                 },
                 error: function (error) {
@@ -655,37 +704,33 @@ if ($result1->num_rows > 0) {
 
 
 
-    $(document).ready(function () {
-        $('#bomLinelevel').submit(function (e) {
-            e.preventDefault();
-            var frmData = $(this).serialize();
+    // $(document).ready(function () {
+    //     $('#bomLinelevel').submit(function (e) {
+    //         e.preventDefault();
+    //         var frmData = $(this).serialize();
 
-            $.post("./phpAjax/bomAjax.php", frmData, function (data) {
-                console.log("This is from success block");
-                console.log(data);
-                console.log(data.message);
+    //         $.post("./phpAjax/PrAjax.php", frmData, function (data) {
+    //             console.log("This is from success block");
+    //             // console.log(data);
+    //             // console.log(data.message);
 
-                if (data.success) {
-                    // let inserted_id = response.Record_no; // Use inserted_id instead of header_id
-                    //console.log(response.Record_no);
-
-                    // $("#header_id").val(response.Record_no); // Set the value to response.Record_no
+    //             if (data.success) {
 
 
-                    alert("Form submitted successfully! Your Record No is " + data.Record_no);
+    //                 alert("Form submitted successfully! Your Record No is " + data.Record_no);
 
-                    // Reset form on success
-                } else {
-                    alert("Error: " + data.message); // Show specific error message
-                }
-                $('#bomLinelevel')[0].reset();
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                console.log("This is the error block");
-                console.error("Error details:", textStatus, errorThrown);
-                alert("An error occurred: " + textStatus);
-            });
-        });
-    });
+    //                 // Reset form on success
+    //             } else {
+    //                 alert("Error:fjnurifnuirfniurfnuinfrufnrui " + data); // Show specific error message
+    //             }
+    //             // $('#bomLinelevel')[0].reset();
+    //         }).fail(function (jqXHR, textStatus, errorThrown) {
+    //             console.log("This is the error block");
+    //             console.error("Error details:", textStatus, errorThrown);
+    //             alert("An error occurred: " + textStatus);
+    //         });
+    //     });
+    // });
 
 
 

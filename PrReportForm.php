@@ -208,7 +208,7 @@ WHERE a.header_id ='$query' or a.department_name ='$query' ";
 
                                 <tr class="border-b dark:border-gray-700">
                                     <td class="px-6 py-4">
-                                        <?php echo $row['header_id'] ?>
+                                        <?php echo $row['S_no'] ?>
                                     </td>
                                     <td class="px-6 py-4">
                                         <?php echo $row['department_name'] ?>

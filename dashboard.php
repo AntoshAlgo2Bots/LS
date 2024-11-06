@@ -204,7 +204,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
 
 
                     <?php
-                    if ($role === "admin" || $role == 'production') {
+                    if ($role == 'admin' || $role == 'production') {
                         ?>
                         <nav>
                             <div class="relative block w-full mt-1">
@@ -344,7 +344,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
 
 
                     <?php
-                    if ($role == 'admin' || $role == 'adminhr') {
+                    if ($role == 'admin' || $role == 'adminhr' || $role == 'account' ) {
                         ?>
                         <nav>
                             <div class="relative block w-full mt-1">
@@ -408,7 +408,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
                                             </a>
 
 
-                                            <a href="./txn/txn_report.php"
+                                            <a href="./txn/txn_new_report.php"
                                                 class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                                                 <div class="grid mr-4 place-items-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -774,7 +774,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
                                     <nav name="nav"
                                         class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
 
-                                        <a href="./createEmployee.php"
+                                        <a href="./EmployeeCreate.php"
                                             class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                                             <div class="grid mr-4 place-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -787,7 +787,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
                                             Employee Creation Form
                                         </a>
 
-                                        <a href="./searchEmployee.php"
+                                        <a href="./EmployeeSearch.php"
                                             class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                                             <div class="grid mr-4 place-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -801,7 +801,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
                                         </a>
 
 
-                                        <a href="./createEmployeeReport.php"
+                                        <a href="./EmployeeReport.php"
                                             class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                                             <div class="grid mr-4 place-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -997,7 +997,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
 
 
                     <?php
-                    if ($role == 'quality' || $role == 'purchase' || $role == 'adminhr' || $role == 'packing' || $role == 'installation' || $role == 'pantry') {
+                    if ($role == 'quality' || $role == 'purchase' || $role == 'adminhr' || $role == 'packing' || $role == 'installation' || $role == 'pantry' || $role == 'admin') {
                         ?>
                         <div class="relative block w-full mt-1">
                             <div role="button"
@@ -1179,7 +1179,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
                     ?>
 
                     <?php
-                    if ($role == 'quality' || $role == 'production' || $role == 'packing' || $role == 'logistics' || $role == 'installation' ) {
+                    if ($role == 'quality' || $role == 'production' || $role == 'packing' || $role == 'logistics' || $role == 'installation' || $role == 'admin' ) {
                         ?>
                         <div class="relative block w-full mt-1">
                             <div role="button"
@@ -1214,7 +1214,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
                                     <nav name="nav"
                                         class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
 
-                                        <a href="./projectTrackingCreationForm.php"
+                                        <a href="./projectStatus.php"
                                             class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
                                             <div class="grid mr-4 place-items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -1543,6 +1543,92 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
                                 <button type="button" name="head_cat_btn"
                                     class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
                                     <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
+                                        <i class="fa-solid fa-asterisk"></i>
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
+                                            clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                                        ASL Master Form
+                                    </p>
+                                    <span class="ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2.5" stroke="currentColor" aria-hidden="true"
+                                            class="w-4 h-4 mx-auto transition-transform rotate-0">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                                        </svg>
+                                    </span>
+
+                                </button>
+
+                            </div>
+                            <div class="overflow-hidden hidden" name="li_area" id="fees-li-area">
+                                <div class="block w-full py-1  text-sm antialiased font-light leading-normal text-gray-700">
+                                    <nav name="nav"
+                                        class="flex flex-col gap-1 p-0  text-base font-normal text-blue-gray-700">
+
+                                        <a href="./aslCreateForm.php"
+                                            class="flex items-center w-full p-2 text-sm text-gray-700 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            ASL Creation Form
+                                        </a>
+
+                                        <a href="./aslSearch.php"
+                                            class="flex items-center w-full text-sm p-2 leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            ASL Search Form
+                                        </a>
+
+
+                                        <!-- <a href="./gate_exit_report_form.php"
+                                            class="flex items-center w-full p-2 text-sm leading-tight text-gray-700 transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                            <div class="grid mr-4 place-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="3" stroke="currentColor" aria-hidden="true"
+                                                    class="w-5 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+                                                </svg>
+                                            </div>
+                                            Gate Exit Report
+                                        </a> -->
+
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php
+                    }
+                    ?>
+
+
+                    <?php
+                    if ($role == 'admin' || $role == 'logistics') {
+                        ?>
+                        <div class="relative block w-full mt-1">
+                            <div role="button"
+                                class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none bg-blue-gray-50/50 text-start text-blue-gray-700 hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                                <button type="button" name="head_cat_btn"
+                                    class="flex items-center justify-between w-full p-2  text-xl antialiased font-base leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900">
+                                    <div class="grid mr-4 place-items-center text-lg pt-1 pl-1">
                                         <i class="fa-solid fa-door-open"></i>
                                         <path fill-rule="evenodd"
                                             d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.04 16.5l.5-1.5h6.42l.5 1.5H8.29zm7.46-12a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0v-6zm-3 2.25a.75.75 0 00-1.5 0v3.75a.75.75 0 001.5 0V9zm-3 2.25a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0v-1.5z"
@@ -1756,7 +1842,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
                         <div class="h-full w-full  flex mx-auto  justify-around flex-wrap ">
                             <div class="mb-10">
 
-                                <a href="./query_report.php">
+                                <a href="./leadReport.php">
                                     <div class="datachart bg-gray-100 " id="Lead_status_box"></div>
                                 </a>
                             </div>
@@ -1779,7 +1865,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
 
                             <div class="mb-10">
 
-                                <a href="./requisition.php">
+                                <a href="./PrReportForm.php">
                                     <div class="datachart bg-gray-100 " id="pr_requests">
                                     </div>
                                 </a>
@@ -1788,7 +1874,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
                             <div class="mb-10">
 
                                 <!-- style="width:26rem; height:17rem" -->
-                                <a href="./createEmployeeReport.php">
+                                <a href="./EmployeeReport.php">
                                     <div class="datachart bg-gray-100 " id="empStatus">
                                     </div>
                                 </a>

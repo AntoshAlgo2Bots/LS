@@ -2591,14 +2591,14 @@
     });
 
 
-    function radio_btn() {
-        let x = document.getElementById('add_btn')
-        let y = document.getElementById('raw_section')
+    // function radio_btn() {
+    //     let x = document.getElementById('add_btn')
+    //     let y = document.getElementById('raw_section')
 
-        y.style.display = "flex";
-        x.style.display = "block";
+    //     y.style.display = "flex";
+    //     x.style.display = "block";
 
-    }
+    // }
 </script>
 
 <script src="./js/jquery-3.7.1.min.js"></script>
