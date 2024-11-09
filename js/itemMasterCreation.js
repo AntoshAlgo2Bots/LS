@@ -48,6 +48,83 @@ const setRequireFieldsFromCategory = (event) => {
   });
 };
 
+
+
+
+function genRateItemCode() {
+  // Get prefix from the input field (item_sub_category)
+  const prefix = document.getElementById("item_sub_category").value.trim().toUpperCase();
+
+  // Get current date
+  let date = new Date();
+
+  // Correctly format the suffix part: month + day of the month + full year
+  const suffix = `${date.getMonth() + 1}${date.getDate()}${date.getFullYear()}`;
+
+  // Generate the random part by concatenating the values from input fields inside "#sub-cat-attr-area"
+  let randomPart = "";
+
+  // Get all input elements inside the specified area
+  let inputs = $("#sub-cat-attr-area")[0].querySelectorAll("input");
+
+  inputs.forEach(input => {
+      let inputValue = (input.value.trim().toUpperCase()); // Make the value uppercase and trim extra spaces
+      randomPart += inputValue.substring(0, 2); // Add to the random part
+  });
+  let selects = $("#sub-cat-attr-area")[0].querySelectorAll("select");
+
+  selects.forEach(input => {
+      let inputValue = (input.value.trim().toUpperCase()); // Make the value uppercase and trim extra spaces
+      randomPart += inputValue.substring(0, 2); // Add to the random part
+      
+
+
+  });
+
+  // Validate the inputs (ensure prefix is not empty and randomPart is valid)
+  if (!prefix || !randomPart) {
+      alert("Please fill in all required fields!");
+      return;
+  }
+
+  // Calculate the remaining space for the random part and suffix
+  const maxLength = 25;
+  const prefixLength = prefix.length;
+  const suffixLength = suffix.length;
+  const availableLength = maxLength - (prefixLength + suffixLength + 2); // 2 is for the hyphens
+
+  if (availableLength <= 0) {
+      alert("Prefix and suffix are too long! Ensure they fit within the 16 character limit.");
+      return;
+  }  
+
+  // If the random part exceeds the available length, trim it
+  if (randomPart.length > availableLength) {
+      randomPart = randomPart.substring(0, availableLength);
+
+
+      // Generate the final item code format: PREFIX-RANDOMPART-SUFFIX
+      const itemCode = `${prefix}-${randomPart}-${suffix}`;
+
+      // Log the generated item code for debugging
+      console.log(itemCode);
+
+      // Display the generated item code in the specified HTML element
+      document.getElementById("item_code").textContent = itemCode;
+
+      return itemCode;
+  }
+  
+}
+
+
+
+
+
+
+
+
+
 const getRequiredAttreForSubCat = (event) => {
   // document.getElementById("attrArea").innerText = "";
   // document.getElementById("attrArea").style.display="flex";
@@ -80,7 +157,7 @@ const getRequiredAttreForSubCat = (event) => {
 
         resData.forEach((element) => {
           if (element.dropdown == "no") {
-            console.log("hell");
+            console.log("hellduiedheuideuidheui");
 
             $("#sub-cat-attr-area").append(`
                    <div>
@@ -196,17 +273,23 @@ const saveItemDataToTemp = () => {
   inputs.forEach((input, index) => {
     let attributeValue = input.value;
     attrData[input.name] = input.value;
-    if ((index > 0) & (index < 10)) {
-      itemCodeGen += "-";
-      itemCodeGen += attributeValue.substring(0, 2);
-    }
 
-    if ((index > 0) & (index < 6)) {
-      let attributeValue = input.value;
-      shortDescription += "-";
-      shortDescription += attributeValue.substring(0, 4);
-      console.log(attributeValue);
-    }
+
+
+
+    // if ((index > 0) & (index < 10)) {
+    //   itemCodeGen += "-";
+    //   itemCodeGen += attributeValue.trim().substring(0, 2);
+    // }
+
+    // if ((index > 0) & (index < 6)) {
+    //   let attributeValue = input.value;
+    //   shortDescription += "-";
+    //   shortDescription += attributeValue.trim().substring(0, 4);
+    //   console.log(attributeValue);
+    // }
+
+  
 
     console.log(`  name is  ${attributeValue} `);
   });
@@ -216,12 +299,78 @@ const saveItemDataToTemp = () => {
     attrData[select.name] = select.value;
   });
 
+
+
+let catDataInputs = document.querySelectorAll("#sub-cat-attr-area input,select")
+
+
+
+
+catDataInputs.forEach((input,index) =>{
+
+  let attributeValue = input.value;
+  attrData[input.name] = input.value;
+
+
+  attributeValue = attributeValue.toUpperCase()
+
+
+  if(index < 6){
+
+    
+    
+    if ((index > 0) & (index < 10)) {
+      itemCodeGen += "-";
+      itemCodeGen += attributeValue.trim().substring(0, 3);
+    }
+    
+    
+    
+    if ((index > 0) & (index < 6)) {
+      let attributeValue = input.value;
+      shortDescription += "-";
+      shortDescription += attributeValue.trim().substring(0, 4);
+      console.log(attributeValue);
+    }
+
+    
+    
+  }
+
+
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   let data = {
     saveItemDataToTemp: "saveItemDataToTemp",
     attrData: attrData,
   };
 
   console.log(data);
+
+  // itemCodeGen = genRateItemCode()
+
+
+
+
+
 
   attrData["itemCodeGenrated"] = itemCodeGen;
   attrData["Short_Description"] = shortDescription;

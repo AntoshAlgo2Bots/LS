@@ -33,7 +33,7 @@
     ?>
 
     <div id="create_section" class="mt-3 border border-gray-900 p-5 rounded-lg mx-5">
-        <h1 class="text-center underline text-3xl mb-3 font-bold"> Create Project Form</h1>
+        <h1 class="text-center  text-3xl mb-3 font-bold"> MRP Creation</h1>
         <form method="POST" class=" border border-gray-500 p-5 rounded-md bg-gray-300">
             <div class="border-b border-gray-900 ">
                 <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">SO
@@ -582,10 +582,10 @@
                                                 <td class="px-6 py-1 text-right">
                                                     <!-- <a onClick="issueItems(event)"
                                                         class="font-medium text-blue-600 dark:text-blue-500 underline">Submit</a> -->
-
+<!--                                                                     
                                                         <button type="button"   onClick="issueItems(event)" class="bg-white ml-4 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                                                                     Submit
-                                                                    </button>
+                                                                    </button> -->
                                                 </td>
                                             </tr>
                                 <?php

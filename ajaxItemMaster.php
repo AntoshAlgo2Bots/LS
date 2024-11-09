@@ -14,14 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         // include('./dbconnection/db.php');
         include('./dbconnection/db.php');
 
-        $sql = "SELECT * FROM requireattributeforcatname where SubcatId=$selectedSubCatId";
+        $sql = "SELECT * FROM for_office.requireattributeforcatname where SubcatId=$selectedSubCatId";
 
 
         $result = mysqli_query($con, $sql);
 
         $data = [];
 
-        $columns = "SELECT S_No,Short_Description,item_code,Item_Category,subCatId,createdBy,createdDate";
+        $columns = "SELECT S_No,item_name,createdBy,item_code,Item_Category,subCatId";
 
         if (mysqli_num_rows($result) > 0) {
 
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        // $sql = "SELECT * FROM item_master_temp ;";/
+        // $sql = "SELECT * FROM for_office.item_master_temp ;";/
 
 
 
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        $sql = "$columns from item_master_temp where SubcatId=$selectedSubCatId;";
+        $sql = "$columns from for_office.item_master_temp where SubcatId=$selectedSubCatId;";
         $result = mysqli_query($con, $sql);
 
         // echo $sql;
@@ -88,17 +88,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $selectedSubCatId = $_GET['selectedSubCatId'];
 
         // include("db.php");
-        // include('./dbconnection/db.php');
+        include('./dbconnection/db.php');
         include('./dbconnection/db.php');
 
-        $sql = "SELECT * FROM requireattributeforcatname where SubcatId=$selectedSubCatId";
+        $sql = "SELECT * FROM for_office.requireattributeforcatname where SubcatId=$selectedSubCatId";
 
 
         $result = mysqli_query($con, $sql);
 
         $data = [];
 
-        $columns = "SELECT S_No,item_code,Short_Description,Item_Category,subCatId,createdBy,createdDate    ";
+        $columns = "SELECT S_No,item_code,createdBy,item_name,Item_Category,subCatId    ";
 
         if (mysqli_num_rows($result) > 0) {
 
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        // $sql = "SELECT * FROM item_master_temp ;";/
+        // $sql = "SELECT * FROM for_office.item_master_temp ;";/
 
 
 
@@ -128,8 +128,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        $sql = "$columns from item_master_main where SubcatId=$selectedSubCatId;";
-        // $sql = "$columns from item_master_main ";
+        $sql = "$columns from for_office.item_master_main where SubcatId=$selectedSubCatId;";
+        // $sql = "$columns from for_office.item_master_main ";
         $result = mysqli_query($con, $sql);
 
         while ($row = mysqli_fetch_assoc($result)) {
@@ -262,7 +262,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $material = isset($attr["Material"]) ? $attr["Material"] : null;
         $Design = isset($attr["Design"]) ? $attr["Design"] : null;
         $Finish_type = isset($attr["finish_type"]) ? $attr["finish_type"] : null;
-        $Half_Full_Thread = isset($attr["Half_Full_Thread"]) ? $attr["Half_Full_Thread"] : null; // need to cheng with attrbute 5
+        $Half_Full_Thread = isset($attr["Half_Full_Thread"]) ? $attr["Half_Full_Thread"] : null; // need t o cheng with attrbute 5
         $Holder_Thread = isset($attr["Holder_Thread"]) ? $attr["Holder_Thread"] : null;
         $Holder_type = isset($attr["Holder_type"]) ? $attr["Holder_type"] : null;
         $Thread = isset($attr["Thread"]) ? $attr["Thread"] : null;
@@ -309,7 +309,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $piping  =  isset($attr["piping"]) ? $attr["piping"] :   null;
         $piping_color  =  isset($attr["piping_color"]) ? $attr["piping_color"] :   null;
         $acrylic_diffuser  =  isset($attr["acrylic_sheet"]) ? $attr["acrylic_sheet"] :   null;
-        $gallery_height  =  isset($attr["gallery_height"]) ? $attr["gallery_height"] :   null; //Updated By Antosh 
+        $gallery_heght  =  isset($attr["gallery_height"]) ? $attr["gallery_height"] :   null;
         $sheet =  isset($attr["sheet"]) ? $attr["sheet"] :   null;
         $sheet_color  =  isset($attr["sheet_color"]) ? $attr["sheet_color"] :   null;
         $powder_coating  =  isset($attr["Frame"]) ? $attr["Frame"] :   null;
@@ -341,7 +341,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $sql = "INSERT into item_master_temp (item_code,
         Item_Category,
-        Short_Description,
+        item_name,
         subCatId,
         Price,
         SI_unit,
@@ -394,7 +394,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         piping,
         piping_color,
         acrylic_sheet,
-        gallery_height,
+        gallery_heght,
         sheet_color,
         Frame,
         departement,
@@ -465,7 +465,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         '$piping',
         '$piping_color',
         '$acrylic_diffuser',
-        '$gallery_height',
+        '$gallery_heght',
         '$sheet_color',
         '$powder_coating',
         '$departement',
@@ -596,7 +596,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $response["success"] = true;
 
-        $sql = "SELECT subCatId FROM item_master_temp where  S_No=$id";
+        $sql = "SELECT subCatId FROM for_office.item_master_temp where  S_No=$id";
 
         
         $result  = mysqli_query($con, $sql);
@@ -608,7 +608,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         //finding all column names form require attributes table
 
-        $sql  =  "SELECT * FROM requireattributeforcatname where SubcatId =$subCatId;";
+        $sql  =  "SELECT * FROM for_office.requireattributeforcatname where SubcatId =$subCatId;";
 
 
 
@@ -635,7 +635,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        $sql = "$columns from item_master_temp a
+        $sql = "$columns from for_office.item_master_temp a
 JOIN  itemmastercategory b ON  a.Item_Category = b.categoryId
 JOIN sub_category c ON a.subCatId  = c.subCatId where S_No=$id;";
 
@@ -653,9 +653,6 @@ JOIN sub_category c ON a.subCatId  = c.subCatId where S_No=$id;";
 
             $response["error"] = "No data found";
         }
-
-        //Update By Antosh Kumar Pandey 04-11-2024 10:41
-        $tbody_data = [];
 
         while ($row = mysqli_fetch_assoc($result)) {
 
@@ -705,7 +702,7 @@ JOIN sub_category c ON a.subCatId  = c.subCatId where S_No=$id;";
 
         $response["success"] = true;
 
-        $sql = "SELECT subCatId FROM item_master_temp where   item_code='$id'";
+        $sql = "SELECT subCatId FROM for_office.item_master_temp where   item_code='$id'";
 
         $result  = mysqli_query($con, $sql);
 
@@ -718,7 +715,7 @@ JOIN sub_category c ON a.subCatId  = c.subCatId where S_No=$id;";
 
         //finding all column names form require attributes table
 
-        $sql  =  "SELECT * FROM requireattributeforcatname where SubcatId =$subCatId;";
+        $sql  =  "SELECT * FROM for_office.requireattributeforcatname where SubcatId =$subCatId;";
 
 
 
@@ -751,7 +748,7 @@ JOIN sub_category c ON a.subCatId  = c.subCatId where S_No=$id;";
 
 
 
-        $sql = "$columns from item_master_temp a
+        $sql = "$columns from for_office.item_master_temp a
 JOIN  itemmastercategory b ON  a.Item_Category = b.categoryId
 JOIN sub_category c ON a.subCatId  = c.subCatId where a.item_code ='$id';";
 
@@ -781,7 +778,7 @@ JOIN sub_category c ON a.subCatId  = c.subCatId where a.item_code ='$id';";
 
 
 
-                $sql = "SELECT * FROM requireattributeforcatname where SubcatId = $subId;";
+                $sql = "SELECT * FROM for_office.requireattributeforcatname where SubcatId = $subId;";
 
                 $result = mysqli_query($con,$sql);
 
@@ -840,7 +837,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $itemCode = isset($attr["item_code"]) ? $attr["item_code"] : null;
         // $itemCode = isset($_GET["itemCodeGenrated"]) ? $_GET["itemCodeGenrated"] : null;
         $Item_Category = isset($attr["Item_Category"]) ? $attr["Item_Category"] : null;
-        $Short_Description = isset($attr["Short_Description"]) ? $attr["Short_Description"] : null;
+        $Short_Description = isset($attr["item_name"]) ? $attr["item_name"] : null;
         $subCatId  = isset($attr["subCatId"]) ? $attr["subCatId"] : null;
         $Price  = isset($attr["Price"]) ? $attr["Price"] : null;
         $si_unit  = isset($attr["SI_unit"]) ? $attr["SI_unit"] : null;
@@ -895,7 +892,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $piping  =  isset($attr["piping"]) ? $attr["piping"] :   null;
         $piping_color  =  isset($attr["piping_color"]) ? $attr["piping_color"] :   null;
         $acrylic_sheet  =  isset($attr["acrylic_sheet"]) ? $attr["acrylic_diffuser"] :   null;
-        $gallery_height  =  isset($attr["gallery_height"]) ? $attr["gallery_height"] :   null;
+        $gallery_heght  =  isset($attr["gallery_height"]) ? $attr["gallery_height"] :   null;
         $gallery  =  isset($attr["gallery"]) ? $attr["gallery"] :   null;
         $Gallery_type  =  isset($attr["Gallery_type"]) ? $attr["Gallery_type"] :   null;
         $sheet =  isset($attr["sheet"]) ? $attr["sheet"] :   null;
@@ -905,7 +902,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $colour_temparature = isset($attr["Colour_Temparature"]) ? $attr["Colour_Temparature"] :   null;
         $Dimmable = isset($attr["Dimmable"]) ? $attr["Dimmable"] :   null;
         $Location = isset($attr["Location"]) ? $attr["Location"] :   null;
-        $Dimmeter = isset($attr["Diameter"]) ? $attr["Diameter"] :   null;
+        $Diameter = isset($attr["Diameter"]) ? $attr["Diameter"] :   null;
         $Collar = isset($attr["Collar"]) ? $attr["Collar"] :   null;
         $Socket = isset($attr["Socket"]) ? $attr["Socket"] :   null;
         $Ink_type = isset($attr["Ink_type"]) ? $attr["Ink_type"] :   null;
@@ -924,7 +921,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $itemId = $attr["S_No"];
 
 
-
+        
         // $response["acceptes data"] = $attr;
 
         ////
@@ -934,7 +931,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $sql = "INSERT into item_master_main (item_code,
         Item_Category,
-        Short_Description,
+        item_name,
         subCatId,
         Price,
         SI_unit,
@@ -990,7 +987,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Lining,
         Lining_colour,
         acrylic_sheet,
-        gallery_height,
+        gallery_heght,
         gallery,
         Gallery_type,
         sheet_color,
@@ -1005,7 +1002,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Location,
         createdBy,
         createdDate,
-        itemStatus
+        itemStatus,
+        Diameter
 
         ) 
         values ('$itemCode',
@@ -1066,7 +1064,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         '$Lining',
         '$Lining_colour',
         '$acrylic_sheet',
-        '$gallery_height',
+        '$gallery_heght',
         '$gallery',
         '$Gallery_type',
         '$sheet_color',
@@ -1081,7 +1079,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         '$Location',
         '$createdBy',
         '$createdDate',
-        '$itemStatus'
+        '$itemStatus',
+        '$Diameter'
         )";
 
 
@@ -1103,7 +1102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-                $sql = "update item_master_temp set itemStatus='Approve' where S_No= $itemId;";
+                $sql = "update for_office.item_master_temp set itemStatus='Approve' where S_No= $itemId;";
 
 
                 $result1 = mysqli_query($con, $sql);
@@ -1125,7 +1124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($itemStatus == "Reject") {
 
 
-            $sql = "update item_master_temp set itemStatus='$itemStatus' where S_No= $itemId;";
+            $sql = "update for_office.item_master_temp set itemStatus='$itemStatus' where S_No= $itemId;";
 
 
             $result1 = mysqli_query($con, $sql);

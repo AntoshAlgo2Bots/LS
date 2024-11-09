@@ -32,9 +32,9 @@
 
     ?>
 
-    <div id="create_section" class="mt-3 border border-gray-900 p-5 rounded-lg mx-5">
-        <h1 class="text-center underline text-3xl mb-3 font-bold"> Create Project Form</h1>
-        <form method="POST" class=" border border-gray-500 p-5 rounded-md bg-gray-300">
+    <div id="create_section" class="mt-3 p-5 rounded-lg mx-5">
+        <h1 class="text-center  text-3xl mb-3 font-bold"> MRP Summary Form</h1>
+        <form method="POST" class="  p-5 rounded-md bg-gray-300">
             <div class="border-b border-gray-900 ">
                 <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">SO
                     Number
@@ -50,25 +50,25 @@
                     data-tabs-active-classes="text-gray-600 text-gray-600 dark:text-gray-500 bg-gray-50 dark:text-gray-500 border-gray-600 dark:border-gray-500"
                     data-tabs-inactive-classes="dark:border-transparent text-gray-500 text-gray-600 bg-gray-200 dark:text-gray-400 border-gray-100 border-gray-300 dark:border-gray-700 dark:text-gray-300"
                     role="tablist">
-                    <li class="me-2" role="presentation">
+                    <!-- <li class="me-2" role="presentation">
                         <button
                             class="inline-block py-3 px-5 border-t border-r focus:outline-none border-l dark:hover:bg-gray-50 border-gray-500 rounded-t-lg"
                             id="profile-styled-tab" data-tabs-target="#styled-profile" type="button" role="tab"
                             aria-controls="profile" aria-selected="false">Drawing Item</button>
-                    </li>
-                    <li class="me-2" role="presentation">
+                    </li> -->
+                    <!-- <li class="me-2" role="presentation">
                         <button
                             class="inline-block py-3 px-5 border-t border-r focus:outline-none border-l border-gray-500 rounded-t-lg"
                             id="dashboard-styled-tab" data-tabs-target="#styled-sample" type="button" role="tab"
                             aria-controls="dashboard" aria-selected="false">Sample Item</button>
-                    </li>
+                    </li> -->
                     <li class="me-2" role="presentation">
                         <button
                             class="inline-block py-3 px-5 border-t border-r focus:outline-none border-l border-gray-500 rounded-t-lg"
                             id="dashboard-styled-tab" data-tabs-target="#issue_item" type="button" role="tab"
-                            aria-controls="dashboard" aria-selected="true">Issue Item</button>
+                            aria-controls="dashboard" aria-selected="true">MRP Summary form</button>
                     </li>
-                    <li class="me-2" role="presentation">
+                    <!-- <li class="me-2" role="presentation">
                         <button
                             class="inline-block py-3 px-5 border-t border-r focus:outline-none border-l border-gray-500 rounded-t-lg"
                             id="settings-styled-tab" data-tabs-target="#styled-settings" type="button" role="tab"
@@ -103,7 +103,7 @@
                             class="inline-block py-3 px-5 border-t border-r focus:outline-none border-l border-gray-500 rounded-t-lg"
                             id="contacts-styled-tab" data-tabs-target="#styled-installation" type="button" role="tab"
                             aria-controls="contacts" aria-selected="false">Installation</button>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div id="default-styled-tab-content">
@@ -361,7 +361,14 @@
                                 class="text-xs text-gray-700 whites uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
-                                        S no
+                                        S .NO
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        SO number
+                                    </th>
+
+                                    <th scope="col" class="px-6 py-3">
+                                        Line number
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Item Name
@@ -369,19 +376,23 @@
                                     <th scope="col" class="px-6 py-3">
                                         Sale quantity
                                     </th>
+
                                     <th scope="col" class="px-6 py-3">
                                         Need quantity
                                     </th>
-                                   
+
                                     <th scope="col" class="px-6 py-3">
                                         Quantity_in_store
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        PO Status's
+                                    </th>
+                                    <!-- <th scope="col" class="px-6 py-3">
                                         Quantity
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    </th> -->
+                                    <!-- <th scope="col" class="px-6 py-3">
                                         Issue Date
-                                    </th>
+                                    </th> -->
                                     <th scope="col" class="px-6 py-3">
                                         Remarks if any
                                     </th>
@@ -399,201 +410,331 @@
 
                                 <?php
 
-                                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
-                                    $so_number = $_POST['so_number'];
+                                // $so_number = $_POST['so_number'];
 
-                                    // echo "so Number" . $so_number;
+                                // echo "so Number" . $so_number;
 
-                                    $sql = "   
+                                $sql = "   
                                                             SELECT *,item_code,qty- case 
-                                                         when     (SELECT count(*) FROM mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  ) > 0   
-                                                         then  (SELECT count(*) FROM mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  )
+                                                         when     (SELECT count(*) FROM for_office.mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  ) > 0   
+                                                         then  (SELECT count(*) FROM for_office.mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  )
                                                           else 0
-                                                          end as total_qty FROM sale_order_items_lines a where so_number=$so_number;
+                                                          end as total_qty FROM for_office.sale_order_items_lines a ;
                                                             ";
 
 
+                                if (isset($_POST['so_number'])) {
+
+                                    $so_number_post = $_POST['so_number'];
 
 
-                                                            // echo $sql;
-
-                                    $result = mysqli_query($con, $sql);
-
-                                    if (mysqli_num_rows($result) > 0) {
-
-
-
-
-
-                                        while ($row = mysqli_fetch_assoc($result)) {
-
-
-
-
-
-
-                                            $item_code = $row['item_code'];
-                                            $available_qty = 0;
+                                    $sql = "   
+                                                                SELECT *,item_code,qty- case 
+                                                             when     (SELECT count(*) FROM for_office.mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  ) > 0   
+                                                             then  (SELECT count(*) FROM for_office.mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  )
+                                                              else 0
+                                                              end as total_qty FROM for_office.sale_order_items_lines a 
+                                                              where a.so_number = $so_number_post
+                                                                ";
+                                }
 
 
 
-                                            $query_check_available_qty = "
+
+                                $result = mysqli_query($con, $sql);
+
+                                if (mysqli_num_rows($result) > 0) {
+
+
+
+
+
+
+                                    $i = 1;
+
+                                    while ($row = mysqli_fetch_assoc($result)) {
+
+                                        // var_dump($row);
+
+
+
+
+
+
+                                        $item_code = $row['item_code'];
+                                        $available_qty = 0;
+
+
+
+                                        $query_check_available_qty = "
                                                             
-                                                            SELECT item_code,(SELECT count(*) FROM mtl_serial_number where item_code = $item_code    group by item_code  ) as avilablle_serials,
+                                                            SELECT item_code,(SELECT count(*) FROM for_office.mtl_serial_number where item_code = $item_code    group by item_code  ) as avilablle_serials,
                                                             sum(item_qty)-      
                                                             case 
-                                                         when     (SELECT count(*) FROM mtl_serial_number where item_code = $item_code  and status='no' group by item_code  ) > 0   
-                                                         then  (SELECT count(*) FROM mtl_serial_number where item_code = $item_code  and status='no' group by item_code  )
+                                                         when     (SELECT count(*) FROM for_office.mtl_serial_number where item_code = $item_code  and status='no' group by item_code  ) > 0   
+                                                         then  (SELECT count(*) FROM for_office.mtl_serial_number where item_code = $item_code  and status='no' group by item_code  )
                                                           else 0
                                                           end
                                                           
                                                             as available_qty 
                                                             
                                                             
-                                                            FROM mtl_inventory_transactions where item_code='El---lo-al-El-Bu--20-20'  group by item_code ;";
+                                                            FROM for_office.mtl_inventory_transactions where item_code='El---lo-al-El-Bu--20-20'  group by item_code ;";
 
-                                            $sql_check_quantity = mysqli_query($con, "SELECT item_code,sum(item_qty) as available_qty FROM mtl_inventory_transactions where item_code='$item_code'  group by item_code;");
+                                        $sql_check_quantity = mysqli_query($con, "SELECT item_code,sum(item_qty) as available_qty FROM for_office.mtl_inventory_transactions where item_code='$item_code'  group by item_code;");
 
-                                            if (mysqli_num_rows($sql_check_quantity) > 0) {
+                                        if (mysqli_num_rows($sql_check_quantity) > 0) {
 
-                                                $rs_1 = mysqli_fetch_assoc($sql_check_quantity);
-                                                // var_dump($rs_1);
-                                                $available_qty = $rs_1['available_qty'];
+                                            $rs_1 = mysqli_fetch_assoc($sql_check_quantity);
+                                            // var_dump($rs_1);
+                                            $available_qty = $rs_1['available_qty'];
 
-                                                // echo $item_code;
-                                                // echo "<br>";
+                                            // echo $item_code;
+                                            // echo "<br>";
 
 
-                                                $n_qty=$row['total_qty']-$available_qty ;
+                                            $n_qty = $row['total_qty'] - $available_qty;
 
+
+
+
+
+
+
+
+                                            // echo $n_qty;
+
+
+
+
+
+                                            // if ($n_qty > 0) {
+                                            //     echo $n_qty . "<br>";
+                                            // }
+
+
+
+                                            $item_code = $row['item_code'];
+                                            $rs_qty = 0;
+                                            $so_number_1 = $row['so_number'];
+                                            $sql_for_check_qty = "SELECT b.item_code, SUM(b.quantity) as po_created
+                                                    FROM for_office.purchase_order_header a JOIN for_office.purchase_order_line b ON a.PO_number = b.po_number
+                                                    WHERE a.so_id = $so_number_1 and b.item_code ='$item_code' GROUP BY b.item_code;";
+
+
+                                            $result_rs = mysqli_query($con, $sql_for_check_qty);
+                                            if (mysqli_num_rows($result_rs)  > 0) {
+
+                                                $rs_qty = mysqli_fetch_assoc($result_rs);
+
+                                                $rs_qty = (int) $rs_qty['po_created'];
                                             }
 
+
+
+                                            $needtocreatpoqty = $row['total_qty'] - $available_qty - $rs_qty;
+
+
+
+
+
+
+                                            if ($available_qty < $row['qty']) {
+
+
+                                                if ($row['total_qty'] > $rs_qty) {
+
+
+                                                    // echo $needtocreatpoqty;
+
+                                                    if ($needtocreatpoqty > 0) {
+                                                        // echo "<br>need qty".$row['total_qty']-$available_qty-$rs_qty;
+                                                        // echo '<button type="button" so_id="' . (int) $row['so_number'] . '" nqty="' . (int) $row['total_qty'] - $available_qty - $rs_qty . '"  item_code="' . $row['item_code'] . '"  name="create-po" class="bg-white ml-4 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                                                        // Create po
+                                                        // </button>';
+
+
                                 ?>
-                                            <tr
-                                                main-id-so="<?php echo  $row['so_number'] ?>"
-                                                data-line-id="<?php echo  $row['id'] ?>"
-                                                class="bg-white border-b dark:bg-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-600">
-                                                <th scope="row"
-                                                    class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    <?php echo $row['id']  ?>
-                                                </th>
-                                                <th scope="row"
-                                                    class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    <?php echo $row['item_code']  ?>
-                                                </th>
-                                                <th scope="row"
-                                                    name=""
-                                                    class="px-6 py-1  font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    <?php echo $row['qty']  ?>
-                                                </th>
-                                                <th scope="row"
-                                                    name="need_qty_area"
-                                                    class="px-6 py-1  font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    <?php echo $row['total_qty']  ?>
-                                                </th>
-                                              
-                                                <th scope="row"
-                                                    name="avaliable_qty_area"
-                                                    class="px-6 py-1 <?php echo ($available_qty < $row['qty']) ? "text-red-700" : "text-green-700"  ?> font-medium  whitespace-nowrap dark:text-white">
-                                                    <?php echo $available_qty;
-                                                    
-                                                    
-                                                    
-                                                    if($available_qty < $row['qty']){
+                                                        <tr
+                                                            main-id-so="<?php echo  $row['so_number'] ?>"
+                                                            data-line-id="<?php echo  $row['id'] ?>"
+                                                            class="bg-white border-b dark:bg-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-600">
+                                                            <th scope="row"
+                                                                name=""
+                                                                class="px-6 py-1  font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                <?php echo $i;
+                                                                $i++; ?>
+                                                            </th>
+                                                            <th scope="row"
+                                                                name=""
+                                                                class="px-6 py-1  font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                <?php echo $row['so_number']  ?>
+                                                            </th>
+                                                            <th scope="row"
+                                                                class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                <?php echo $row['id']  ?>
+                                                            </th>
+                                                            <th scope="row"
+                                                                class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                <?php echo $row['item_code']  ?>
+                                                            </th>
+                                                            <th scope="row"
+                                                                name=""
+                                                                class="px-6 py-1  font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                <?php echo $row['qty']  ?>
+                                                            </th>
 
-                                                        $item_code = $row['item_code'];
-                                                        $rs_qty = 0;
-                                                        $so_number_1 = $row['so_number'];
-                                                        $sql_for_check_qty = "SELECT b.item_code, SUM(b.quantity) as po_created
-                                                            FROM purchase_order_header a JOIN purchase_order_line b ON a.PO_number = b.po_number
-                                                            WHERE a.so_id = $so_number_1 and b.item_code ='$item_code' GROUP BY b.item_code;";
+                                                            <th scope="row"
+                                                                name="need_qty_area"
+                                                                class="px-6 py-1  font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                <?php echo $row['total_qty']  ?>
+                                                            </th>
 
-
-                                                        $result_rs = mysqli_query($con,$sql_for_check_qty);
-                                                        if(mysqli_num_rows($result_rs)  > 0){
-
-                                                            $rs_qty= mysqli_fetch_assoc($result_rs);
-                                                            
-                                                            $rs_qty =(int) $rs_qty['po_created']; 
-                                                        }
-                                                        
+                                                            <th scope="row"
+                                                                name="avaliable_qty_area"
+                                                                class="px-6 py-1 <?php echo ($available_qty < $row['qty']) ? "text-red-700" : "text-green-700"  ?> font-medium  whitespace-nowrap dark:text-white">
+                                                                <?php echo $available_qty;
 
 
-                                                        $needtocreatpoqty = $row['total_qty']-$available_qty-$rs_qty;
 
-                                                            if($row['total_qty']>$rs_qty){
+                                                                if ($available_qty < $row['qty']) {
 
 
-                                                                
-                                                                if($needtocreatpoqty>0){
-                                                                    // echo "<br>need qty".$row['total_qty']-$available_qty-$rs_qty;
-                                                                    echo '<button type="button" so_id="'.(int) $row['so_number'] .'" nqty="'.(int) $row['total_qty']-$available_qty-$rs_qty.'"  item_code="'. $row['item_code'] .'"  name="create-po" class="bg-white ml-4 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                                                                    if ($row['total_qty'] > $rs_qty) {
+
+
+                                                                        // echo $needtocreatpoqty;
+
+                                                                        if ($needtocreatpoqty > 0) {
+                                                                            // echo "<br>need qty".$row['total_qty']-$available_qty-$rs_qty;
+                                                                            echo '<button type="button" so_id="' . (int) $row['so_number'] . '" nqty="' . (int) $row['total_qty'] - $available_qty - $rs_qty . '"  item_code="' . $row['item_code'] . '"  name="create-po" class="bg-white ml-4 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                                                                     Create po
                                                                     </button>';
-                                                                    
+                                                                        }
+                                                                    }
+
+                                                                    if ($rs_qty > 0) {
+
+                                                                        echo '<p class="ml-2 text-xs">' . $rs_qty . ' quantity  already requested</p>';
+                                                                    }
+
+                                                                    // if ($needtocreatpoqty > 0) {
+                                                                    //     echo "Need to remove";
+                                                                    // }
                                                                 }
-                                                                
-
-                                                            }
-                                                        
-                                                            if($rs_qty > 0){
-
-                                                                echo '<p class="ml-2 text-xs">'.$rs_qty.' quantity  already requested</p>';
-                                                            }
-                                                        }
 
 
 
-                                                    
-                                                    ?>
-
-                                                
+                                                                ?>
 
 
-                                                </th>
-                                                <td class="px-6 py-1 flex flex-col">
-                                                    <input type="text" name="need_qty"
-                                                        value="<?php if ((int) $row['total_qty'] <= (int) $available_qty) {
-                                                                    echo $row['total_qty'];
-                                                                } else {
-                                                                    echo $available_qty;
-                                                                }  ?>"
-                                                        placeholder="please enter quantity"
-                                                        readonly
-                                                        oninput="checkInputValue( <?php echo $available_qty ?>,event)"
-                                                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280]     h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
 
 
-                                                    <a onClick="setSerialData(<?php echo $row['so_number'] ?>,<?php echo $row['id'] ?>)"
-                                                        class="font-medium text-blue-600 cursor-pointer dark:text-blue-500 underline">View allocated items</a>
+                                                            </th>
+                                                            <td class="px-6 py-1 ">
 
-                                                </td>
-                                                <td class="px-6 py-1">
-                                                    <input type="date" name=""
-                                                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                                                </td>
-                                                <td class="px-6 py-1">
-                                                    <input type="text" name="remarks" placeholder="remarks"
 
-                                                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                                                </td>
-                                                <td class="px-6 py-1 text-right">
-                                                    <!-- <a onClick="issueItems(event)"
-                                                        class="font-medium text-blue-600 dark:text-blue-500 underline">Submit</a> -->
+                                                                <table>
 
-                                                        <button type="button"   onClick="issueItems(event)" class="bg-white ml-4 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="px-6 py-1 ">po_number</th>
+                                                                            <th class="px-6 py-1 ">status</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+
+
+                                                                        <?php
+
+
+
+$so_number = $row['so_number'];
+$item_code = $row['item_code'];
+$sql_for_check_p = "select *,a.status as po_status from for_office.purchase_order_header a join for_office.purchase_order_line b ON a.PO_number=b.PO_number   where a.so_id=$so_number and b.item_code = '$item_code' ";
+
+
+                                                                        $result_for_check_p = mysqli_query($con, $sql_for_check_p);
+
+                                                                        
+                                                                        while ($row_po_check_001 = mysqli_fetch_array($result_for_check_p)){
+
+                                                                        
+
+?>
+
+
+
+
+
+                                                                    <tr>
+                                                                            <td class="px-6 py-1 ">#<?php  echo $row_po_check_001['PO_number']; ?></td>
+                                                                            <td class="px-6 py-1 <?php echo ($row_po_check_001['po_status'] =='inProcess') ? "text-red-700" : "text-green-700"  ?> "><?php  echo $row_po_check_001['po_status']; ?></td>
+                                                                        </tr>
+
+
+                                                                        <?php
+                                                    }
+                                                                        ?>
+
+                                                                    </tbody>
+
+                                                                </table>
+
+
+
+                                                            </td>
+                                                            <!-- <td class="px-6 py-1 flex flex-col">
+                                                                <input type="text" name="need_qty"
+                                                                    value="<?php if ((int) $row['total_qty'] <= (int) $available_qty) {
+                                                                                echo $row['total_qty'];
+                                                                            } else {
+                                                                                echo $available_qty;
+                                                                            }  ?>"
+                                                                    placeholder="please enter quantity"
+                                                                    readonly
+                                                                    oninput="checkInputValue( <?php echo $available_qty ?>,event)"
+                                                                    class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280]     h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+
+
+                                                                <a onClick="setSerialData(<?php echo $row['so_number'] ?>,<?php echo $row['id'] ?>)"
+                                                                    class="font-medium text-blue-600 cursor-pointer dark:text-blue-500 underline">View allocated items</a>
+
+                                                            </td> -->
+                                                            <!-- <td class="px-6 py-1">
+                                                                <input type="date" name=""
+                                                                    class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                                            </td> -->
+                                                            <td class="px-6 py-1">
+                                                                <input type="text" name="remarks" placeholder="remarks"
+
+                                                                    class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                                            </td>
+                                                            <!-- <td class="px-6 py-1 text-right">
+                                                                <a onClick="issueItems(event)"
+                                                        class="font-medium text-blue-600 dark:text-blue-500 underline">Submit</a>
+
+                                                                <button type="button" onClick="issueItems(event)" class="bg-white ml-4 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                                                                     Submit
-                                                                    </button>
-                                                </td>
-                                            </tr>
+                                                                </button>
+                                                            </td> -->
+                                                        </tr>
                                 <?php
+
+
+                                                    }
+                                                }
+                                            }
                                         }
-                                    } else {
-                                        echo "no data found";
                                     }
+                                } else {
+                                    echo "no data found";
                                 }
+                                // }
 
 
                                 ?>
@@ -661,7 +802,7 @@
                         <tbody>
                             <tr
                                 class="bg-white border-b dark:bg-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-600">
-                               <th></th>
+                                <th></th>
                                 <th scope="row"
                                     class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <input type="text" name=""
@@ -1562,7 +1703,7 @@
                     <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                
+
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 S.No

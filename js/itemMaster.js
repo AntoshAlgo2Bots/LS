@@ -76,6 +76,7 @@ const addRequireField = (data) => {
 
         var div = document.createElement("div")
         div.classList.add("mb-4", "md:mr-2", "max-w-1", "md:mb-0")
+        console.log("heddededello");
 
         var lable = document.createElement("lable")
         lable.classList.add("block", "mb-2", "text-sm", "name", "font-bold", "text-gray-700", "dark:text-white")
@@ -549,9 +550,8 @@ const shoeOrHideattr = (event) => {
 
 
 
-// Update By Antosh Kumar Pandey 22-10-24 time 17:32
-// let currentItemStatus = "Save";
-let currentItemStatus = "Submit";
+
+let currentItemStatus = "Save";
 
 
 
@@ -564,12 +564,11 @@ if (document.getElementById("itemSubmit")) {
     })
 
 
-    // Update By Antosh Kumar Pandey 22-10-24 time 17:33
-    // document.getElementById("itemSave").addEventListener("click", () => {
+    document.getElementById("itemSave").addEventListener("click", () => {
 
-    //     currentItemStatus = "SAVE";
-    //     console.log(currentItemStatus);
-    // })
+        currentItemStatus = "SAVE";
+        console.log(currentItemStatus);
+    })
 
 }
 
@@ -757,10 +756,7 @@ const submitItemInfoToDb = async () => {
 
                 if (data.success) {
 
-
-                    // Update By Antosh Kumar Pandey 22-10-24 time 17:34
-                    // currentItemStatus == "Save"
-                    if (currentItemStatus == "Submit") {
+                    if (currentItemStatus == "SAVE") {
                         alert("data saved")
 
                         document.getElementById("recordId").innerText = `Rcord Id : ${data.recordId} .`
@@ -926,9 +922,7 @@ const sendDataToItemMasterMain = (event) => {
 
 
             else if (!data.success) {
-                //Update by Antosh Kumar Pandey date: 22-10-2024 time: 12:05
-                // alert("Please try again!")
-                alert("Please Choose Approved / Reject Options")
+                alert("please try again")
             }
 
 
@@ -1087,9 +1081,7 @@ const setTableFormSubCat = (data) => {
                 option.value = "SUBMIT"
                 option.innerText = "SUBMIT"
                 input.appendChild(option)
-                // Update By Antosh Kumar Pandey 22-10-24 time 17:32
-                // if (element[mainData] === "SUBMIT") option.selected = true;
-                if (element[mainData] === "SUBMIT") option.selected = false;
+                if (element[mainData] === "SUBMIT") option.selected = true;
 
 
                 var option2 = document.createElement("option")
@@ -1105,13 +1097,11 @@ const setTableFormSubCat = (data) => {
                 input.appendChild(option3)
                 if (element[mainData] === "Reject") option3.selected = true;
 
-
-                // Update By Antosh Kumar Pandey 22-10-24 time 17:32
-                // var option4 = document.createElement("option")
-                // option4.value = "SAVE"
-                // option4.innerText = "SAVE"
-                // input.appendChild(option4)
-                // if (element[mainData] === "SAVE") option4.selected = true;
+                var option4 = document.createElement("option")
+                option4.value = "SAVE"
+                option4.innerText = "SAVE"
+                input.appendChild(option4)
+                if (element[mainData] === "SAVE") option4.selected = true;
 
 
 
@@ -1149,11 +1139,12 @@ const setTableFormSubCat = (data) => {
 
         tr.appendChild(td)
 
-        if (element.itemStatus != "Approve`" ) {
-            tr.appendChild(btn)
+        if (element.itemStatus != "Approve" ) {
+           console.log("this is approce item");  tr.appendChild(btn)
         }
         document.getElementById("dataBodyTd").appendChild(tr);
 
+        console.log("Diej");
 
     })
 
