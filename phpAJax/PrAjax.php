@@ -116,8 +116,8 @@ if (isset($_POST['bom_creation_form'])) {
     foreach ($inputs_data as $key => $value) {
 
 
-        // $user = $_SESSION['username'];
-        $user = 'admin';
+        $user = $_SESSION['username'];
+        // $user = 'admin';
         $datetime = date('Y-m-d');
         // $requisition_type = $value['requisition_type'];
         $so_number = $value['so_number'];

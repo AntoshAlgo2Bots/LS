@@ -79,7 +79,7 @@ function subHeadSelect() {
         document.getElementById('rate').disabled = true;
         document.getElementById('rate').placeholder = "";
         document.getElementById('rate').value = "";
-        document.getElementById('debit_amt_field').value = "1201";
+        document.getElementById('debit_amt_field').value = "";
     }
 }
 

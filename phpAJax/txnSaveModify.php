@@ -16,11 +16,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $site = $con->real_escape_string($row['site']);
         $main_head = $con->real_escape_string($row['main_head']);
         $sub_head = $con->real_escape_string($row['sub_head']);
+        $from = $con->real_escape_string($row['from']);
+        $to = $con->real_escape_string($row['to']);
+        $startKm = $con->real_escape_string($row['startKm']);
+        $endKm = $con->real_escape_string($row['endKm']);
+        $totalKm = $con->real_escape_string($row['totalKm']);
+        $rate = $con->real_escape_string($row['rate']);
         $bill_cheque_no = $con->real_escape_string($row['bill_cheque_no']);
         $invoice_date = $con->real_escape_string($row['invoice_date']);
         $invoice_no = $con->real_escape_string($row['invoice_no']);
         $gst_no = $con->real_escape_string($row['gst_no']);
         $remarks = $con->real_escape_string($row['remarks']);
+
+        $totalKm = $endKm - $startKm;
+
+        $debit_amt = $totalKm * $rate;
 
         // Update the specific transaction
         $sql_update = "UPDATE txn_book SET 
@@ -32,6 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                           site = '$site', 
                           main_head = '$main_head', 
                           sub_head = '$sub_head', 
+                          `from` = '$from', 
+                          `to`= '$to', 
+                          startKm = '$startKm', 
+                          endKm = '$endKm', 
+                          totalKm = '$totalKm', 
+                          rate = '$rate', 
                           bill_cheque_no = '$bill_cheque_no', 
                           invoice_date = '$invoice_date', 
                           invoice_no = '$invoice_no', 

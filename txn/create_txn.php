@@ -499,7 +499,7 @@ if ($result3->num_rows > 0) {
                                 </th>
                                 <td scope="row" class="px-6 py-4">
                                     <input type="text" name="transaction_no" id="" disabled
-                                        value=" <?php echo $row['transaction_no'] ?>" class="w-20">
+                                        value="<?php echo $row['transaction_no'] ?>" class="w-20">
                                 </td>
                                 <td class="px-6 py-4">
                                     <input type="text" name="transaction_date" id=""
@@ -524,11 +524,11 @@ if ($result3->num_rows > 0) {
                                 </td>
                                 <td class="px-6 py-4">
                                     <input type="text" name="particuler_to" id=""
-                                        value=" <?php echo $row['particuler_to'] ?>">
+                                        value="<?php echo $row['particuler_to'] ?>">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="site" id="" value=" <?php echo $row['site'] ?>">
+                                    <input type="text" name="site" id="" value="<?php echo $row['site'] ?>">
 
                                 </td>
                                 <td class="px-6 py-4">
@@ -537,46 +537,46 @@ if ($result3->num_rows > 0) {
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['sub_head'] ?>"
+                                    <input type="text" name="sub_head" id="" value="<?php echo $row['sub_head'] ?>"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['from'] ?>"
+                                    <input type="text" name="from" id="" value="<?php echo $row['from'] ?>"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['to'] ?>" class="w-40">
+                                    <input type="text" name="to" id="" value="<?php echo $row['to'] ?>" class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['startKm'] ?>"
+                                    <input type="text" name="startKm" id="startKm" value="<?php echo $row['startKm'] ?>"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['endKm'] ?>"
+                                    <input type="text" name="endKm" id="endKm" value="<?php echo $row['endKm'] ?>"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['totalKm'] ?>"
+                                    <input type="text" name="totalKm" id="" value="<?php echo $row['totalKm'] ?>" readonly
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['rate'] ?>"
+                                    <input type="text" name="rate" id="" value="<?php echo $row['rate'] ?>"
                                         class="w-40">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="sub_head" id="" value=" <?php echo $row['currentUser'] ?>"
+                                    <input type="text" name="currentUser" id="" value="<?php echo $row['currentUser'] ?>"
                                         disabled class="w-32">
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="" id="" value=" <?php echo $row['currentTime'] ?>" disabled>
+                                    <input type="text" name="" id="" value="<?php echo $row['currentTime'] ?>" disabled>
 
                                 </td>
                                 <td class="px-6 py-4">
@@ -594,7 +594,7 @@ if ($result3->num_rows > 0) {
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="gst_no" id="" value=" <?php echo $row['gst_no'] ?>"
+                                    <input type="text" name="gst_no" id="" value="<?php echo $row['gst_no'] ?>"
                                         class="w-28">
 
                                 </td>
@@ -603,7 +603,7 @@ if ($result3->num_rows > 0) {
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="" id="" value=" <?php echo $row['form_status'] ?>" class="w-20"
+                                    <input type="text" name="" id="" value="<?php echo $row['form_status'] ?>" class="w-20"
                                         disabled>
                                 </td>
                                 <!-- <td class="px-6 py-4">
@@ -693,6 +693,12 @@ if ($result3->num_rows > 0) {
                             site: row.find('input[name="site"]').val() || '',
                             main_head: row.find('input[name="main_head"]').val() || '',
                             sub_head: row.find('input[name="sub_head"]').val() || '',
+                            from: row.find('input[name="from"]').val() || '',
+                            to: row.find('input[name="to"]').val() || '',
+                            startKm: row.find('input[name="startKm"]').val() || '',
+                            endKm: row.find('input[name="endKm"]').val() || '',
+                            totalKm: row.find('input[name="totalKm"]').val() || '',
+                            rate: row.find('input[name="rate"]').val() || '',
                             bill_cheque_no: row.find('input[name="bill_cheque_no"]').val() || '',
                             invoice_date: row.find('input[name="invoice_date"]').val() || '',
                             invoice_no: row.find('input[name="invoice_no"]').val() || '',
@@ -706,7 +712,7 @@ if ($result3->num_rows > 0) {
 
                 if (checkedRowsData.length > 0) {
                     $.ajax({
-                        url: '../phpAJax/txnSaveModify.php', // Replace with your actual PHP script
+                        url: '../phpAjax/txnSaveModify.php', // Replace with your actual PHP script
                         type: 'POST',
                         data: { rows: checkedRowsData },
                         success: function (response) {

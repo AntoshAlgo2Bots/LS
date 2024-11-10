@@ -216,6 +216,54 @@
                                 <div>
 
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                        From :
+                                    </label>
+                                    <input type="text" id="from" name="from" disabled
+                                        class="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm w-56 shadow focus:outline-none focus:ring-1 ease-linear transition-all duration-150">
+                                </div>
+                                <div>
+
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                        To :
+                                    </label>
+                                    <input type="text" id="to" name="to" disabled
+                                        class="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm w-56 shadow focus:outline-none focus:ring-1 ease-linear transition-all duration-150">
+                                </div>
+                                <div>
+
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                        Start Km :
+                                    </label>
+                                    <input type="text" id="startKm" name="startKm" disabled
+                                        class="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm w-56 shadow focus:outline-none focus:ring-1 ease-linear transition-all duration-150">
+                                </div>
+                                <div>
+
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                        End Km :
+                                    </label>
+                                    <input type="text" id="endKm" name="endKm" disabled
+                                        class="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm w-56 shadow focus:outline-none focus:ring-1 ease-linear transition-all duration-150">
+                                </div>
+                                <div>
+
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                        Total Km :
+                                    </label>
+                                    <input type="text" id="totalKm" name="totalKm" disabled
+                                        class="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm w-56 shadow focus:outline-none focus:ring-1 ease-linear transition-all duration-150">
+                                </div>
+                                <div>
+
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                        Rate :
+                                    </label>
+                                    <input type="text" id="rate" name="rate" disabled
+                                        class="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm w-56 shadow focus:outline-none focus:ring-1 ease-linear transition-all duration-150">
+                                </div>
+                                <div>
+
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                         Creted By :
                                     </label>
                                     <input type="text" id="created_by" name="created_by" disabled

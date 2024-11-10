@@ -8,7 +8,7 @@ date_default_timezone_set("Asia/Kolkata");
 include('./dbconnection/db.php');
 
 
-$sql = "SELECT * FROM item_master_temp where itemStatus = 'Submit' or itemStatus = 'Save'  order by S_No DESC; ";
+$sql = "SELECT * FROM item_master_temp where itemStatus = 'inRunning' order by S_No DESC; ";
 
 
 
@@ -86,7 +86,7 @@ $i = 1;
                     <label for="password"
                         class="block  w-40 mb-2 font-medium text-xs font-medium text-gray-900 dark:text-white">Current
                         date and time : </label>
-                    <?php echo date('Y-m-d h:i:s') ?>
+                    <?php echo date('d-m-Y h:i:s') ?>
                 </div>
                 <!-- <button type="text" onclick="searchPoInGrnFor()"
                     class="text-white border border-blue-700 bg-blue-800 focus:ring-4 mb-3 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs px-5 py-2.5 text-center me-2 mb-2 font-medium dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Search
@@ -159,24 +159,27 @@ $i = 1;
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
-                                                Item Description
+                                                Item Type
                                             </th>
 
                                             <th scope="col"
                                                 class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
                                                 Item Name
                                             </th>
-                                            <!-- <th scope="col"
+                                            <th scope="col"
                                                 class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
-                                                bill to
-                                            </th> -->
+                                                Created By
+                                            </th>
                                             <!-- <th scope="col"
                                                 class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
                                                 ship to</th> -->
-                                            <th scope="col"
+                                                <th scope="col"
                                                 class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
                                                 status</th>
-
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                    Image Preview</th>
+                                                
 
 
                                         </tr>
@@ -211,7 +214,7 @@ $i = 1;
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                     <input type="txt" id="input-email-label" name="item_code"
                                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                                        placeholder=1 value="<?php echo $row['item_code'] ?>" disabled>
+                                                        placeholder=1 value="<?php echo $row['item_code'] ?>" readonly>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                     <input type="txt" id="input-email-label" name="item_category"
@@ -222,23 +225,23 @@ $i = 1;
                                                     <input type="txt" id="input-email-label" name="short_description"
                                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                         placeholder="item_code"
-                                                        value="<?php echo $row['Short_Description'] ?>" disabled>
+                                                        value="<?php echo $row['item_type'] ?>" disabled>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                     <input type="txt" id="input-email-label" name="item_name"
                                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                         placeholder="Item name" value="<?php echo $row['item_name'] ?>"
-                                                        disabled>
+                                                        readonly>
                                                 </td>
 
-                                                <!-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"
                                                     disabled>
                                                     <input type="txt" id="input-email-label" name="Qty"
                                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:
                                                 inter-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                         placeholder="Quantity"
-                                                        value="<?php echo $row['sub_category'] ?>" disabled>
-                                                </td> -->
+                                                        value="<?php echo $row['createdBy'] ?>" disabled>
+                                                </td>
                                                 <!-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                     <input type="txt" id="input-email-label" name="total_price" disabled
                                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
@@ -246,11 +249,16 @@ $i = 1;
                                                 </td> -->
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                                                     <input type="txt" id="input-email-label" name="need_by_date"
-                                                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                                        placeholder="need_by_date" value="<?php echo $row['itemStatus'] ?>"
-                                                        disabled>
+                                                    class="py-3 px-4 block w-24 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                                    placeholder="need_by_date" value="<?php echo $row['itemStatus'] ?>"
+                                                    disabled>
                                                 </td>
-
+                                                <td class="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                                                <img src="<?php echo htmlspecialchars('images/' . $row['imagePath']); ?>" 
+                                                alt="Image"
+                                                    class="py-3 px-2 block w-72 border-gray-200 rounded-lg dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                                </td>
+                                                
 
 
 

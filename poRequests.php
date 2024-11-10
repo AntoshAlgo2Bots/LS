@@ -5,6 +5,8 @@ include("./navForLogged.php");
 // include('./db.php');
 include('./dbconnection/db.php');
 
+date_default_timezone_set("Asia/Kolkata");
+
 
 $sql = "SELECT * FROM for_office.purchase_order_header  where status = 'inProcess'  order by PO_number DESC; ";
 
@@ -84,7 +86,7 @@ $i = 1;
                     <label for="password"
                         class="block  w-40 mb-2 font-medium text-xs font-medium text-gray-900 dark:text-white">Current
                         date and time : </label>
-                    <?php echo date('Y-m-d h:i:s') ?>
+                    <?php echo date('d-m-Y h:i:s') ?>
                 </div>
                 <!-- <button type="text" onclick="searchPoInGrnFor()"
                     class="text-white border border-blue-700 bg-blue-800 focus:ring-4 mb-3 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs px-5 py-2.5 text-center me-2 mb-2 font-medium dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Search

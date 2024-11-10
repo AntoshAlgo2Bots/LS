@@ -1,4 +1,7 @@
+<?php include("./navForLogged.php"); ?>
 <?php
+
+
 include('./dbconnection/db.php');
 
 $query = "SELECT department_name FROM requisition_table WHERE department_name IS NOT NULL AND department_name != ''";
@@ -280,7 +283,7 @@ if ($result1->num_rows > 0) {
                                     class="text-white border border-blue-700 bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs px-5 py-2.5 text-center me-2 mb-2 font-bold dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Clear
                                     Form</button>
                                 <!--  -->
-                                <button type="submit" onclick="createdBomb()" id="po-save-btn"
+                                <button type="button" onclick="createdBomb()" id="po-save-btn"
                                     class="text-white border border-blue-700 bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xs px-5 py-2.5 text-center me-2 mb-2 font-bold dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Submit</button>
                             </div>
                         </div>

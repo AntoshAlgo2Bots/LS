@@ -494,7 +494,7 @@ if ($result3->num_rows > 0) {
                 console.log(department_name);
 
                 $.ajax({
-                    url: './phpAJax/getEmpDepartmentUpdate.php',
+                    url: './phpAjax/getEmpDepartmentUpdate.php',
                     type: 'POST',
                     dataType: 'json',
                     data: { department_name: department_name },

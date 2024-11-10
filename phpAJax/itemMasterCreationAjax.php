@@ -168,7 +168,7 @@
             $createdDate = date("y-m-d");
 
             // $itemStatus  = $_GET["currentItemStatus"];
-            $itemStatus  = "SAVE";
+            $itemStatus  = "inRunning";
             ///
 
 

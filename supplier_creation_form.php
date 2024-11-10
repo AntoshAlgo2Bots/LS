@@ -493,7 +493,7 @@ include("./navForLogged.php");
                 e.preventDefault();
                 var frmData = $(this).serialize();
 
-                $.post("./phpAJax/supplierAjaxCreate.php", frmData, function (response) {
+                $.post("./phpAjax/supplierAjaxCreate.php", frmData, function (response) {
                     console.log("This is from success block");
                     // console.log();
                     console.log(response);
