@@ -894,7 +894,7 @@
 
                                 <?php
 
-    $sql = "SELECT sub_inventory_name as inv_name FROM for_office.mtl_inventory_transactions group by sub_inventory_name ;
+    $sql = "SELECT sub_inventory_name as inv_name FROM mtl_inventory_transactions group by sub_inventory_name ;
 ";
 
 $result = mysqli_query($con, $sql);

@@ -163,12 +163,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        $sql = "SELECT * FROM for_office.bom_hedar_detail where item_name like '%$search_query%'  or item_code like '%$search_query%' order by header_id DESC;";
+        $sql = "SELECT * FROM bom_hedar_detail where item_name like '%$search_query%'  or item_code like '%$search_query%' order by header_id DESC;";
 
 
 
         //Add b.price Noordeep sir 21-10-24 19:47
-        $sql = "SELECT a.*,b.imagePath as item_image, b.price FROM for_office.bom_hedar_detail a   JOIN for_office.item_master_main b on a.item_code = b.item_code where a.item_name like '%$search_query%'  or a.item_code like '%$search_query%' order by a.header_id DESC;";
+        $sql = "SELECT a.*,b.imagePath as item_image, b.price FROM bom_hedar_detail a   JOIN item_master_main b on a.item_code = b.item_code where a.item_name like '%$search_query%'  or a.item_code like '%$search_query%' order by a.header_id DESC;";
 
         $result  = mysqli_query($con, $sql);
 
@@ -225,8 +225,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $search_query = $_GET['searchQuery'];
 
 
-
-        $sql = "SELECT * FROM for_office.item_master_main where Short_Description like '%$search_query%'  or item_code like '%$search_query%' order by S_No DESC ";
+        // Updated By Antosh Kumar Pandey  11-11-2024 15:37 change  = Short_description to item_name
+        $sql = "SELECT * FROM item_master_main where item_name like '%$search_query%'  or item_code like '%$search_query%' order by S_No DESC ";
 
         $result  = mysqli_query($con, $sql);
 
@@ -290,9 +290,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        // $sql = "SELECT * FROM for_office.bom_hedar_detail where  header_id = $search_id;";
+        // $sql = "SELECT * FROM bom_hedar_detail where  header_id = $search_id;";
         //Add b.price Noordeep sir 21-10-24 19:47
-        $sql = "SELECT a.*,b.imagePath as item_image, b.price  FROM for_office.bom_hedar_detail a   JOIN for_office.item_master_main b on a.item_code = b.item_code where a.header_id = '$search_id'";
+        $sql = "SELECT a.*,b.imagePath as item_image, b.price  FROM bom_hedar_detail a   JOIN item_master_main b on a.item_code = b.item_code where a.header_id = '$search_id'";
 
         $result  = mysqli_query($con, $sql);
 
@@ -336,7 +336,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $search_id = $_GET['search_id'];
 
 
-        $sql = "SELECT * FROM for_office.item_master_main where S_No = $search_id ;";
+        $sql = "SELECT * FROM item_master_main where S_No = $search_id ;";
         $result  = mysqli_query($con, $sql);
 
 
@@ -373,10 +373,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $bom_id = $_GET['bom_id'];
 
 
-        $sql = "SELECT *,b.item_code as line_item_code FROM for_office.bom_hedar_detail a JOIN for_office.bom_line_detail  b  on a.header_id= b.bom_id where a.header_id = $bom_id;";
-//         $sql = "SELECT a.*,b.*,c.imagePath as imagepath,b.item_code as line_item_code,b.item_name as item_name_product FROM for_office.bom_hedar_detail a 
-// JOIN for_office.bom_line_detail  b  on a.header_id= b.bom_id 
-// JOIN for_office.item_master_main c on b.item_code= c.item_code where a.header_id = $bom_id ;";
+        $sql = "SELECT *,b.item_code as line_item_code FROM bom_hedar_detail a JOIN bom_line_detail  b  on a.header_id= b.bom_id where a.header_id = $bom_id;";
+//         $sql = "SELECT a.*,b.*,c.imagePath as imagepath,b.item_code as line_item_code,b.item_name as item_name_product FROM bom_hedar_detail a 
+// JOIN bom_line_detail  b  on a.header_id= b.bom_id 
+// JOIN item_master_main c on b.item_code= c.item_code where a.header_id = $bom_id ;";
 
 
 
@@ -433,7 +433,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        $sqlbom = "SELECT *,b.item_code as line_item_code FROM for_office.bom_hedar_detail a JOIN for_office.bom_line_detail  b  on a.header_id= b.bom_id where a.header_id = $bom_id;";
+        $sqlbom = "SELECT *,b.item_code as line_item_code FROM bom_hedar_detail a JOIN bom_line_detail  b  on a.header_id= b.bom_id where a.header_id = $bom_id;";
 
 
 
@@ -461,7 +461,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $lineIds[] = $line_id;
 
 
-                $sql = "SELECT  subCatId FROM for_office.item_master_main where item_code = '$item_code'; ";
+                $sql = "SELECT  subCatId FROM item_master_main where item_code = '$item_code'; ";
 
 
                 $result1 = mysqli_query($con, $sql);
@@ -485,7 +485,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-                    $sql = "SELECT * FROM for_office.requireattributeforcatname where SubcatId=$selectedSubCatId";
+                    $sql = "SELECT * FROM requireattributeforcatname where SubcatId=$selectedSubCatId";
 
 
                     $result = mysqli_query($con, $sql);
@@ -510,7 +510,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-                    // $sql = "SELECT * FROM for_office.item_master_temp ;";/
+                    // $sql = "SELECT * FROM item_master_temp ;";/
 
 
 
@@ -522,8 +522,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-                    $sql = "$columns from for_office.item_master_main where item_code='$item_code';";
-                    // $sql = "$columns from for_office.item_master_main ";
+                    $sql = "$columns from item_master_main where item_code='$item_code';";
+                    // $sql = "$columns from item_master_main ";
                     $result3 = mysqli_query($con, $sql);
 
                     $row2 = mysqli_fetch_assoc($result3);

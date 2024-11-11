@@ -325,7 +325,7 @@ $i = 1;
                             class="px-6 py-3 mr-1 font-sans text-xs font-bold text-red-500 uppercase transition-all rounded-lg middle none center hover:bg-red-500/10 active:bg-red-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                             Cancel
                         </button>
-                        <button data-ripple-light="true" data-dialog-close="true" onclick="submiDataConfirmToPo()"
+                        <button data-ripple-light="true" data-dialog-close="true" onclick="create_item_in_main()"
                             class="middle none center rounded-lg bg-gradient-to-tr from-green-600 to-green-400 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                             Confirm
                         </button>

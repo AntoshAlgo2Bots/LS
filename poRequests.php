@@ -8,7 +8,7 @@ include('./dbconnection/db.php');
 date_default_timezone_set("Asia/Kolkata");
 
 
-$sql = "SELECT * FROM for_office.purchase_order_header  where status = 'inProcess'  order by PO_number DESC; ";
+$sql = "SELECT * FROM purchase_order_header  where status = 'inProcess'  order by PO_number DESC; ";
 
 
 

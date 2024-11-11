@@ -93,7 +93,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?);";
 
 
 
-            $sql = "INSERT INTO `for_office`.`sale_order_items_lines` (`so_number`, `item_code`, `item_name`, `qty`, `rate`, `total`, `shipping_address`, `item_image_path`, `item_type`, `created_by`, `created_date`)
+            $sql = "INSERT INTO `sale_order_items_lines` (`so_number`, `item_code`, `item_name`, `qty`, `rate`, `total`, `shipping_address`, `item_image_path`, `item_type`, `created_by`, `created_date`)
                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 
@@ -114,10 +114,10 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?);";
             if ($stmt->execute()) {
 
 
-                // $sql = "UPDATE `for_office`.`lead_details_header_form` SET `$lead_head_id` = '121' WHERE (`record_no` = '$record_number');";
+                // $sql = "UPDATE `lead_details_header_form` SET `$lead_head_id` = '121' WHERE (`record_no` = '$record_number');";
 
 
-                $sql = "UPDATE `for_office`.`lead_details_header_form` SET `so_number` = '$so_number' WHERE (`record_no` = '$lead_head_id');";
+                $sql = "UPDATE `lead_details_header_form` SET `so_number` = '$so_number' WHERE (`record_no` = '$lead_head_id');";
 
 
                 $result = mysqli_query($con, $sql);

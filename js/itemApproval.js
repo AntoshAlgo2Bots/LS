@@ -171,7 +171,7 @@ const create_item_in_main  =()=>{
 
   let items_to_main = [];
 
-
+console.log(items_to_main);
 
   checkBox.forEach(Element =>{
 
@@ -208,7 +208,8 @@ const create_item_in_main  =()=>{
       console.log(data);
 
       if(data.succcess ){
-        alert("item success fully created")
+
+        alert("Item Accepted successfully")
       }
     
     },

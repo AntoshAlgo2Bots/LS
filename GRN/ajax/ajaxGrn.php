@@ -547,7 +547,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($stmt->execute()) {
 
 
-            $sql2 = "SELECT balance,po_number FROM for_office.purchase_order_line where id = $po_lineid;";
+            $sql2 = "SELECT balance,po_number FROM purchase_order_line where id = $po_lineid;";
 
 
 
@@ -757,7 +757,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($stmt->execute()) {
 
 
-            $sql2 = "SELECT balance,po_number FROM for_office.purchase_order_line where id = $po_lineid;";
+            $sql2 = "SELECT balance,po_number FROM purchase_order_line where id = $po_lineid;";
 
 
 
@@ -882,7 +882,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-        $sql = "SELECT * FROM for_office.purchase_order_line a JOIN purchase_order_header b ON a.po_number = b.PO_number where a.PO_number =  $po_number;";
+        $sql = "SELECT * FROM purchase_order_line a JOIN purchase_order_header b ON a.po_number = b.PO_number where a.PO_number =  $po_number;";
 
 
 

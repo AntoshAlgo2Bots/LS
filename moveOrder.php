@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $grn_number = $_POST['grn_number'];
 
 
-    // $query = "SELECT * FROM for_office.sale_order_items_lines where so_number = $grn_number;";
-    $query = "SELECT a.item_qty as items_in_store,a.id as tr_id,a.*,b.*,c.* FROM for_office.mtl_inventory_transactions a join for_office.grn_goods_receipt_header  b on a.grn_id=b.id
-join for_office.grn_line_items c on a.grn_line_number=c.id where a.grn_id=$grn_number;
+    // $query = "SELECT * FROM sale_order_items_lines where so_number = $grn_number;";
+    $query = "SELECT a.item_qty as items_in_store,a.id as tr_id,a.*,b.*,c.* FROM mtl_inventory_transactions a join grn_goods_receipt_header  b on a.grn_id=b.id
+join grn_line_items c on a.grn_line_number=c.id where a.grn_id=$grn_number;
 ";
 
     echo $query;
@@ -189,7 +189,7 @@ join for_office.grn_line_items c on a.grn_line_number=c.id where a.grn_id=$grn_n
 
                             <?php
 
-                            $sql = "SELECT * FROM for_office.mtl_sub_inventory;";
+                            $sql = "SELECT * FROM mtl_sub_inventory;";
                             $result  = mysqli_query($con, $sql);
                             while ($row = mysqli_fetch_assoc($result)) {
                             ?>
@@ -319,7 +319,7 @@ join for_office.grn_line_items c on a.grn_line_number=c.id where a.grn_id=$grn_n
 
                             <?php
 
-                            $sql = "SELECT * FROM for_office.mtl_sub_inventory;";
+                            $sql = "SELECT * FROM mtl_sub_inventory;";
                             $result  = mysqli_query($con, $sql);
                             while ($row = mysqli_fetch_assoc($result)) {
                             ?>
@@ -684,7 +684,7 @@ join for_office.grn_line_items c on a.grn_line_number=c.id where a.grn_id=$grn_n
 
                                         <?php
 
-                                        $sql = "SELECT * FROM for_office.mtl_sub_inventory;";
+                                        $sql = "SELECT * FROM mtl_sub_inventory;";
                                         $result3  = mysqli_query($con, $sql);
                                         while ($row2 = mysqli_fetch_assoc($result3)) {
 

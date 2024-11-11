@@ -419,10 +419,10 @@
 
                                 $sql = "   
                                                             SELECT *,item_code,qty- case 
-                                                         when     (SELECT count(*) FROM for_office.mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  ) > 0   
-                                                         then  (SELECT count(*) FROM for_office.mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  )
+                                                         when     (SELECT count(*) FROM mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  ) > 0   
+                                                         then  (SELECT count(*) FROM mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  )
                                                           else 0
-                                                          end as total_qty FROM for_office.sale_order_items_lines a ;
+                                                          end as total_qty FROM sale_order_items_lines a ;
                                                             ";
 
 
@@ -433,10 +433,10 @@
 
                                     $sql = "   
                                                                 SELECT *,item_code,qty- case 
-                                                             when     (SELECT count(*) FROM for_office.mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  ) > 0   
-                                                             then  (SELECT count(*) FROM for_office.mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  )
+                                                             when     (SELECT count(*) FROM mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  ) > 0   
+                                                             then  (SELECT count(*) FROM mtl_serial_number where so_line_number = a.id  and status='no' group by item_code  )
                                                               else 0
-                                                              end as total_qty FROM for_office.sale_order_items_lines a 
+                                                              end as total_qty FROM sale_order_items_lines a 
                                                               where a.so_number = $so_number_post
                                                                 ";
                                 }
@@ -471,20 +471,20 @@
 
                                         $query_check_available_qty = "
                                                             
-                                                            SELECT item_code,(SELECT count(*) FROM for_office.mtl_serial_number where item_code = $item_code    group by item_code  ) as avilablle_serials,
+                                                            SELECT item_code,(SELECT count(*) FROM mtl_serial_number where item_code = $item_code    group by item_code  ) as avilablle_serials,
                                                             sum(item_qty)-      
                                                             case 
-                                                         when     (SELECT count(*) FROM for_office.mtl_serial_number where item_code = $item_code  and status='no' group by item_code  ) > 0   
-                                                         then  (SELECT count(*) FROM for_office.mtl_serial_number where item_code = $item_code  and status='no' group by item_code  )
+                                                         when     (SELECT count(*) FROM mtl_serial_number where item_code = $item_code  and status='no' group by item_code  ) > 0   
+                                                         then  (SELECT count(*) FROM mtl_serial_number where item_code = $item_code  and status='no' group by item_code  )
                                                           else 0
                                                           end
                                                           
                                                             as available_qty 
                                                             
                                                             
-                                                            FROM for_office.mtl_inventory_transactions where item_code='El---lo-al-El-Bu--20-20'  group by item_code ;";
+                                                            FROM mtl_inventory_transactions where item_code='El---lo-al-El-Bu--20-20'  group by item_code ;";
 
-                                        $sql_check_quantity = mysqli_query($con, "SELECT item_code,sum(item_qty) as available_qty FROM for_office.mtl_inventory_transactions where item_code='$item_code'  group by item_code;");
+                                        $sql_check_quantity = mysqli_query($con, "SELECT item_code,sum(item_qty) as available_qty FROM mtl_inventory_transactions where item_code='$item_code'  group by item_code;");
 
                                         if (mysqli_num_rows($sql_check_quantity) > 0) {
 
@@ -521,7 +521,7 @@
                                             $rs_qty = 0;
                                             $so_number_1 = $row['so_number'];
                                             $sql_for_check_qty = "SELECT b.item_code, SUM(b.quantity) as po_created
-                                                    FROM for_office.purchase_order_header a JOIN for_office.purchase_order_line b ON a.PO_number = b.po_number
+                                                    FROM purchase_order_header a JOIN purchase_order_line b ON a.PO_number = b.po_number
                                                     WHERE a.so_id = $so_number_1 and b.item_code ='$item_code' GROUP BY b.item_code;";
 
 
@@ -655,7 +655,7 @@
 
 $so_number = $row['so_number'];
 $item_code = $row['item_code'];
-$sql_for_check_p = "select *,a.status as po_status from for_office.purchase_order_header a join for_office.purchase_order_line b ON a.PO_number=b.PO_number   where a.so_id=$so_number and b.item_code = '$item_code' ";
+$sql_for_check_p = "select *,a.status as po_status from purchase_order_header a join purchase_order_line b ON a.PO_number=b.PO_number   where a.so_id=$so_number and b.item_code = '$item_code' ";
 
 
                                                                         $result_for_check_p = mysqli_query($con, $sql_for_check_p);

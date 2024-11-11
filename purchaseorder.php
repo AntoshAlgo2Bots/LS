@@ -112,7 +112,7 @@ include('./dbconnection/db.php');
                                     $i = 1;
 
 
-                                    $sql = "SELECT * FROM for_office.purchase_order_header ORDER BY PO_number desc ;";
+                                    $sql = "SELECT * FROM purchase_order_header ORDER BY PO_number desc ;";
 
                                     $result = mysqli_query($con, $sql);
 

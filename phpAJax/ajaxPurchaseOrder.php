@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-            $query = "INSERT INTO `for_office`.`purchase_order_line` (`po_number`, `item_code`, `item_shortdiscription`, `unit_price`, `quantity`, `total_price`, `need_by_date` , `balance`) 
+            $query = "INSERT INTO `purchase_order_line` (`po_number`, `item_code`, `item_shortdiscription`, `unit_price`, `quantity`, `total_price`, `need_by_date` , `balance`) 
         VALUES (?, ?, ?, ?, ?, ?, ?,?);";
 
 
@@ -209,11 +209,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-                //     $query = "INSERT INTO `for_office`.`purchase_order_line` (`po_number`, `item_code`, `item_shortdiscription`, `unit_price`, `quantity`, `total_price`, `need_by_date`) 
+                //     $query = "INSERT INTO `purchase_order_line` (`po_number`, `item_code`, `item_shortdiscription`, `unit_price`, `quantity`, `total_price`, `need_by_date`) 
                 // VALUES (?, ?, ?, ?, ?, ?, ?);";
 
 
-                $query = "UPDATE `for_office`.`purchase_order_line` SET `item_code` = ?, `item_shortdiscription` = ?, `unit_price` = ?, `quantity` = ?, `total_price` = ?, `need_by_date` = ? , `balance` = ? WHERE (`id` = ?);";
+                $query = "UPDATE `purchase_order_line` SET `item_code` = ?, `item_shortdiscription` = ?, `unit_price` = ?, `quantity` = ?, `total_price` = ?, `need_by_date` = ? , `balance` = ? WHERE (`id` = ?);";
 
 
 
@@ -258,7 +258,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 $line_id = $value['line_main_id'];
 
-                $query = "INSERT INTO `for_office`.`purchase_order_line` (`po_number`, `item_code`, `item_shortdiscription`, `unit_price`, `quantity`, `total_price`, `need_by_date` , `balance`) 
+                $query = "INSERT INTO `purchase_order_line` (`po_number`, `item_code`, `item_shortdiscription`, `unit_price`, `quantity`, `total_price`, `need_by_date` , `balance`) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
 
@@ -337,7 +337,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         foreach ($checkedData as $key => $value) {
 
-            $stmt = $con->prepare("UPDATE `for_office`.`purchase_order_header` SET `status` = '$status', `updated_by` = ?, `updated_date` = ? WHERE (`PO_number` = ?);");
+            $stmt = $con->prepare("UPDATE `purchase_order_header` SET `status` = '$status', `updated_by` = ?, `updated_date` = ? WHERE (`PO_number` = ?);");
 
 
             $stmt->bind_param("ssi", $current_user,$dateTime,$value);

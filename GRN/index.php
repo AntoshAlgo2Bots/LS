@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     $sql = "SELECT * 
-FROM for_office.purchase_order_header  a 
+FROM purchase_order_header  a 
 JOIN purchase_order_line b
 ON a.PO_number = b.po_number
 WHERE a.PO_number = $po_number;   ";
@@ -35,7 +35,7 @@ WHERE a.PO_number = $po_number;   ";
 
 
 
-        $result2 = mysqli_query($con, "SELECT * FROM for_office.purchase_order_header where PO_number = $po_number;");
+        $result2 = mysqli_query($con, "SELECT * FROM purchase_order_header where PO_number = $po_number;");
 
 
 

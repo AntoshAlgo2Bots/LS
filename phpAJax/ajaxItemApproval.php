@@ -19,7 +19,7 @@ session_start();
 //         $response['ponumber is '] = $ponumber;
 
 
-//         $sql = "SELECT * FROM for_office.purchase_order_line where po_number=$ponumber; ";
+//         $sql = "SELECT * FROM purchase_order_line where po_number=$ponumber; ";
 
 
 //         $result = mysqli_query($con, $sql);

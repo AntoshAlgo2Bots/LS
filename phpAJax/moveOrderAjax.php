@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
 
 
 
-        $check_subinventory_query = "SELECT * FROM for_office.mtl_inventory_transactions where lot_number= '$lot_number' and sub_inventory_id = $destinationId ";
+        $check_subinventory_query = "SELECT * FROM mtl_inventory_transactions where lot_number= '$lot_number' and sub_inventory_id = $destinationId ";
 
         $check_subinventory = mysqli_query($con, $check_subinventory_query);
 
@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
 
 
 
-            $sql = "SELECT * FROM for_office.mtl_inventory_transactions where id=? and lot_number= '$lot_number'; ";
+            $sql = "SELECT * FROM mtl_inventory_transactions where id=? and lot_number= '$lot_number'; ";
 
             $stmt = $con->prepare($sql);
 
@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
 
 
                 //getting tha name  of sub invetory
-                $result_get_name = mysqli_query($con, "SELECT * FROM for_office.mtl_sub_inventory where id=$destinationId");
+                $result_get_name = mysqli_query($con, "SELECT * FROM mtl_sub_inventory where id=$destinationId");
 
 
 

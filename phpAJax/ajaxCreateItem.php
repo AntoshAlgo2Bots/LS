@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $Location = $row['Location'];
             $createdBy = $_SESSION['username'];
             $createdDate = date('Y-m-d H:i:s');
-            $itemStatus = $row['itemStatus'];
+            $itemStatus = "Approve";
             $Diameter = $row['Diameter'];
 
 
@@ -318,32 +318,56 @@ values ('$item_code',
 
 
 
-                if($result){
+            if ($result) {
 
 
-                    $response['succcess']=true;
-                    $response['message']="item succes fully creted and approves success fully ";
-                    
-                    
-                }else{
-                    
-                    
-                    $response['succcess']=false;
-                    $response['message']="error while crerating and approving the item ";
-                    $response['error']=mysqli_error($con);
+                $response['succcess'] = true;
+                $response['message'] = "item succesfully creted and approves success fully ";
 
 
+            } else {
 
 
-                }
+                $response['succcess'] = false;
+                $response['message'] = "error while crerating and approving the item ";
+                $response['error'] = mysqli_error($con);
 
 
 
 
+            }
 
-                echo json_encode($response);
 
 
+
+
+            echo json_encode($response);
+
+
+            $sqlUpdated = "UPDATE item_master_temp SET itemStatus = 'Approve' where item_code ='$value'";
+
+
+            $result1 = mysqli_query($con, $sqlUpdated);
+
+
+            if ($result1) {
+
+
+                $response['succcess'] = true;
+                $response['message'] = "item Updated Successfully ";
+
+
+            } else {
+
+
+                $response['succcess'] = false;
+                $response['message'] = "error while crerating and approving the item ";
+                $response['error'] = mysqli_error($con);
+
+
+
+
+            }
 
 
 
@@ -365,10 +389,8 @@ values ('$item_code',
 
 
 
-
-
-
     }
+
 
 
 
