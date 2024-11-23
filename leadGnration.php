@@ -1380,10 +1380,12 @@ if ($result3->num_rows > 0) {
                                     class="text-gray-900 focus:outline-none border border-gray-900 px-2 font-medium rounded-lg text-xs py-1 text-center">Add
                                     Item</button>
                             </div>
-                            <div class="mt-2">
+
+                            <!-- Update By Antosh Kumar Pandey 23-11-2024 15:07 -->
+                            <!-- <div class="mt-2">
                                 <button type="submit" id="rowSubmitBtn" onclick="submitForm()"
                                     class="text-gray-900 focus:outline-none border border-gray-900 px-2 font-medium rounded-lg text-xs py-1 text-center">Submit</button>
-                            </div>
+                            </div> -->
                         </div>
 
 

@@ -2,7 +2,7 @@
 
 include("./dbconnection/db.php");
 
-
+date_default_timezone_set("Asia/Kolkata");
 
 
 $created_by = $_POST["created_by"];

@@ -4,6 +4,9 @@ include('../dbconnection/db.php');
 
 header('Content-Type: application/json'); // Set the response content type to JSON
 
+date_default_timezone_set("Asia/Kolkata");
+
+
 $response = []; // Initialize a response array
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

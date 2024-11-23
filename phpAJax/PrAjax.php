@@ -44,6 +44,8 @@ session_start();
 
 include("../dbconnection/db.php");
 
+date_default_timezone_set("Asia/Kolkata");
+
 
 
 
@@ -57,7 +59,7 @@ include("../dbconnection/db.php");
 if (isset($_POST['createBomHead'])) {
 
 
-    $created_by = 'admin';
+    $created_by = $_SESSION['username'];
     $created_date = date('Y-m-d');
     // $record_no = $_POST['header_id'];
     $department_name = $_POST['department_name'];

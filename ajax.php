@@ -4,6 +4,7 @@ session_start();
 
 include("./dbconnection/db.php");
 
+date_default_timezone_set("Asia/Kolkata");
 
 
 

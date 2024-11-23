@@ -2,6 +2,8 @@
 
 include('../dbconnection/db.php');
 
+date_default_timezone_set("Asia/Kolkata");
+
 
 $record_no = $_POST['record_no'];
 $follow_up_start_date = $_POST['follow_up_start_date'];

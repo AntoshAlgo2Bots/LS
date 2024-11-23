@@ -5,6 +5,8 @@ ini_set('display_errors', 1);
 
 include("../dbconnection/db.php");
 
+date_default_timezone_set("Asia/Kolkata");
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     foreach ($_POST['rows'] as $row) {
         $transaction_no = intval($row['transaction_no']); // Sanitize input

@@ -6,6 +6,8 @@ header('Content-Type: application/json'); // Set the response content type to JS
 
 $response = []; // Initialize a response array
 
+date_default_timezone_set("Asia/Kolkata");
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         if ($_POST['action'] === 'get_price' && isset($_POST['item_name'])) {

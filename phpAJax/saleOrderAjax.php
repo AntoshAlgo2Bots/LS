@@ -3,6 +3,8 @@ session_start();
 
 include("../dbconnection/db.php");
 
+date_default_timezone_set("Asia/Kolkata");
+
 
   
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -100,7 +102,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?);";
 
 
                 $stmt = $con->prepare($sql);
-                $stmt->bind_param("sssiiisssss", $so_number, $itemcode, $itemname, $qty, $rate, $total_price, $shippingaddress, $img, $item_type, $created_by, $created_date);
+                $stmt->bind_param("sssiiisssss", $so_number, $itemcode, $itemname, $quantuty, $rate, $total_price, $shippingaddress, $img, $item_type, $created_by, $created_date);
 
 
 

@@ -2,6 +2,8 @@
 
 session_start();
 
+date_default_timezone_set("Asia/Kolkata");
+
 include('../dbconnection/db.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

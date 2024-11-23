@@ -311,7 +311,11 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                     <td class="px-6 py-4"><?php echo $row['attribute2'] ?></td>
                                     <td class="px-6 py-4"><?php echo $row['attribute3'] ?></td>
                                     <td class="px-6 py-4"><?php echo $row['itemmastercol'] ?></td>
-                                    <td class="px-6 py-4"><?php echo $row['imagePath'] ?></td>
+                                    <td class="px-2 py-4">
+                                        <img src="<?php echo htmlspecialchars('images/' . $row['imagePath']); ?>"
+                                            alt="Image"
+                                            class="py-3 px-1 block w-60 border-gray-200 rounded-lg dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                    </td>
                                     <td class="px-6 py-4"><?php echo $row['createdBy'] ?></td>
                                     <td class="px-6 py-4"><?php echo $row['updatedBy'] ?></td>
                                     <td class="px-6 py-4"><?php echo $row['departement'] ?></td>

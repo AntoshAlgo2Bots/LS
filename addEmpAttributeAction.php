@@ -2,6 +2,8 @@
 
 include("./dbconnection/db.php");
 
+date_default_timezone_set("Asia/Kolkata");
+
 session_start();
 
 if (isset($_POST['addAttibute'])) {

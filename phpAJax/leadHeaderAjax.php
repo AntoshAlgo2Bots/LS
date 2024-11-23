@@ -68,6 +68,7 @@ VALUES('$created_by','$created_date', '$lead_source', '$ref_By', '$ref_phone_no'
 
 
     $record_no = $_POST['record_no'];
+    $created_by = $_SESSION['username'];
     $created_date = date('Y-m-d H:i:s');
     $assigned_to = $_POST['assigned_to'];
     $query_start_date = $_POST['query_start_date'];
@@ -79,8 +80,8 @@ VALUES('$created_by','$created_date', '$lead_source', '$ref_By', '$ref_phone_no'
     $tentative_installation = $_POST['tentative_installation'];
     $tentative_delivery_date = $_POST['tentative_delivery_date'];
 
-    $sql = "INSERT INTO lead_details_middle_level_form(record_no, created_date, assigned_to, query_start_date, follow_up, followup_reminder_frequency, no_of_times, query_end_date, installation_required, tentative_installation, tentative_delivery_date) 
-    VALUES ('$record_no','$created_date', '$assigned_to', '$query_start_date', '$follow_up', '$followup_reminder_frequency', '$no_of_times', '$query_end_date', '$installation_required', '$tentative_installation', '$tentative_delivery_date')";
+    $sql = "INSERT INTO lead_details_middle_level_form(record_no, created_by, created_date, assigned_to, query_start_date, follow_up, followup_reminder_frequency, no_of_times, query_end_date, installation_required, tentative_installation, tentative_delivery_date) 
+    VALUES ('$record_no', '$created_by' ,'$created_date', '$assigned_to', '$query_start_date', '$follow_up', '$followup_reminder_frequency', '$no_of_times', '$query_end_date', '$installation_required', '$tentative_installation', '$tentative_delivery_date')";
 
 
     $response = [];

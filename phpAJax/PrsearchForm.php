@@ -1,6 +1,8 @@
 <?php
 include('../dbconnection/db.php');
 
+date_default_timezone_set("Asia/Kolkata");
+
 
 if (isset($_REQUEST['srch'])) {
     $searchData = $con->real_escape_string($_REQUEST['srch']); // Sanitize input to prevent SQL injection

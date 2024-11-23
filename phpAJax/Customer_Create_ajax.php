@@ -1,6 +1,8 @@
 <?php
 include("../dbconnection/db.php");
 
+date_default_timezone_set("Asia/Kolkata");
+
 if(isset($_REQUEST['organization_name'])){
     $db=$con->query("insert into organization_details_tbl(organization_name,organigation_type, gst_number,customer_name,customer_type,sub_cutomer,customer_status,starting_date,ending_date,contact_person_name,contact_person,contact_person_no)values
     ('{$_REQUEST['organization_name']}','{$_REQUEST['organigation_type']}','{$_REQUEST['gst_number']}','{$_REQUEST['customer_name']}','{$_REQUEST['customer_type']}','{$_REQUEST['sub_cutomer']}','{$_REQUEST['customer_status']}','{$_REQUEST['starting_date']}','{$_REQUEST['ending_date']}','{$_REQUEST['contact_person_name']}','{$_REQUEST['contact_person']}','{$_REQUEST['contact_person_no']}') ");

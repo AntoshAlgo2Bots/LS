@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-
+date_default_timezone_set("Asia/Kolkata");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-        $sql = "INSERT INTO `for_office`.`grn_goods_receipt` (`item_id`, `item_code`, `item_discription`, `warehouse_location`, `warehouse_code`, `receiving_item`, `purchase_order_id`, `purchase_order_date`, `purchase_order_line`, `received_quantity`, `recevied_date`, `receiving_time`, `finished`, `weight`, `dimension`, `box_no`, `box_detail`, `checked_by`, `approved`, `remarks`, `serial_number_to`, `serial_number_from`, `vendor_name`, `mode_of_transport`, `vehical_detail`, `invoice_num`, `invoice_date`, `amount`) VALUES ('$item_id',
+        $sql = "INSERT INTO `grn_goods_receipt` (`item_id`, `item_code`, `item_discription`, `warehouse_location`, `warehouse_code`, `receiving_item`, `purchase_order_id`, `purchase_order_date`, `purchase_order_line`, `received_quantity`, `recevied_date`, `receiving_time`, `finished`, `weight`, `dimension`, `box_no`, `box_detail`, `checked_by`, `approved`, `remarks`, `serial_number_to`, `serial_number_from`, `vendor_name`, `mode_of_transport`, `vehical_detail`, `invoice_num`, `invoice_date`, `amount`) VALUES ('$item_id',
          '$item_code',
          '$item_discription',
           '$warehouse_location',
@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-        $sql_grn = "INSERT INTO `for_office`.`grn_goods_receipt_header` (`warehouse_code`, `purchase_order_id`, `vendor_name`) 
+        $sql_grn = "INSERT INTO `grn_goods_receipt_header` (`warehouse_code`, `purchase_order_id`, `vendor_name`) 
     VALUES ( '$warehouse_code', '$po_number', '$vendor_name');";
 
 
@@ -235,7 +235,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $response["postData"] = $_POST;
 
-        $query = "INSERT INTO `for_office`.`grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`,`po_number`,`price`) VALUES (?, ?, ?, ?, ? ,?,?)";
+        $query = "INSERT INTO `grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`,`po_number`,`price`) VALUES (?, ?, ?, ?, ? ,?,?)";
 
         $stmt = $con->prepare($query);
         $stmt->bind_param("sssssss", $grnNumber, $item_code, $current_user, $current_user, $po_lineid, $po_number, $unit_Price);
@@ -262,7 +262,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $status = "received";
 
-            $query = "INSERT INTO `for_office`.`grn_sub_line_status` (`grn_head_id`, `grn_line_id`, `recQty`, `status`, `createdBy`, `createdDate`, `item_code`) VALUES (?, ?, ? , ?, ?, ?, ?);";
+            $query = "INSERT INTO `grn_sub_line_status` (`grn_head_id`, `grn_line_id`, `recQty`, `status`, `createdBy`, `createdDate`, `item_code`) VALUES (?, ?, ? , ?, ?, ?, ?);";
 
 
 
@@ -316,7 +316,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $current_user = $_SESSION['username'];
         $current_date = date('Y-m-d H:i:s');
 
-        $query = "INSERT INTO `for_office`.`grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO `grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`) VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $con->prepare($query);
         $stmt->bind_param("sssss", $grnNumber, $item_code, $current_user, $current_user, $po_lineid);
@@ -342,7 +342,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $status = "Accepted";
 
-        $query = "INSERT INTO `for_office`.`grn_sub_line_status` (`grn_head_id`, `grn_line_id`, `recQty`, `status`, `createdBy`, `createdDate`, `item_code`) VALUES (?, ?, ? , ?, ?, ?, ?);";
+        $query = "INSERT INTO `grn_sub_line_status` (`grn_head_id`, `grn_line_id`, `recQty`, `status`, `createdBy`, `createdDate`, `item_code`) VALUES (?, ?, ? , ?, ?, ?, ?);";
 
 
 
@@ -405,7 +405,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $current_user = $_SESSION['username'];
         $current_date = date('Y-m-d H:i:s');
 
-        $query = "INSERT INTO `for_office`.`grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO `grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`) VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $con->prepare($query);
         $stmt->bind_param("sssss", $grnNumber, $item_code, $current_user, $current_user, $po_lineid);
@@ -431,7 +431,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $status = "Rejected";
 
-        $query = "INSERT INTO `for_office`.`grn_sub_line_status` (`grn_head_id`, `grn_line_id`, `recQty`, `status`, `createdBy`, `createdDate`, `item_code`) VALUES (?, ?, ? , ?, ?, ?, ?);";
+        $query = "INSERT INTO `grn_sub_line_status` (`grn_head_id`, `grn_line_id`, `recQty`, `status`, `createdBy`, `createdDate`, `item_code`) VALUES (?, ?, ? , ?, ?, ?, ?);";
 
 
 
@@ -497,7 +497,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $current_user = $_SESSION['username'];
         $current_date = date('Y-m-d H:i:s');
 
-        $query = "INSERT INTO `for_office`.`grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO `grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`) VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $con->prepare($query);
         $stmt->bind_param("sssss", $grnNumber, $item_code, $current_user, $current_user, $po_lineid);
@@ -529,7 +529,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $status = "Delivered";
 
-        $query = "INSERT INTO `for_office`.`grn_sub_line_status` (`grn_head_id`, `grn_line_id`, `recQty`, `status`, `createdBy`, `createdDate`, `item_code`) VALUES (?, ?, ? , ?, ?, ?, ?);";
+        $query = "INSERT INTO `grn_sub_line_status` (`grn_head_id`, `grn_line_id`, `recQty`, `status`, `createdBy`, `createdDate`, `item_code`) VALUES (?, ?, ? , ?, ?, ?, ?);";
 
 
 
@@ -567,7 +567,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $po_number = $row2['po_number'];
 
 
-                $sqlforinv = "INSERT INTO `for_office`.`mtl_inventory_transactions` (`grn_line_number`,`grn_id` , `sub_inventory_name`, `sub_inventory_id`, `location_id`, `item_qty`, `item_code`,`created_date`,`created_by`,`lot_number`) 
+                $sqlforinv = "INSERT INTO `mtl_inventory_transactions` (`grn_line_number`,`grn_id` , `sub_inventory_name`, `sub_inventory_id`, `location_id`, `item_qty`, `item_code`,`created_date`,`created_by`,`lot_number`) 
                 VALUES ($grn_line_id,$grnNumber, 'STORE', '1', '1', '$recQty', '$item_code','$current_date','$current_user','$lot_name');";
 
 
@@ -591,7 +591,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $serial_number = "GRN_S_" . $grnNumber . "_" . $recQty . "_" . $i;
 
 
-                        $sql = "INSERT INTO `for_office`.`mtl_serial_number` (`serial_number`, `grn_id`, `grn_line_id`, `po_number`, `po_line_number`, `item_code`, `created_by`, `created_date` ,`mtnl_transaction_id`,`lot_number` ) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,? , ?);";
+                        $sql = "INSERT INTO `mtl_serial_number` (`serial_number`, `grn_id`, `grn_line_id`, `po_number`, `po_line_number`, `item_code`, `created_by`, `created_date` ,`mtnl_transaction_id`,`lot_number` ) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,? , ?);";
 
 
                         $stmt = $con->prepare($sql);
@@ -613,7 +613,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-                    $sql = "INSERT INTO `for_office`.`mtl_lot_number` (`grn_number`, `grn_line_number`, `lot_name`, `quantity`, `created_date`, `created_by`, `updated_date`, `updated_by`,`item_code`)
+                    $sql = "INSERT INTO `mtl_lot_number` (`grn_number`, `grn_line_number`, `lot_name`, `quantity`, `created_date`, `created_by`, `updated_date`, `updated_by`,`item_code`)
                          VALUES ('$grnNumber', '$grn_line_id', '$lot_name', $recQty, '$current_date', '$current_user', 'update', 'updtesd by','$item_code');";
 
                     if (mysqli_query($con, $sql)) {
@@ -644,7 +644,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $updateBalance = $realBalance - $recQty;
 
 
-                $sql_forUpdateBalace  = "UPDATE `for_office`.`purchase_order_line` SET `balance` = '$updateBalance' WHERE (`id` = '$po_lineid');";
+                $sql_forUpdateBalace  = "UPDATE `purchase_order_line` SET `balance` = '$updateBalance' WHERE (`id` = '$po_lineid');";
 
 
                 $result_forUpdateBalace = mysqli_query($con, $sql_forUpdateBalace);
@@ -707,7 +707,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $current_user = $_SESSION['username'];
         $current_date = date('Y-m-d H:i:s');
 
-        $query = "INSERT INTO `for_office`.`grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO `grn_line_items` (`grn_head_id`, `item_code`, `created_by`, `updated_by`, `po_line_id`) VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $con->prepare($query);
         $stmt->bind_param("sssss", $grnNumber, $item_code, $current_user, $current_user, $po_lineid);
@@ -739,7 +739,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $status = "Damaged";
 
-        $query = "INSERT INTO `for_office`.`grn_sub_line_status` (`grn_head_id`, `grn_line_id`, `recQty`, `status`, `createdBy`, `createdDate`, `item_code`) VALUES (?, ?, ? , ?, ?, ?, ?);";
+        $query = "INSERT INTO `grn_sub_line_status` (`grn_head_id`, `grn_line_id`, `recQty`, `status`, `createdBy`, `createdDate`, `item_code`) VALUES (?, ?, ? , ?, ?, ?, ?);";
 
 
 
@@ -777,14 +777,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-                $sqlforinv = "INSERT INTO `for_office`.`mtl_inventory_transactions` (`grn_line_number`,`grn_id` , `sub_inventory_name`, `sub_inventory_id`, `location_id`, `item_qty`, `item_code`,`created_date`,`created_by`,`po_line_number`,`po_number`) 
+                $sqlforinv = "INSERT INTO `mtl_inventory_transactions` (`grn_line_number`,`grn_id` , `sub_inventory_name`, `sub_inventory_id`, `location_id`, `item_qty`, `item_code`,`created_date`,`created_by`,`po_line_number`,`po_number`) 
                 VALUES ($grn_line_id,$grnNumber, 'Damage', '7', '1', '$recQty', '$item_code','$current_date','$current_user','$po_lineid','$po_number');";
 
                 //  echo $sqlforinv;
 
                 if (mysqli_query($con, $sqlforinv)) {
 
-                    $sql = "INSERT INTO `for_office`.`mtl_lot_number` (`grn_number`, `grn_line_number`, `lot_name`, `quantity`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES ('$grnNumber', '$grn_line_id', '$item_code', $recQty, '$current_date', '$current_user', 'update', 'updtesd by');";
+                    $sql = "INSERT INTO `mtl_lot_number` (`grn_number`, `grn_line_number`, `lot_name`, `quantity`, `created_date`, `created_by`, `updated_date`, `updated_by`) VALUES ('$grnNumber', '$grn_line_id', '$item_code', $recQty, '$current_date', '$current_user', 'update', 'updtesd by');";
 
                     if (mysqli_query($con, $sql)) {
 
@@ -814,7 +814,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $updateBalance = $realBalance - $recQty;
 
 
-                $sql_forUpdateBalace  = "UPDATE `for_office`.`purchase_order_line` SET `balance` = '$updateBalance' WHERE (`id` = '$po_lineid');";
+                $sql_forUpdateBalace  = "UPDATE `purchase_order_line` SET `balance` = '$updateBalance' WHERE (`id` = '$po_lineid');";
 
 
                 $result_forUpdateBalace = mysqli_query($con, $sql_forUpdateBalace);

@@ -2,6 +2,8 @@
 session_start();
 include '../controllers/db_functions.php';
 
+date_default_timezone_set("Asia/Kolkata");
+
 $current_date = date('Y-m-d H:i:s');
 
 $current_user = $_SESSION['username'];
@@ -270,11 +272,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $form_ref ='MRP';
 
-        $query = "INSERT INTO `purchase_order_header` (`vendore_code`, `supplier_name`, `supplier_site_code`, `payment_term`, `bill_to_location`, `shipTo`, `createdBy`, `created_date`, `so_id`,`form_ref`)
+        $query = "INSERT INTO `purchase_order_header` (`vendore_code`, `supplier_name`, `supplier_site_code`, `payment_term`, `bill_to_location`, `shipTo`, `createdBy`, `created_date`, `so_id`, `form_ref`)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?);";
 
         $stmt = $con->prepare($query);
-        $stmt->bind_param('ssssssssss', $vendor_code, $supplier_name, $supplier_site_code, $payment_term, $bill_to_location, $shipTo, $current_user, $current_date, $so_id,$form_ref);
+        $stmt->bind_param('ssssssssss', $vendor_code, $supplier_name, $supplier_site_code, $payment_term, $bill_to_location, $shipTo, $current_user, $current_date, $so_id, $form_ref);
 
 
 

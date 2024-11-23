@@ -4,7 +4,7 @@
 
 include('./dbconnection/db.php');
 
-$query = "SELECT department_name FROM requisition_table WHERE department_name IS NOT NULL AND department_name != ''";
+$query = "SELECT DISTINCT department_name FROM requisition_table WHERE department_name IS NOT NULL AND department_name != ''";
 $result1 = $con->query($query);
 
 $options = [];
@@ -54,7 +54,7 @@ if ($result1->num_rows > 0) {
                             class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Record
                             number :
                         </label>
-                        <input id="header_id" type="text" name="header_id" value="" placeholder="Head id" disabled
+                        <input id="header_id" type="text" name="header_id" value="" placeholder="Auto-generated" disabled
                             class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
 
 
@@ -65,14 +65,14 @@ if ($result1->num_rows > 0) {
                             class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Created
                             By :
                         </label>
-                        <input type="text" name="created_by" onchange="setBomImage()" id="created_by"
+                        <input type="text" name="created_by" value="<?php echo $_SESSION['username']?>" id="created_by" readonly
                             class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                     <div class="">
                         <label
                             class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Created
                             Date : </label>
-                        <input type="date" name="created_date"
+                        <input type="date" name="created_date" value="<?php echo date('Y-m-d')?>" readonly
                             class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
 
                     </div>
