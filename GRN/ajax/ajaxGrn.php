@@ -1,7 +1,12 @@
 <?php
 session_start();
+include "../../controllers/db_functions.php";
 
-date_default_timezone_set("Asia/Kolkata");
+$current_date =  date('Y-m-d H:i:s');
+
+$current_user = $_SESSION['username'];
+
+include('../../dbconnection/db.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -124,8 +129,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
             $response["success"] = true;
+            $response['message'] = 'Data Inserted Successfully';
         } else {
             $response["success"] = false;
+            $response['message'] = 'Data not Inserted';
         }
 
 
@@ -135,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo json_encode($response);
         // echo  "hellow";
     }
+
 
 
 
@@ -547,7 +555,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($stmt->execute()) {
 
 
-            $sql2 = "SELECT balance,po_number FROM purchase_order_line where id = $po_lineid;";
+            $sql2 = "SELECT balance,po_number,unit_price FROM purchase_order_line where id = $po_lineid;";
 
 
 
@@ -565,6 +573,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 $realBalance = $row2['balance'];
                 $po_number = $row2['po_number'];
+                $unit_price = $row2['unit_price'];
 
 
                 $sqlforinv = "INSERT INTO `mtl_inventory_transactions` (`grn_line_number`,`grn_id` , `sub_inventory_name`, `sub_inventory_id`, `location_id`, `item_qty`, `item_code`,`created_date`,`created_by`,`lot_number`) 
@@ -579,7 +588,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-                    for ($i = 1; $i < $recQty; $i++) {
+                    for ($i = 1; $i <= $recQty; $i++) {
 
 
 
@@ -591,12 +600,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $serial_number = "GRN_S_" . $grnNumber . "_" . $recQty . "_" . $i;
 
 
-                        $sql = "INSERT INTO `mtl_serial_number` (`serial_number`, `grn_id`, `grn_line_id`, `po_number`, `po_line_number`, `item_code`, `created_by`, `created_date` ,`mtnl_transaction_id`,`lot_number` ) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,? , ?);";
+                        $sql = "INSERT INTO `mtl_serial_number` (`serial_number`, `grn_id`, `grn_line_id`, `po_number`, `po_line_number`, `item_code`, `created_by`, `created_date` ,`mtnl_transaction_id`,`lot_number` ,`inventory_id` ,`unit_price`) VALUES (?, ?, ?, ?, ?, ?, ?, ? ,? , ?,1 ,?);";
 
 
                         $stmt = $con->prepare($sql);
 
-                        $stmt->bind_param('siiissssis', $serial_number, $grnNumber, $grn_line_id, $po_number, $po_lineid, $item_code, $current_user, $current_date,$mtnl_transaction_id,$lot_name);
+                        $stmt->bind_param('siiissssisi', $serial_number, $grnNumber, $grn_line_id, $po_number, $po_lineid, $item_code, $current_user, $current_date, $mtnl_transaction_id, $lot_name, $unit_price);
 
                         $stmt->execute();
                     }
@@ -857,6 +866,108 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         echo json_encode($response);
     }
+
+
+
+    //miscelliniuous recepit
+
+
+    if (isset($_POST['creating_reciept_of_miscelinius'])) {
+
+
+        $mislinius_items = $_POST['mislinius_items'];
+        $item_code = $mislinius_items[0]['item_code'];
+
+
+
+        $total_qty = count($mislinius_items);
+
+
+        $serialNumbers = [];
+        $totoal_count = 1;
+
+        foreach ($mislinius_items as $key => $item) {
+
+            $item_code = $item['item_code'];
+            $item_name = $item['item_name'];
+            $quantity = $item['qty'];
+            $unit_price = $item['unit_price'];
+            $total_price = $item['total_price'];
+
+            $sql_to_create_inv_trx = "INSERT INTO `mtl_inventory_transactions` (`sub_inventory_name`, `sub_inventory_id`, `location_id`, `item_qty`, `item_code`, `created_date`, `created_by`) VALUES ('STORE', 1, 1, $quantity, '$item_code', '$current_date', '$current_user');";
+
+
+            $date = date('Ymd'); // Current date in YYYYMMDD format
+            $time = date('His');
+
+            if (mysqli_query($con, $sql_to_create_inv_trx)) {
+
+                $mtl_trx_id = mysqli_insert_id($con);
+
+
+
+
+
+
+
+
+                for ($i = 1; $i <= $quantity; $i++) {
+
+
+
+
+                    $serialNumber = "MIS-$date-$time-" . str_pad($i, 3, "0", STR_PAD_LEFT);
+                    $serialNumbers[] = $serialNumber;
+
+
+                    $query = "INSERT INTO `mtl_serial_number` (`serial_number`, `item_code`, `created_by`, `created_date`, `mtnl_transaction_id`, `inventory_id`) VALUES (?, ?, ?, ?, ?, 1)";
+                    $stmt = $con->prepare($query);
+                    $stmt->bind_param("ssssi", $serialNumber, $item_code, $current_user, $current_date, $mtl_trx_id);
+                    if ($stmt->execute()) {
+
+                        $totoal_count++;
+                        $response['success'] = true;
+                    } else {
+                        $response['success'] = false;
+                        $response['error'] = $stmt->error;
+                        $response['error_at'] = $totoal_count;
+
+                        break;
+                    }
+                }
+            } else {
+                $response['success'] = false;
+                $response['error'] = "Error while creating inventory transaction";
+                break;
+            }
+        }
+
+
+
+
+        $response['message'] = "Items created in store";
+        $response['serialNumbers'] = $serialNumbers;
+        echo json_encode($response);
+    }
+
+
+
+
+    if (isset($_POST['send_misliniuestoInstallation'])) {
+
+
+
+
+        $serial_number = $_POST['serialNumbers'];
+        $so_head_id = 0;
+        $so_line_id = 0;
+        $inventory_id = 10;
+        $inventory_name = "INSTALLION";
+        $source_inventory_name = "STORE";
+        $source_inventory_id = 1;
+
+        sendSerialsToAnother($serial_number, $so_head_id, $so_line_id, $inventory_id, $inventory_name, $source_inventory_name);
+    }
 }
 
 
@@ -953,5 +1064,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
         echo json_encode($response);
+    }
+
+    if (isset($_GET['getSerialData'])) {
+
+
+
+        $serial_number_data = getTableDataById("mtl_serial_number", "status", "yes");
+
+
+
+        echo json_encode($serial_number_data);
+    }
+    if (isset($_GET['getSerialDatabySerialNumber'])) {
+
+
+        $serialNumber = $_GET['serialNumber']; 
+
+        $serial_number_data = getTableDataById("mtl_serial_number", "serial_number", $serialNumber);
+
+
+
+        echo json_encode($serial_number_data);
     }
 }
