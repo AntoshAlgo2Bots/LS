@@ -177,7 +177,7 @@ if ($result1->num_rows > 0) {
                                                     </tr>
                                                 </thead>
                                                 <tbody class="divide-y whitespace-nowrap divide-gray-200" id="poCreteTbody">
-                                                    <tr class="hover:bg-gray-600">
+                                                    <tr class="hover:bg-gray-200">
 
 
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
@@ -339,7 +339,7 @@ if ($result1->num_rows > 0) {
         total++
 
         let tr = document.createElement("tr")
-        tr.classList.add("hover:bg-gray-600")
+        tr.classList.add("hover:bg-gray-200")
 
         tr.innerHTML = `       
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
