@@ -14,7 +14,6 @@
 
 <body>
 
-
     <div id="create_section" class="mt-5 border border-gray-900 p-5 rounded-lg mx-5">
         <form action="#" id="formData">
             <h1 class=" text-center underline text-3xl mb-3 font-bold"> Warehouse Search Form</h1>

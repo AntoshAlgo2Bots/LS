@@ -258,13 +258,13 @@
                                 <input type="text" name="item_name"  class="w-full p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm">
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <input type="text" name="qty" onInput="calculateTotoal(event)"  class="w-full p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm">
+                                <input type="number" name="qty" onInput="calculateTotoal(event)"  class="w-full p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm">
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <input type="text" name="unit_price" onInput="calculateTotoal(event)"   class="w-full p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm">
+                                <input type="number" name="unit_price" onInput="calculateTotoal(event)"   class="w-full p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm">
                             </td>   
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <input type="text" name="total_price"  class="w-full p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm">
+                                <input type="number" name="total_price"  class="w-full p-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" readonly>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <button type="button" onclick="removeRow(event)" class="text-red-600 hover:text-red-800 focus:outline-none">🗑️</button>

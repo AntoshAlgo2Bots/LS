@@ -37,23 +37,20 @@ include("./navForLogged.php");
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-100 dark:bg-gray-800">
             <h1 class="text-xl font-bold border-b border-gray-900 text-center py-3">Supplier Details</h1>
             <ul class="space-y-2 font-medium mt-3">
-                <li>
-                    <a href="#"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                        <span class="ms-3" onclick="organization()">Organization Details</span>
-                    </a>
+                <li
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group cursor-pointer" onclick="organization()">
+                    <span class="ms-3">Organization Details</span>
+
                 </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                        <span class="ms-3" onclick="address()">Address Details</span>
-                    </a>
+                <li
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group cursor-pointer"  onclick="address()">
+                    <span class="ms-3">Address Details</span>
+
                 </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                        <span class="ms-3" onclick="bank()">Banking Details</span>
-                    </a>
+                <li
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group cursor-pointer" onclick="bank()">
+                    <span class="ms-3">Banking Details</span>
+
                 </li>
 
             </ul>
@@ -74,25 +71,16 @@ include("./navForLogged.php");
                         <div>
                             <label for=""
                                 class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Supplier
-                                id :
-                            </label>
-                            <input type="text" name="supplier_id" placeholder="Enter supplier code" id="id"
-                                class="w-60 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
-
-                            <button type="button" id="search"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-xs rounded-lg text-sm px-8 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Search</button>
-
-                        </div>
-                        <div>
-                            <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Supplier
                                 Code :
                             </label>
                             <input type="text" name="supplier_code" placeholder="Enter supplier code" id="supplier_code"
                                 class="w-60 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
 
+                            <button type="button" id="search"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-1 focus:ring-blue-300 font-xs rounded-lg text-xs px-3 py-1.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Search</button>
 
                         </div>
+
                         <div>
                             <label for=""
                                 class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Supplier
@@ -100,6 +88,9 @@ include("./navForLogged.php");
                             </label>
                             <input type="text" name="supplier_name" placeholder="Enter supplier name" id="supplier_name"
                                 class="w-60 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+
+                            <button type="button" id="searchByName"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-1 focus:ring-blue-300 font-xs rounded-lg text-xs px-3 py-1.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Search</button>
 
                         </div>
 
@@ -506,58 +497,127 @@ include("./navForLogged.php");
         $(document).ready(function () {
             $('#search').click(function (e) {
                 e.preventDefault();
-                var srch = $('#id').val();
-
-                $.post("Supplier_Search_action.php", { srch }, function (data) {
-
-                    console.log(data)
-                    var res = data
-
-                    console.log(data);
-                    $("#supplier_code").val(res.data.supplier_code);
-                    $("#supplier_name").val(res.data.supplier_name);
-                    $("#oraganigation_name").val(res.data.oraganigation_name);
-                    $("#oraganigation_type").val(res.data.oraganigation_type);
-                    $("#gst_number").val(res.data.gst_number);
-                    $("#supplier_type").val(res.data.supplier_type);
-                    $("#sub_supplier_type").val(res.data.sub_supplier_type);
-                    $("#supplier_status").val(res.data.supplier_status);
-                    $("#starting_date").val(res.data.starting_date);
-                    $("#ending").val(res.data.ending_date);
-                    $("#contact_person_name").val(res.data.person_name);
-                    $("#contact_person_email").val(res.data.person_email);
-                    $("#contact_person_number").val(res.data.person_number);
 
 
-                    $("#site_code").val(res.data.site_code);
-                    $("#site_number").val(res.data.site_name);
-                    $("#site_description").val(res.data.site_description);
-                    $("#address_line_1").val(res.data.address_line_1);
-                    $("#address_line_2").val(res.data.address_line_2);
-                    $("#postal_code").val(res.data.postal_code);
-                    $("#city").val(res.data.city);
-                    $("#state").val(res.data.state);
-                    $("#country").val(res.data.country);
-                    $("#person_name").val(res.data.person_name);
-                    $("#perosns_email").val(res.data.person_email);
-                    $("#person_number").val(res.data.person_number);
+                var srch = $('#supplier_code').val();
+
+
+                if (srch !== "") {
+                    $.post("Supplier_Search_action.php", { srch }, function (data) {
+
+                        console.log(data)
+                        var res = data
+
+                        console.log(data);
+                        $("#supplier_name").val(res.data.supplier_name);
+                        $("#oraganigation_name").val(res.data.oraganigation_name);
+                        $("#oraganigation_type").val(res.data.oraganigation_type);
+                        $("#gst_number").val(res.data.gst_number);
+                        $("#supplier_type").val(res.data.supplier_type);
+                        $("#sub_supplier_type").val(res.data.sub_supplier_type);
+                        $("#supplier_status").val(res.data.supplier_status);
+                        $("#starting_date").val(res.data.starting_date);
+                        $("#ending").val(res.data.ending_date);
+                        $("#contact_person_name").val(res.data.person_name);
+                        $("#contact_person_email").val(res.data.person_email);
+                        $("#contact_person_number").val(res.data.person_number);
+
+
+                        $("#site_code").val(res.data.site_code);
+                        $("#site_number").val(res.data.site_name);
+                        $("#site_description").val(res.data.site_description);
+                        $("#address_line_1").val(res.data.address_line_1);
+                        $("#address_line_2").val(res.data.address_line_2);
+                        $("#postal_code").val(res.data.postal_code);
+                        $("#city").val(res.data.city);
+                        $("#state").val(res.data.state);
+                        $("#country").val(res.data.country);
+                        $("#person_name").val(res.data.person_name);
+                        $("#perosns_email").val(res.data.person_email);
+                        $("#person_number").val(res.data.person_number);
 
 
 
-                    $("#site_codes").val(res.data.site_code);
-                    $("#branch_name").val(res.data.branch_name_);
-                    $("#branch_number").val(res.data.brach_number);
-                    $("#branch_type").val(res.data.brach_type);
-                    $("#bank_name").val(res.data.bank_name);
-                    $("#bank_number").val(res.data.bank_number);
-                    $("#bank_type").val(res.data.bank_type);
-                    $("#account_name").val(res.data.account_name);
-                    $("#account_number").val(res.data.account_number);
-                    $("#account_type").val(res.data.account_type);
-                    $("#ifsc_code").val(res.data.ifsc_code);
+                        $("#site_codes").val(res.data.site_code);
+                        $("#branch_name").val(res.data.branch_name_);
+                        $("#branch_number").val(res.data.brach_number);
+                        $("#branch_type").val(res.data.brach_type);
+                        $("#bank_name").val(res.data.bank_name);
+                        $("#bank_number").val(res.data.bank_number);
+                        $("#bank_type").val(res.data.bank_type);
+                        $("#account_name").val(res.data.account_name);
+                        $("#account_number").val(res.data.account_number);
+                        $("#account_type").val(res.data.account_type);
+                        $("#ifsc_code").val(res.data.ifsc_code);
 
 
-                }, "json")
+                    }, "json")
+                } else {
+                    alert("Please Enter Supplier Code")
+                }
+            })
+
+
+            $('#searchByName').click(function (e) {
+                e.preventDefault();
+
+
+                var srchByName = $('#supplier_name').val();
+
+
+                if (srchByName !== "") {
+                    $.post("Supplier_Search_action.php", { srchByName }, function (data) {
+
+                        console.log(data)
+                        var res = data
+
+                        console.log(data);
+                        $("#supplier_code").val(res.data.supplier_code);
+                        $("#oraganigation_name").val(res.data.oraganigation_name);
+                        $("#oraganigation_type").val(res.data.oraganigation_type);
+                        $("#gst_number").val(res.data.gst_number);
+                        $("#supplier_type").val(res.data.supplier_type);
+                        $("#sub_supplier_type").val(res.data.sub_supplier_type);
+                        $("#supplier_status").val(res.data.supplier_status);
+                        $("#starting_date").val(res.data.starting_date);
+                        $("#ending").val(res.data.ending_date);
+                        $("#contact_person_name").val(res.data.person_name);
+                        $("#contact_person_email").val(res.data.person_email);
+                        $("#contact_person_number").val(res.data.person_number);
+
+
+                        $("#site_code").val(res.data.site_code);
+                        $("#site_number").val(res.data.site_name);
+                        $("#site_description").val(res.data.site_description);
+                        $("#address_line_1").val(res.data.address_line_1);
+                        $("#address_line_2").val(res.data.address_line_2);
+                        $("#postal_code").val(res.data.postal_code);
+                        $("#city").val(res.data.city);
+                        $("#state").val(res.data.state);
+                        $("#country").val(res.data.country);
+                        $("#person_name").val(res.data.person_name);
+                        $("#perosns_email").val(res.data.person_email);
+                        $("#person_number").val(res.data.person_number);
+
+
+
+                        $("#site_codes").val(res.data.site_code);
+                        $("#branch_name").val(res.data.branch_name_);
+                        $("#branch_number").val(res.data.brach_number);
+                        $("#branch_type").val(res.data.brach_type);
+                        $("#bank_name").val(res.data.bank_name);
+                        $("#bank_number").val(res.data.bank_number);
+                        $("#bank_type").val(res.data.bank_type);
+                        $("#account_name").val(res.data.account_name);
+                        $("#account_number").val(res.data.account_number);
+                        $("#account_type").val(res.data.account_type);
+                        $("#ifsc_code").val(res.data.ifsc_code);
+
+
+                    }, "json")
+                } else {
+                    alert("Please Enter Supplier Name")
+                }
             })
         });
     </script>

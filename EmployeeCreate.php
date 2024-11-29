@@ -200,7 +200,7 @@ if ($result3->num_rows > 0) {
                                 <label
                                     class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">S.
                                     No : </label>
-                                <input required type="text" name="serial_no" placeholder="" readonly
+                                <input type="text" name="serial_no" placeholder="" readonly
                                     value="<?php echo isset($emp_id) ? $emp_id : ''; ?>"
                                     class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
@@ -237,9 +237,9 @@ if ($result3->num_rows > 0) {
                                 <!-- <input required type="text" name="emp_department" placeholder="Enter department"
                                     value="<?php echo isset($emp_department) ? $emp_department : ''; ?>"
                                     class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" /> -->
-                                <select name="emp_department" id="emp_department"
+                                <select name="emp_department" id="emp_department" required
                                     class="bg-gray-50 border  border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-40 p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option selected hidden>Select one</option>
+                                    <option value="" selected hidden>Select one</option>
                                     <?php foreach ($options as $option) { ?>
                                         <option class="" value="<?php echo $option; ?>"><?php echo $option; ?></option>
                                     <?php } ?>
@@ -323,7 +323,7 @@ if ($result3->num_rows > 0) {
                             <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Last
                                 CTC :
                             </label>
-                            <input required type="text" name="last_ctc" placeholder="Enter last CTC"
+                            <input required type="number" name="last_ctc" placeholder="Enter last CTC"
                                 value="<?php echo isset($last_ctc) ? $last_ctc : ''; ?>"
                                 class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
@@ -332,7 +332,7 @@ if ($result3->num_rows > 0) {
                                 class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Current
                                 CTC Offered :
                             </label>
-                            <input required type="text" name="current_ctc" placeholder="Enter current CTC"
+                            <input required type="number" name="current_ctc" placeholder="Enter current CTC"
                                 value="<?php echo isset($current_ctc) ? $current_ctc : ''; ?>"
                                 class="w-40 rounded-md border  mb-3  text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>

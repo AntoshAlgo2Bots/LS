@@ -10,7 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
     <title>Gate Entry Search Form</title>
 </head>
-
 <body>
     <div id="create_section" class="mt-5 bg-gray-100 border border-gray-900 p-5 rounded-lg mx-5">
         <h1 class="text-center underline text-3xl mb-3 font-bold">Gate Entry Search Form</h1>

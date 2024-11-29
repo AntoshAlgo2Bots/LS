@@ -81,7 +81,7 @@
                         <label class="w-40 block mb-1 font-bold text-xs font-medium text-gray-900 dark:text-white">User
                             Phone Number:
                         </label>
-                        <input type="text" name="user_phone_number"
+                        <input type="number" name="user_phone_number"
                             class="w-40 rounded-md border  mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                             style="border-color: #C8A1E0;" />
                     </div>
@@ -89,7 +89,7 @@
                         <label class="w-40 block mb-1 font-bold text-xs font-medium text-gray-900 dark:text-white">User
                             Email :
                         </label>
-                        <input type="text" name="user_email"
+                        <input type="email" name="user_email"
                             class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md"
                             style="border-color: #C8A1E0;" />
                     </div>

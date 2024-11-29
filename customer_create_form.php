@@ -36,23 +36,19 @@ include("./navForLogged.php");
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-100 dark:bg-gray-800">
             <h1 class="text-xl font-bold border-b border-gray-900 text-center py-3">Customer Details</h1>
             <ul class="space-y-2 font-medium mt-3">
-                <li>
-                    <a href="#"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                        <span class="ms-3" onclick="organization()">Organization Details</span>
-                    </a>
+                <li
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group cursor-pointer" onclick="organization()">
+                    <span class="ms-3">Organization Details</span>
+
                 </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                        <span class="ms-3" onclick="address()">Address Details</span>
-                    </a>
+                <li
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group cursor-pointer" onclick="address()">
+                    <span class="ms-3">Address Details</span>
+
                 </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                        <span class="ms-3" onclick="bank()">Banking Details</span>
-                    </a>
+                <li
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group cursor-pointer"  onclick="bank()">
+                    <span class="ms-3">Banking Details</span>
                 </li>
 
             </ul>
@@ -180,7 +176,8 @@ include("./navForLogged.php");
 
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Contact Person Number :
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Contact
+                                Person Number :
                             </label>
                             <input type="text" placeholder="Enter person number" name="contact_person_no"
                                 class="w-60 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
@@ -192,10 +189,10 @@ include("./navForLogged.php");
                     </div>
 
                 </div>
-                <div class="text-center">
+                <!-- <div class="text-center">
                     <button type="button" onclick="oraganigation_duplicate()"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add</button>
-                </div>
+                </div> -->
             </div>
 
 
@@ -208,7 +205,8 @@ include("./navForLogged.php");
                     <div class="flex flex-wrap gap-x-20 mt-5">
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Site Code :
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Site
+                                Code :
                             </label>
                             <input type="text" placeholder="Enter person name" name="site_code"
                                 class="w-60 rounded-md border text-xs mb-4 border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
@@ -216,7 +214,8 @@ include("./navForLogged.php");
 
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Site Name :
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Site
+                                Name :
                             </label>
                             <input type="text" placeholder="Enter person " name="site_name"
                                 class="w-60 rounded-md border text-xs mb-4 border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
@@ -224,7 +223,8 @@ include("./navForLogged.php");
 
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Site Description
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Site
+                                Description
                                 :
                             </label>
                             <input type="text" placeholder="Enter person number" name="site_description"
@@ -236,7 +236,8 @@ include("./navForLogged.php");
                     <div class="flex flex-wrap gap-x-20">
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Address Line 1 :
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Address
+                                Line 1 :
                             </label>
                             <input type="text" placeholder="Enter address line 1" name="add_line1"
                                 class="w-60 rounded-md border text-xs mb-4 border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
@@ -244,7 +245,8 @@ include("./navForLogged.php");
 
                         <div>
                             <label for="countries"
-                                class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Address Line 2 : </label>
+                                class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Address Line 2 :
+                            </label>
                             <input type="text" placeholder="Enter address line 2" name="add_line2"
                                 class="w-60 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
 
@@ -252,7 +254,8 @@ include("./navForLogged.php");
 
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Postal Code
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Postal
+                                Code
                                 :
                             </label>
                             <input type="text" placeholder="Enter postal code" name="postal_code"
@@ -292,7 +295,8 @@ include("./navForLogged.php");
                     <div class="flex flex-wrap gap-x-20">
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Contact Person Name :
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Contact
+                                Person Name :
                             </label>
                             <input type="text" placeholder="Enter person name" name="contact_preson_name"
                                 class="w-60 rounded-md border text-xs mb-4 border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
@@ -300,7 +304,8 @@ include("./navForLogged.php");
 
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Contact Person
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Contact
+                                Person
                                 :
                             </label>
                             <input type="text" placeholder="Enter person " name="contact_person"
@@ -309,7 +314,8 @@ include("./navForLogged.php");
 
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Contact Person Number :
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Contact
+                                Person Number :
                             </label>
                             <input type="text" placeholder="Enter person number" name="contact_person_no"
                                 class="w-60 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
@@ -320,10 +326,10 @@ include("./navForLogged.php");
 
                     </div>
                 </div>
-                <div class="text-center">
+                <!-- <div class="text-center">
                     <button type="button" onclick="address_duplicate()"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add</button>
-                </div>
+                </div> -->
             </div>
 
 
@@ -347,7 +353,8 @@ include("./navForLogged.php");
                     <div class="flex flex-wrap gap-x-20 mt-3">
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Branch Name
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Branch
+                                Name
                                 :
                             </label>
                             <input type="text" placeholder="Enter branch name" name="branch_name"
@@ -356,7 +363,8 @@ include("./navForLogged.php");
 
                         <div>
                             <label for="countries"
-                                class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Branch Number : </label>
+                                class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Branch Number :
+                            </label>
                             <input type="text" placeholder="Enter brach number" name="branch_no"
                                 class="w-60 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
 
@@ -364,7 +372,8 @@ include("./navForLogged.php");
 
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Branch Type
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Branch
+                                Type
                                 :
                             </label>
                             <input type="text" placeholder="Enter brach type" name="branch_type"
@@ -376,7 +385,8 @@ include("./navForLogged.php");
                     <div class="flex flex-wrap gap-x-20">
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Bank Name :
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Bank
+                                Name :
                             </label>
                             <input type="text" placeholder="Enter bank name" name="bank_name"
                                 class="w-60 rounded-md border text-xs mb-4 border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-7 outline-none focus:border-[#6A64F1] focus:shadow-md" />
@@ -384,7 +394,8 @@ include("./navForLogged.php");
 
                         <div>
                             <label for=""
-                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Bank Number
+                                class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Bank
+                                Number
                                 :
                             </label>
                             <input type="text" placeholder="Enter bank number" name="bank_no"
@@ -448,8 +459,8 @@ include("./navForLogged.php");
 
 
                 <div class="text-center">
-                    <input type="submit" id="resetButton"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    <input type="submit" id="resetButton" value="Create Customer"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                     </input>
                 </div>
             </div>

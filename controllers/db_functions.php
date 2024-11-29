@@ -1,8 +1,9 @@
 <?php
 
+
 //  include "../dbconnection/db.php";
 
- function getTableData($tableName)
+function getTableData($tableName)
 {
 
     global $con;
@@ -130,7 +131,7 @@ function sendSerialsToAnother($serial_number, $so_head_id, $so_line_id, $invento
     // Ensure the total quantity is greater than 0
     if ($total_qty > 0) {
         // Insert a new inventory transaction record
-        $sql_to_create_inventory = "INSERT INTO `mtl_inventory_transactions` 
+        $sql_to_create_inventory = "INSERT INTO `for_office`.`mtl_inventory_transactions` 
                                 (`sub_inventory_name`, `sub_inventory_id`, `location_id`, `item_qty`, `item_code`, `so_head_id`, `created_date`, `created_by`) 
                                 VALUES ('$inventory_name', '$inventory_id', '1', '$total_qty', '$item_code', '$so_head_id', '$current_date', '$current_user')";
 
@@ -155,7 +156,7 @@ function sendSerialsToAnother($serial_number, $so_head_id, $so_line_id, $invento
             }
 
             // Update query to set inventory ID and other fields
-            $query = "UPDATE `mtl_serial_number` 
+            $query = "UPDATE `for_office`.`mtl_serial_number` 
                   SET `inventory_id` = '$inventory_id', `updated_date` = '$current_date', `updated_by` = '$current_user', `mtnl_transaction_id` = '$mtnl_transaction_id' 
                   WHERE `serial_number` = ?";
 
@@ -170,7 +171,7 @@ function sendSerialsToAnother($serial_number, $so_head_id, $so_line_id, $invento
 
 
 
-                $qury_to_make_transaction  = "INSERT INTO `move_order_item_header` (`so_number`, `so_line_number`, `serial_number`, `transaction_type`,  `item_code`,  `source_invetory`, `destination_inv`, `transaction_qty`,  `created_by`, `created_date`) 
+                $qury_to_make_transaction  = "INSERT INTO `for_office`.`move_order_item_header` (`so_number`, `so_line_number`, `serial_number`, `transaction_type`,  `item_code`,  `source_invetory`, `destination_inv`, `transaction_qty`,  `created_by`, `created_date`) 
                 VALUES ($so_head_id, $so_line_id, '$s_number', 'Sale order allocation', '$item_code',  '$source_inventory_name', '$inventory_name', 1,  '$current_user', '$current_date');";
 
 
@@ -212,5 +213,50 @@ function sendSerialsToAnother($serial_number, $so_head_id, $so_line_id, $invento
         $response['success'] = false;
         $response['message'] = "No serial numbers provided";
         echo json_encode($response);
+    }
+}
+
+
+function getTableColumnDataById($tableName,$column, $columnName, $id)
+{
+    global $con;
+
+    $conn = $con;
+
+    if ($conn->connect_error) {
+        error_log("Connection failed: " . $conn->connect_error);
+        return ["success" => false, "message" => "Database connection failed"];
+    }
+
+    // Prepare and bind
+    $stmt = $conn->prepare("SELECT $column FROM $tableName WHERE $columnName = ?");
+    if ($stmt === false) {
+        error_log("Prepare failed: " . $conn->error);
+        return ["success" => false, "message" => "Error preparing query"];
+    }
+
+    // Bind parameters
+    $stmt->bind_param("s", $id);
+
+    // Execute the statement
+    if ($stmt->execute() === false) {
+        error_log("Execute failed: " . $stmt->error);
+        return ["success" => false, "message" => "Error executing query"];
+    }
+
+    // Get result
+    $result = $stmt->get_result();
+
+    // Fetch data
+    if ($result->num_rows > 0) {
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row[$column];
+        }
+        $stmt->close();
+        return ["success" => true, "data" => $data];
+    } else {
+        $stmt->close();
+        return ["success" => false, "message" => "No data found in table '$tableName'"];
     }
 }

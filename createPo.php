@@ -59,6 +59,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
+$query = "SELECT DISTINCT supplier_name FROM asl_header_level WHERE supplier_name IS NOT NULL AND supplier_name != ''";
+$result1 = $con->query($query);
+
+$options = [];
+if ($result1->num_rows > 0) {
+    while ($row = $result1->fetch_assoc()) {
+        $options[] = $row['supplier_name'];
+    }
+}
+
 
 
 
@@ -103,27 +113,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="">
                     <label class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Vendore
                         code : </label>
-                    <input type="text" name="vendore_code" required value="<?php if (isset($po_number)) {
+                    <input type="number" name="vendore_code" required value="<?php if (isset($po_number)) {
                         echo $vendor_code;
                     } ?>"
                         class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                 </div>
                 <div class="">
-                    <label class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Vendor
+                    <label class="block w-40 mb-1.5 font-bold text-xs font-medium text-gray-900 dark:text-white">Vendor
                         Name : </label>
-                    <input type="text" name="vendore_name" required value="<?php if (isset($po_number)) {
+                    <!-- <input type="text" name="vendore_name" required value="<?php if (isset($po_number)) {
                         echo $vendore_name;
                     } ?>"
-                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" /> -->
+                    <select id="vendore_name" name="vendore_name" required
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg block  p-1 w-40">
+                        <option value="" selected hidden>Select Supplier</option>
+                        <?php foreach ($options as $option) { ?>
+                            <option class="" value="<?php echo $option; ?>"><?php echo $option; ?></option>
+                        <?php } ?>
 
+                    </select>
                 </div>
                 <div class="">
                     <label class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Vendor
                         Site Code : </label>
-                    <input type="text" name="vendore_site_code" required value="<?php if (isset($po_number)) {
+                    <input type="number" name="vendore_site_code" required value="<?php if (isset($po_number)) {
                         echo $vendore_site_code;
                     } ?>"
                         class="w-40 rounded-md border text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
+
                 </div>
                 <div class="">
                     <label class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Buyer :

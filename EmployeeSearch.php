@@ -39,14 +39,14 @@ include("./navForLogged.php");
                                 class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Joiner(New/Old)
                                 :
                             </label>
-                            <input type="text" name="joiner_info" placeholder="Enter joiner status" id="joiner_info"
+                            <input type="text" name="joiner_info" placeholder="Enter joiner status" id="joiner_info" readonly
                                 class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <div class="">
                             <label
                                 class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Name
                                 : </label>
-                            <input type="text" name="emp_name" placeholder="Enter full name" id="emp_name"
+                            <input type="text" name="emp_name" placeholder="Enter full name" id="emp_name" readonly
                                 class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <div class="">
@@ -54,7 +54,7 @@ include("./navForLogged.php");
                                 class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">DOB
                                 :
                             </label>
-                            <input type="date" name="emp_dob" id="emp_dob"
+                            <input type="date" name="emp_dob" id="emp_dob" readonly
                                 class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <div class="">
@@ -62,14 +62,14 @@ include("./navForLogged.php");
                                 class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Department
                                 :
                             </label>
-                            <input type="text" name="emp_department" placeholder="Enter department" id="emp_department"
+                            <input type="text" name="emp_department" placeholder="Enter department" id="emp_department" readonly
                                 class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <div class="">
                             <label
                                 class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Mobile
                                 No : </label>
-                            <input type="text" name="emp_mobile_no" placeholder="Enter mobile number" id="emp_mobile_no"
+                            <input type="text" name="emp_mobile_no" placeholder="Enter mobile number" id="emp_mobile_no" readonly
                                 class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <div class="">
@@ -77,21 +77,21 @@ include("./navForLogged.php");
                                 class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Address
                                 :
                             </label>
-                            <input type="text" name="emp_address" placeholder="Enter address" id="emp_address"
+                            <input type="text" name="emp_address" placeholder="Enter address" id="emp_address" readonly
                                 class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <div class="">
                             <label
                                 class="block  mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">E-mail
                                 Address : </label>
-                            <input type="text" name="emp_email" placeholder="Enter email address" id="emp_email"
+                            <input type="text" name="emp_email" placeholder="Enter email address" id="emp_email" readonly
                                 class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <div class="">
                             <label
                                 class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Pan
                                 Card Number : </label>
-                            <input type="text" name="emp_pan_card" placeholder="Enter Pan Card" id="emp_pan_card"
+                            <input type="text" name="emp_pan_card" placeholder="Enter Pan Card" id="emp_pan_card" readonly
                                 class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                         <!-- <div class="">
@@ -119,42 +119,42 @@ include("./navForLogged.php");
                             Organization Name :
                         </label>
                         <input type="text" name="organization_name" placeholder="Enter organization"
-                            id="organization_name"
+                            id="organization_name" readonly
                             class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                     <div class="">
                         <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Deputed
                             to (Location) :
                         </label>
-                        <input type="text" name="deputed_location" placeholder="Enter location" id="deputed_location"
+                        <input type="text" name="deputed_location" placeholder="Enter location" id="deputed_location" readonly
                             class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                     <div class="">
                         <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Last
                             CTC :
                         </label>
-                        <input type="text" name="last_ctc" placeholder="Enter last CTC" id="last_ctc"
+                        <input type="text" name="last_ctc" placeholder="Enter last CTC" id="last_ctc" readonly
                             class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                     <div class="">
                         <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Current
                             CTC Offered :
                         </label>
-                        <input type="text" name="current_ctc" placeholder="Enter current CTC" id="current_ctc"
+                        <input type="text" name="current_ctc" placeholder="Enter current CTC" id="current_ctc" readonly
                             class="w-40 rounded-md border  mb-3  text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                     <div class="">
                         <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Tentative
                             Date of Joining :
                         </label>
-                        <input type="date" name="tentative_date" id="tentative_date"
+                        <input type="date" name="tentative_date" id="tentative_date" readonly
                             class="w-40 rounded-md border  mb-3  text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                     <div class="">
                         <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Exact
                             Date of Joining :
                         </label>
-                        <input type="date" name="exact_date" id="exact_date"
+                        <input type="date" name="exact_date" id="exact_date" readonly
                             class="w-40 rounded-md border  mb-3  text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                 </div>
@@ -165,35 +165,35 @@ include("./navForLogged.php");
                         <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Notice
                             Period :
                         </label>
-                        <input type="text" name="notice_period" placeholder="Enter notice period" id="notice_period"
+                        <input type="text" name="notice_period" placeholder="Enter notice period" id="notice_period" readonly
                             class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                     <div class="">
                         <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Notice
                             Served (Yes/No) :
                         </label>
-                        <input type="text" name="notice_served" placeholder="Enter yes or no" id="notice_served"
+                        <input type="text" name="notice_served" placeholder="Enter yes or no" id="notice_served" readonly
                             class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                     <div class="">
                         <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Job
                             Role :
                         </label>
-                        <input type="text" name="job_role" placeholder="Enter role" id="job_role"
+                        <input type="text" name="job_role" placeholder="Enter role" id="job_role" readonly
                             class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                     <div class="">
                         <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Job
                             Description :
                         </label>
-                        <input type="text" name="job_description" placeholder="Enter description" id="job_description"
+                        <input type="text" name="job_description" placeholder="Enter description" id="job_description" readonly
                             class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                     <div class="">
                         <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Date
                             of Anniversary :
                         </label>
-                        <input type="date" name="date_of_anniversary" id="date_of_anniversary"
+                        <input type="date" name="date_of_anniversary" id="date_of_anniversary" readonly
                             class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                 </div>
@@ -202,19 +202,19 @@ include("./navForLogged.php");
                         <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Offer
                             Letter Release Date :
                         </label>
-                        <input type="date" name="offer_letter_date" id="offer_letter_date"
+                        <input type="date" name="offer_letter_date" id="offer_letter_date" readonly
                             class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                        <input type="file" name="offer_letter_file"
-                            class="w-40 border-none text-xs border-gray-500 bg-white text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        <!-- <input type="file" name="offer_letter_file" 
+                            class="w-40 border-none text-xs border-gray-500 bg-white text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" /> -->
                     </div>
                     <div class="">
                         <label class="block mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Date of
                             Leaving :
                         </label>
-                        <input type="date" name="date_of_leaving" id="date_of_leaving"
+                        <input type="date" name="date_of_leaving" id="date_of_leaving" readonly
                             class="w-40 rounded-md border text-xs border-gray-500 bg-white pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                        <input type="file" name="date_of_leaving_file" id="date_of_leaving_file"
-                            class="w-40 border-none text-xs border-gray-500 bg-white    text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                        <!-- <input type="file" name="date_of_leaving_file" id="date_of_leaving_file"
+                            class="w-40 border-none text-xs border-gray-500 bg-white    text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" /> -->
                     </div>
                 </div>
             </fieldset>

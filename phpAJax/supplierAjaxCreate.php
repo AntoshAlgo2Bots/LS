@@ -4,7 +4,7 @@ include("../dbconnection/db.php");
 date_default_timezone_set("Asia/Kolkata");
 
 if(isset($_REQUEST['oraganigation_name'])){
-    $db=$con->query("insert into supplier_organization_details_tbl(oraganigation_name,oraganigation_type, gst_number,supplier_code,supplier_name,supplier_type,sub_supplier_type,supplier_status,starting_date,ending_date,person_name,person_email,person_number)values('{$_REQUEST['oraganigation_name']}','{$_REQUEST['oraganigation_type']}','{$_REQUEST['gst_number']}','{$_REQUEST['supplier_code']}','{$_REQUEST['supplier_name']}','{$_REQUEST['supplier_type']}','{$_REQUEST['sub_supplier_type']}','{$_REQUEST['supplier_status']}','{$_REQUEST['starting_date']}','{$_REQUEST['ending_date']}','{$_REQUEST['person_name']}','{$_REQUEST['person_email']}','{$_REQUEST['person_number']}') ");
+    $db=$con->query("insert into supplier_organization_details_tbl(oraganigation_name,oraganigation_type, gst_number,supplier_name,supplier_type,sub_supplier_type,supplier_status,starting_date,ending_date,person_name,person_email,person_number)values('{$_REQUEST['oraganigation_name']}','{$_REQUEST['oraganigation_type']}','{$_REQUEST['gst_number']}','{$_REQUEST['supplier_name']}','{$_REQUEST['supplier_type']}','{$_REQUEST['sub_supplier_type']}','{$_REQUEST['supplier_status']}','{$_REQUEST['starting_date']}','{$_REQUEST['ending_date']}','{$_REQUEST['person_name']}','{$_REQUEST['person_email']}','{$_REQUEST['person_number']}') ");
 
 
     if($db){

@@ -9,8 +9,8 @@ include("./navForLogged.php");
 
 $sql = "SELECT * 
 FROM supplier_organization_details_tbl a 
-INNER JOIN supplier_address_details_tbl b ON a.supplier_id  = b.supplier_id  
-INNER JOIN supplier_banking_details_tbl c ON b.supplier_id  = c.supplier_id ;";
+INNER JOIN supplier_address_details_tbl b ON a.supplier_code  = b.supplier_code  
+INNER JOIN supplier_banking_details_tbl c ON b.supplier_code  = c.supplier_code ;";
 
 
 
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
 
 
-        $sql = "SELECT * FROM supplier_organization_details_tbl a INNER JOIN supplier_address_details_tbl b ON a.supplier_id  = b.supplier_id  INNER JOIN supplier_banking_details_tbl c ON a.supplier_id  = c.supplier_id  WHERE a.supplier_id = '$query' OR a.oraganigation_name = '$query'  OR a.oraganigation_type = '$query'";
+        $sql = "SELECT * FROM supplier_organization_details_tbl a INNER JOIN supplier_address_details_tbl b ON a.supplier_code  = b.supplier_code  INNER JOIN supplier_banking_details_tbl c ON a.supplier_code  = c.supplier_code  WHERE a.supplier_id = '$query' OR a.oraganigation_name = '$query'  OR a.oraganigation_type = '$query'";
 
 
         $result = mysqli_query($con, $sql);
@@ -175,29 +175,17 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                         class="w-full text-sm whitespace-nowrap text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-6 py-3">Supplier id </th>
-                                <th scope="col" class="px-6 py-3">Oraganigation
-                                Name</th>
+                                <th scope="col" class="px-6 py-3">Supplier Code </th>
+                                <th scope="col" class="px-6 py-3">Oraganigation Name</th>
                                 <th scope="col" class="px-6 py-3">Oraganigation Type</th>
                                 <th scope="col" class="px-6 py-3">GST Number</th>
-                                <th scope="col" class="px-6 py-3">Supplier
-                                Code</th>
-                                <th scope="col" class="px-6 py-3">Supplier
-                                Name</th>
-                                <th scope="col" class="px-6 py-3">Supplier
-                                Type</th>
-                                <th scope="col" class="px-6 py-3">Sub
-                                Supplier
-                                Type</th>
-                                <th scope="col" class="px-6 py-3">Supplier
-                                Status</th>
-                                <th scope="col" class="px-6 py-3">Starting
-                                Date</th>
-                                <th scope="col" class="px-6 py-3">Ending
-                                Date</th>
-                                <th scope="col" class="px-6 py-3">Contact
-                                Person
-                                Name</th>
+                                <th scope="col" class="px-6 py-3">Supplier Name</th>
+                                <th scope="col" class="px-6 py-3">Supplier Type</th>
+                                <th scope="col" class="px-6 py-3">Sub Supplier Type</th>
+                                <th scope="col" class="px-6 py-3">Supplier Status</th>
+                                <th scope="col" class="px-6 py-3">Starting Date</th>
+                                <th scope="col" class="px-6 py-3">Ending Date</th>
+                                <th scope="col" class="px-6 py-3">Contact Person Name</th>
                                 <th scope="col" class="px-6 py-3">Contact
                                 Person Email</th>
                                 <th scope="col" class="px-6 py-3">Contact
@@ -229,23 +217,14 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                 Number</th>
                                 <th scope="col" class="px-6 py-3">Site
                                 Code</th>
-                                <th scope="col" class="px-6 py-3">Branch
-                                Name</th>
-                                <th scope="col" class="px-6 py-3">Branch
-                                Number</th>
-                                <th scope="col" class="px-6 py-3">Branch
-                                Type</th>
-                                <th scope="col" class="px-6 py-3">Bank
-                                Name</th>
-                                <th scope="col" class="px-6 py-3">Bank
-                                Number</th>
-
-                                <th scope="col" class="px-6 py-3">Bank
-                                Type</th>
-                                <th scope="col" class="px-6 py-3">Account
-                                Name</th>
-                                <th scope="col" class="px-6 py-3">Account
-                                Number</th>
+                                <th scope="col" class="px-6 py-3">Branch Name</th>
+                                <th scope="col" class="px-6 py-3">Branch Number</th>
+                                <th scope="col" class="px-6 py-3">Branch Type</th>
+                                <th scope="col" class="px-6 py-3">Bank Name</th>
+                                <th scope="col" class="px-6 py-3">Bank Number</th>
+                                <th scope="col" class="px-6 py-3">Bank Type</th>
+                                <th scope="col" class="px-6 py-3">Account Name</th>
+                                <th scope="col" class="px-6 py-3">Account Number</th>
                                 <th scope="col" class="px-6 py-3">Account Type</th>
                                 <th scope="col" class="px-6 py-3">IFSC Code</th>
 
@@ -268,7 +247,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
                                 <tr class="border-b dark:border-gray-700">
                                     <td class="px-6 py-4">
-                                        <?php echo $row['supplier_id'] ?>
+                                        <?php echo $row['supplier_code'] ?>
                                     </td>
 
                                     <td class="px-6 py-4">
@@ -279,9 +258,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                     </td>
                                     <td class="px-6 py-4">
                                         <?php echo $row['gst_number'] ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row['supplier_code'] ?>
                                     </td>
                                     <td class="px-6 py-4">
                                         <?php echo $row['supplier_name'] ?>

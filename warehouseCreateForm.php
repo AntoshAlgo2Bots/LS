@@ -49,7 +49,7 @@
                                 <label
                                     class="block w-40 mb-2 font-bold text-xs font-medium text-gray-900 dark:text-white">Organaization_code
                                 </label>
-                                <input required type="text" name="organaization_code" placeholder="Enter organaization code" id="organaization_code"
+                                <input required type="number" name="organaization_code" placeholder="Enter organaization code" id="organaization_code"
                                     class="w-40 rounded-md border mb-3 text-xs border-gray-500 bg-white py-3 pl-2 text-[#6B7280] h-6 outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
 

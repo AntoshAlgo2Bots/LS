@@ -549,9 +549,9 @@ if ($result3->num_rows > 0) {
                         <div>
                             <label for="lead_source" class="block mb-2 text-sm font-bold text-gray-900">Lead Source :
                             </label>
-                            <select name="lead_source" id="lead_source" onchange="verifyAnswer()"
+                            <select name="lead_source" id="lead_source" required onchange="verifyAnswer()"
                                 class="border mb-4 border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 p-1.5">
-                                <option selected disabled hidden>Choose Lead</option>
+                                <option value="" selected hidden>Choose Lead</option>
                                 <?php foreach ($options as $option) { ?>
                                     <option class="" value="<?php echo $option; ?>">
                                         <?php echo $option; ?>
@@ -586,9 +586,9 @@ if ($result3->num_rows > 0) {
                         <div>
                             <label for="lead_type" class="block mb-2 text-sm font-bold text-gray-900">Lead Type :
                             </label>
-                            <select name="lead_type" id="lead_type"
+                            <select name="lead_type" id="lead_type" required
                                 class="border mb-4 border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 p-1.5">
-                                <option selected disabled hidden>Choose Lead Type</option>
+                                <option value="" selected hidden>Choose Lead Type</option>
                                 <?php foreach ($options2 as $option) { ?>
                                     <option class="" value="<?php echo $option; ?>">
                                         <?php echo $option; ?>
@@ -704,7 +704,7 @@ if ($result3->num_rows > 0) {
                         </label>
                         <select id="follow_up" name="follow_up" required
                             class=" border mb-4 border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 p-1.5">
-                            <option selected disabled hidden>Choose One</option>
+                            <option value="" selected hidden>Choose One</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
@@ -749,10 +749,10 @@ if ($result3->num_rows > 0) {
                             class="block mb-2 text-sm font-bold text-gray-900">Installation
                             required :
                         </label>
-                        <select id="installation_required" name="installation_required"
+                        <select id="installation_required" name="installation_required" required
                             onchange="installationRequired()"
                             class=" border mb-4 border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 p-1.5">
-                            <option selected disabled hidden>Choose one</option>
+                            <option value="" selected hidden>Choose one</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
@@ -2495,16 +2495,15 @@ if ($result3->num_rows > 0) {
             document.getElementById('ref_phone_no').disabled = false;
             document.getElementById('ref_phone_no').placeholder = "Person Phone No";
             document.getElementById('ref_phone_no').required = true;
-        }
-        // else {
-        //     document.getElementById('ref_By').disabled = true;
-        //     document.getElementById('ref_By').placeholder = " ";
-        //     document.getElementById('ref_By').value = "";
-        //     document.getElementById('ref_phone_no').disabled = true;
-        //     document.getElementById('ref_phone_no').placeholder = " ";
-        //     document.getElementById('ref_phone_no').value = "";
+        }else {
+            document.getElementById('ref_By').disabled = true;
+            document.getElementById('ref_By').placeholder = " ";
+            document.getElementById('ref_By').value = "";
+            document.getElementById('ref_phone_no').disabled = true;
+            document.getElementById('ref_phone_no').placeholder = " ";
+            document.getElementById('ref_phone_no').value = "";
 
-        // }
+        }
 
     }
 

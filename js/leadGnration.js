@@ -246,7 +246,7 @@ function installationRequired() {
         // document.getElementById('tentative_installation').value = "";
     } else {
         document.getElementById('tentative_installation').disabled = true;
-        document.getElementById('tentative_installation').placeholder = "";
+        document.getElementById('tentative_installation').required = false;
         document.getElementById('tentative_installation').value = "";
 
 
