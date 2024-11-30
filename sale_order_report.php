@@ -58,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
 <body>
     <section class="bg-gray-50 dark:bg-gray-900  mt-6   p-3 sm:p-5">
+    <h1 class="text-4xl text-center font-bold underline mb-4">Sales Order Report</h1>
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <!-- Start coding here -->
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
@@ -115,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                         all</a>
                                 </div>
                             </div>
-                            <button id="filterDropgitdownButton" data-dropdown-toggle="filterDropdown"
+                            <!-- <button id="filterDropgitdownButton" data-dropdown-toggle="filterDropdown"
                                 class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                                 type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
@@ -130,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                     <path clip-rule="evenodd" fill-rule="evenodd"
                                         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                                 </svg>
-                            </button>
+                            </button> -->
                             <div id="filterDropdown"
                                 class="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
                                 <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Choose brand</h6>

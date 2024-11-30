@@ -30,8 +30,9 @@ include('./dbconnection/db.php');
 
     ?>
 
+<h1 class="text-4xl text-center font-bold underline mt-6">Purchase Order Report</h1>
 
-    <div class="mainContent mt-24">
+    <div class="mainContent mt-16">
 
 
 

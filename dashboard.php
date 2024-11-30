@@ -2204,7 +2204,7 @@ $role = $_SESSION['role'] ?? ''; // Ensure role is set
 
                             <!-- style="width:26rem; height:17rem" -->
                             <div>
-                                <a href="#">
+                                <a href="./inventoryReport.php">
                                     <div class="datachart bg-gray-100 " id="invetory_items"></div>
                                 </a>
                             </div>

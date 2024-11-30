@@ -1,4 +1,3 @@
-
 <?php
 
 // $servername = "localhost";
@@ -60,7 +59,35 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     if (isset($_GET["search_query"])) {
         $query = $_GET["search_query"];
 
-        $sql = "SELECT * FROM sale_order_header  where po_number ='$query'or s_no ='$query' or invoice_number ='$query' or no_of_boxes='$query' ";
+        $sql = "SELECT 
+	item_code,
+    sub_inventory_name,
+    sum((SELECT 
+            COUNT(*)
+        FROM
+            mtl_serial_number
+        WHERE
+            mtnl_transaction_id = a.id)) AS total_qty,
+              sum((SELECT 
+            COUNT(*)
+        FROM
+            mtl_serial_number
+        WHERE
+            mtnl_transaction_id = a.id and status='yes')) AS availeble_qty,
+             sum((SELECT 
+            COUNT(*)
+        FROM
+            mtl_serial_number
+        WHERE
+            mtnl_transaction_id = a.id and status='no')) AS occupied_qty
+					
+            
+FROM
+    mtl_inventory_transactions a
+    
+WHERE 
+	item_code = '$query'
+group by item_code,sub_inventory_name";
 
         $result = mysqli_query($con, $sql);
 
@@ -89,9 +116,12 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 </head>
 
 <body>
-<?php include("./navForLogged.php"); ?>
+    <?php include("./navForLogged.php"); ?>
 
+
+    
     <section class="bg-gray-50 dark:bg-gray-900  mt-6   p-3 sm:p-5">
+        <h1 class="text-4xl text-center font-bold underline mb-4">Inventory Report</h1>
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <!-- Start coding here -->
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
@@ -109,9 +139,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="text" id="search_query" disabled name="search_query"
+                                <input type="text" id="search_query" name="search_query"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Search" required="">
+                                    placeholder="Search">
                             </div>
                         </form>
                     </div>
@@ -149,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                         all</a>
                                 </div>
                             </div>
-                            <button id="filterDropgitdownButton" data-dropdown-toggle="filterDropdown"
+                            <!-- <button id="filterDropgitdownButton" data-dropdown-toggle="filterDropdown"
                                 class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                                 type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
@@ -164,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                     <path clip-rule="evenodd" fill-rule="evenodd"
                                         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                                 </svg>
-                            </button>
+                            </button> -->
                             <div id="filterDropdown"
                                 class="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
                                 <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Choose brand</h6>
@@ -216,8 +246,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
                                 <th scope="col" class="px-6 py-3">availble qty for sale</th>
                                 <th scope="col" class="px-6 py-3">blocked qty</th>
-                                
-                                
+
+
 
 
 
@@ -257,8 +287,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                                     <td class="px-6 py-4">
                                         <?php echo $row['occupied_qty'] ?>
                                     </td>
-                                   
-                      
+
+
                                     <td class="px-6 py-3 flex items-center justify-end">
                                         <button id="apple-imac-27-dropdown-button"
                                             data-dropdown-toggle="apple-imac-27-dropdown"
@@ -337,6 +367,73 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
             link.click();
             document.body.removeChild(link);
         }
+    </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+
+
+
+
+
+        $(function () {
+
+            var availableTags = [
+                "ActionScript",
+                "AppleScript",
+                "Asp",
+                "BASIC",
+                "C",
+                "C++",
+                "Clojure",
+                "COBOL",
+                "ColdFusion",
+                "Erlang",
+                "Fortran",
+                "Groovy",
+                "Haskell",
+                "Java",
+                "JavaScript",
+                "Lisp",
+                "Perl",
+                "PHP",
+                "Python",
+                "Ruby",
+                "Scala",
+                "Scheme"
+            ];
+
+
+            console.log(availableTags);
+            $.get("ajax.php", {
+                "itemCodeFromInventory": "itemCodeFromInventory"
+            }, function (data) {
+
+                availableTags = JSON.parse(data);
+
+                console.log(availableTags);
+                $("input[name='search_query']").autocomplete({
+                    source: availableTags
+                });
+
+
+
+
+                // $("input[name='Item_name']").autocomplete({
+                //     source: availableTags
+                // });
+
+
+                $("input[name='search_query']").autocomplete({
+                    source: availableTags
+                });
+
+
+            })
+
+        });
     </script>
 
 

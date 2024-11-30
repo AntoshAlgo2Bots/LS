@@ -50,18 +50,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $respone["message"] = "success";
                 $_SESSION["username"] = $row["user_name"];
                 $_SESSION["user_id"] = $row["id"];
-                $_SESSION["role"] = $row['role']; 
-                
+                $_SESSION["role"] = $row['role'];
+
                 $user_id = $row["id"];
-                
-                
+
+
                 $sql = "SELECT * FROM admin_roles WHERE admin_id = $user_id;";
-                
+
                 $result = mysqli_query($con, $sql);
-                
-                
+
+
                 $row = mysqli_fetch_assoc($result);
-                
+
                 // Convert values to integers
                 // $_SERVER["user_viewOnly"] = (int) $row["user_viewOnly"];
                 // $_SERVER["user_write"] = (int) $row["user_write"];
@@ -201,9 +201,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     include('./dbconnection/db.php');
-    
+
     if (isset($_GET['itemCodeInfoForPr'])) {
-        
+
         include('./dbconnection/db.php');
 
         $sql = "SELECT item_code FROM item_master_main;";
@@ -245,6 +245,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
+    }
+
+
+
+    if (isset($_GET['itemCodeFromInventory'])) {
+
+        include('./dbconnection/db.php');
+
+        $sql = "SELECT distinct item_code FROM mtl_inventory_transactions";
+
+        $result = mysqli_query($con, $sql);
+
+
+        $data = [];
+
+        while ($row = mysqli_fetch_assoc($result)) {
+
+            $data[] = $row["item_code"];
+        }
+
+        echo json_encode($data);
     }
 
 

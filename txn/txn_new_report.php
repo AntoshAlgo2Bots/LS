@@ -114,7 +114,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     <div>
 
 
+        <h1 class="text-4xl text-center font-bold underline my-5">Daily Transaction Report</h1>
         <form class="flex items-center  max-w-lg mx-auto mt-4" method="GET">
+
             <label for="voice-search" class="sr-only">Search</label>
             <div class="relative w-full mr-2">
 
